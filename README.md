@@ -24,3 +24,10 @@ Collaborated on the different aspects of the project:
 * **Matteo Yann Feo** *(EPFL)*
 * **Simone Sanso** *(EPFL)*
 * **Luca Sassoli de Bianchi** *(EPFL)* 
+
+## External references
+
+You can find out more about our team, our story and the whole CHIC program by checkoing out the following links:
+
+* [Team blog-page](https://chi.camp/projects/napac/) : Everything you need to know about us and about our journey
+* [CHIC](https://chi.camp/program/) : About the project and the program it offers
