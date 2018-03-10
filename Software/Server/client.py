@@ -11,7 +11,7 @@ class Client(object):
 		self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 		# Connect the socket to the port where the server is listening
-		server_address = ('localhost', 6789)
+		server_address = ('192.168.1.105', 6789)
 		self.__client_socket.connect(server_address)
 
 	@classmethod

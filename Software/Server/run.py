@@ -7,7 +7,7 @@ def main():
 	print("Running server environment...")
 
 	# Server starting
-	Server.get_instance()
+	#Server.get_instance()
 	Server.get_instance().start()
 
 

@@ -1,4 +1,6 @@
-class Connection(object):
+from threading import Thread
+
+class Connection(Thread):
 	"""Class implemented to handle and manage a single connection to the Server.
 
 	This class is instanced whenever a new Client connect to the server, enabling 
@@ -22,6 +24,8 @@ class Connection(object):
 			socket (Socket): connection socket between this client and the server.
 		"""
 
+		Thread.__init__(self)
+
 		self._socket = socket
 		self._active = True 
 
@@ -32,6 +36,7 @@ class Connection(object):
 		message  = self._socket.recv(self.__MESSAGE_LENGTH).decode("utf-8")
 		
 		if message:
+			print()
 			print("[ SERVER ] Message received from {c}: {m}".format(c=self._get_address(), m=message))
 
 
