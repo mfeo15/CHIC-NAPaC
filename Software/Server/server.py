@@ -10,25 +10,25 @@ class Server(object):
 	avoiding overlapping. 
 
 
-    Matteo Yann Feo @ EPFL, NAPaC team of CHIC 2017/2018
-    25/02/2018
-    """
+	Matteo Yann Feo @ EPFL, NAPaC team of CHIC 2017/2018
+	25/02/2018
+	"""
+	
+	__instance = None
 
- 	__instance = None
+	__server_socket = None
 
- 	__server_socket = None
+	__PORT = 6789
 
- 	__PORT = 6789
+	__connections = []
 
- 	__connections = []
-
- 	def __init__(self):
+	def __init__(self):
  		"""Constructor method of the class. 
-		
+
 		New instance of the server socket on the provided __PORT. If the process completes
 		without troubles a log is printed on the console with easy access for the IP address.
 		If the operation fails (busy port), the error is logged as well.
- 		"""
+		"""
 
  		try:
  			# Create a TCP/IP socket
@@ -48,15 +48,15 @@ class Server(object):
  			print("Error during init")
  			print(e)
 
-
- 	@classmethod
- 	def get_instance(cls):
+	
+	@classmethod
+	def get_instance(cls):
  		"""Implementation of the Singleton design patter for the Class object. 
 
 		Returns:
-            the existing instance of the object or a new one if it is invoked for
-            the very first time in the execution.
- 		"""
+			the existing instance of the object or a new one if it is invoked for
+			the very first time in the execution.
+		"""
 
  		if not cls.__instance:
  			cls.__instance = Server()
@@ -64,19 +64,19 @@ class Server(object):
  		return cls.__instance
 
 
- 	def __register_connection(self, c):
+	def __register_connection(self, c):
  		"""Method to add the new connection in the list with the other ones. """
 
  		self.__connections.append(c)
 
 
- 	def start(self):
+	def start(self):
  		"""Method to activate the instanced and setup Server in the constructor.
 
 		A new connection is instanced for each new client reaching the server. Those are
 		registered in a list for easy retrieval in the future.
 		Whenever a connection fails, it is closed to prevent malffunctions.
- 		 """
+		"""
 
  		# Listen for incoming connections
  		self.__server_socket.listen(1)
@@ -105,7 +105,7 @@ class Server(object):
  				connection_socket.close()
 
 
- 	def close(self):
+	def close(self):
  		"""Method close and clean-up the Server object when not needed anymore """
 
  		self.__server_socket.close()
