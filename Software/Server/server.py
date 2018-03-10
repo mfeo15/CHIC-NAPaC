@@ -1,6 +1,18 @@
 import socket
+import threading
+
+from connection import Connection
 
 class Server(object):
+	"""Class to model a TCP Server with multiple client capabilities.
+
+	The object follows the Singleton pattern in order to have it instanced once and 
+	avoiding overlapping. 
+
+
+    Matteo Yann Feo @ EPFL, NAPaC team of CHIC 2017/2018
+    25/02/2018
+    """
 
  	__instance = None
 
@@ -8,7 +20,15 @@ class Server(object):
 
  	__PORT = 6789
 
+ 	__connections = []
+
  	def __init__(self):
+ 		"""Constructor method of the class. 
+		
+		New instance of the server socket on the provided __PORT. If the process completes
+		without troubles a log is printed on the console with easy access for the IP address.
+		If the operation fails (busy port), the error is logged as well.
+ 		"""
 
  		try:
  			# Create a TCP/IP socket
@@ -22,19 +42,41 @@ class Server(object):
  			print("")
  			print("")
  			print("NAPaC Server : ON")
- 			print("[ SERVER ] Server Socket inizialiazed : {}".format(socket.gethostbyname(socket.gethostname()) ))
+ 			print("[ SERVER ] Server Socket inizialiazed : {}".format(self.__server_socket.getsockname()))
 
- 		except:
+ 		except Exception as e:
  			print("Error during init")
+ 			print(e)
+
 
  	@classmethod
  	def get_instance(cls):
+ 		"""Implementation of the Singleton design patter for the Class object. 
+
+		Returns:
+            the existing instance of the object or a new one if it is invoked for
+            the very first time in the execution.
+ 		"""
+
  		if not cls.__instance:
  			cls.__instance = Server()
 
  		return cls.__instance
 
+
+ 	def __register_connection(self, c):
+ 		"""Method to add the new connection in the list with the other ones. """
+
+ 		self.__connections.append(c)
+
+
  	def start(self):
+ 		"""Method to activate the instanced and setup Server in the constructor.
+
+		A new connection is instanced for each new client reaching the server. Those are
+		registered in a list for easy retrieval in the future.
+		Whenever a connection fails, it is closed to prevent malffunctions.
+ 		 """
 
  		# Listen for incoming connections
  		self.__server_socket.listen(1)
@@ -42,20 +84,31 @@ class Server(object):
  		while True:
  			try:
  				# Wait for a connection
- 				connection, client_address = self.__server_socket.accept()
+ 				connection_socket, client_address = self.__server_socket.accept()
 
  				print()
  				print("[ SERVER ] New Client IP Address : {}".format(client_address) )
 
- 			except:
+ 				# Instance a new connection for the new client and save it
+ 				connection = Connection(connection_socket)
+ 				self.__register_connection(connection)
+
+ 				threading.Thread(connection.run()).start().join()
+
+ 			except Exception as e: 
  				print("Error during connection")
+ 				print(e)
 
  			finally:
- 				# Clean up the connection
- 				connection.close()
+ 				# Clean up the connection and close the Server
+ 				self.close()
+ 				connection_socket.close()
+
 
  	def close(self):
- 		pass
+ 		"""Method close and clean-up the Server object when not needed anymore """
+
+ 		self.__server_socket.close()
 
 
 if __name__ == "__main__":

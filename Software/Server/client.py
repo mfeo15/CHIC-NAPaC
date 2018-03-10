@@ -29,4 +29,6 @@ if __name__ == "__main__":
 	print("Standalone execution")
 	Client.get_instance()
 
-	Client.get_instance().send('Hello World')
+	Client.get_instance().send('ABCD:123456789:XYZ:$')
+	Client.get_instance().send('EFGH:987654321:ZYX:$')
+	Client.get_instance().send('DEFG:987123465:JKW:$')
