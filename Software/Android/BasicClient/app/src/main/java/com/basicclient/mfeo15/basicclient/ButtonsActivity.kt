@@ -11,15 +11,15 @@ class ButtonsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_buttons)
 
         button_red.setOnClickListener {
-            Client.getInstance().asyncSend("ABCD:123456789:RED:$");
+            Client.getInstance().asyncSend("U123:P314:4242:RED1$");
         }
 
         button_green.setOnClickListener {
-            Client.getInstance().asyncSend("ABCD:123456789:GRN:$");
+            Client.getInstance().asyncSend("U123:P314:4242:GRN1$");
         }
 
         button_blue.setOnClickListener {
-            Client.getInstance().asyncSend("ABCD:123456789:BLE:$");
+            Client.getInstance().asyncSend("U123:P314:4242:BLE1$");
         }
     }
 }
