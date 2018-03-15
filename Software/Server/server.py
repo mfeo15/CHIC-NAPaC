@@ -1,7 +1,10 @@
 import socket
-from threading import Thread
+import threading
+#from threading import Thread
 
-from connection import Connection
+#import _thread
+
+#from connection import Connection
 
 class Server(object):
 	"""Class to model a TCP Server with multiple client capabilities.
@@ -15,6 +18,9 @@ class Server(object):
 	"""
 
 	__instance = None
+
+	__MESSAGE_LENGTH = 20
+	__MESSAGE_DELIMITER = ':'
 
 
 	def __init__(self):
@@ -46,10 +52,51 @@ class Server(object):
 			return cls.__instance
 
 
-	def _register_connection(self, c):
+	def receive(self, connection_socket):
+		"""Method handling new message received from the client. """
+
+		while True:
+			message  = connection_socket.recv(self.__MESSAGE_LENGTH).decode("utf-8")
+		
+			if message:
+				print()
+				print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getsockname()[0], m=message))
+
+				self.parse(connection_socket, message)
+
+
+	def parse(self, connection_socket, message):
+
+		receiver, sender, identifier, param  = message.split(self.__MESSAGE_DELIMITER)
+
+		print("  RECEIVER: {t}".format(t=receiver))
+		print("  SENDER: {t}".format(t=sender))
+		print("  MSG_ID: {t}".format(t=identifier))
+		print("  PARAM: {t}".format(t=param))
+		print()
+
+		if (receiver[0] == 'S'):
+			 # Message for the server, do something !
+
+			 if (identifier == "0001"):
+			 	# Message for introduction, store the name of the connection
+			 	self.register_connection(connection_socket, sender)
+
+			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[sender].getsockname()[0], a=sender))
+
+			 return
+
+		if (receiver[0] == 'U' or receiver[0] == 'P'):
+			# Message for a client (User or Peluche), forward it to the right destination
+
+			print("> Message has been forwarded to {}".format(receiver))
+			return
+
+
+	def register_connection(self, c, identifier):
 		"""Method to add the new connection in the list with the other ones. """
 
-		self._connections.append(c)
+		self._connections[identifier] = c
 
 
 	def start(self):
@@ -96,8 +143,8 @@ class Server(object):
 				print("> New Client IP Address : {}".format(client_address) )
 
 				# Instance a new connection for the new client and save it
-				connection = Connection(connection_socket)
-				connection.start()
+				threading.Thread(target=self.receive, args=[connection_socket]).start()
+
 
 		except Exception as e: 
 			print("Error during connection")
@@ -113,6 +160,10 @@ class Server(object):
 		"""Method close and clean-up the Server object when not needed anymore """
 
 		self._server_socket.close()
+
+
+
+
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ class Client(object):
 		self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 		# Connect the socket to the port where the server is listening
-		server_address = ('128.179.132.150', 6789)
+		server_address = ('128.178.74.149', 6789)
 		self.__client_socket.connect(server_address)
 
 	@classmethod
@@ -29,6 +29,14 @@ if __name__ == "__main__":
 	print("Standalone execution")
 	Client.get_instance()
 
-	Client.get_instance().send('U123:P314:4242:RED1$')
+	# Introduzione
+	Client.get_instance().send('S001:P314:0001:0000$')
+
+	# Test message of color function
+	Client.get_instance().send('U123:P314:4242:0000$')
+
+
+
+
 	#Client.get_instance().send('EFGH:987654321:ZYX:$')
 	#Client.get_instance().send('DEFG:987123465:JKW:$')

@@ -1,5 +1,7 @@
 from threading import Thread
 
+import server
+
 class Connection(Thread):
 	"""Class implemented to handle and manage a single connection to the Server.
 
@@ -74,6 +76,32 @@ class Connection(Thread):
 		print("  SENDER: {t}".format(t=sender))
 		print("  MSG_ID: {t}".format(t=identifier))
 		print("  PARAM: {t}".format(t=param))
+		print()
+
+		if (receiver[0] == 'S'):
+			 # Message for the server, do something !
+
+			 if (identifier == "0001"):
+			 	# Message for introduction, store the name of the connection
+			 	server.Server.get_instance().register_connection(self, sender)
+
+			 	print("> Connection name has been set to {}".format(Server.get_instance()._connections[sender]))
+
+			 return
+
+		if (receiver[0] == 'U' or receiver[0] == 'P'):
+			# Message for a client (User or Peluche), forward it to the right destination
+
+			print("> Message has been forwarded to {}".format(receiver))
+			return
+
+		if (identifier == "0001"):
+			server.Server.get_instance().register_connection(self, sender)
+			return
+
+		if (identifier == "0002"):
+
+			return
 
 
 
