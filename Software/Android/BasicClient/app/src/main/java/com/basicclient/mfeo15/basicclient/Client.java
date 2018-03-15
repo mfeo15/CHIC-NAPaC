@@ -56,7 +56,7 @@ public class Client implements Runnable {
         if (socket == null)
             return;
 
-        out.println(message);
+        out.print(message);
         out.flush();
     }
 
