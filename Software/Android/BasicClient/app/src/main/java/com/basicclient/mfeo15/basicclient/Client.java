@@ -43,12 +43,14 @@ public class Client implements Runnable {
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.out = new PrintStream(socket.getOutputStream());
 
+            //Send introduction of the new client to the server
+            this.asyncSend("S001:U123:0001:0000$");
+
         } catch (UnknownHostException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-
     }
 
     private void send(String message) throws IOException {
