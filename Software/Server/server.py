@@ -62,7 +62,13 @@ class Server(object):
 				print()
 				print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getsockname()[0], m=message))
 
-				self.parse(connection_socket, message)
+				if (message[self.__MESSAGE_LENGTH-1] == '$'):
+					self.parse(connection_socket, message[:-1])
+
+
+	def send(self, connection_socket, message):
+		"""Method sending new message to a client. """
+		threading.Thread( target=connection_socket.sendall(message.encode()) ).start()
 
 
 	def parse(self, connection_socket, message):
@@ -88,6 +94,7 @@ class Server(object):
 
 		if (receiver[0] == 'U' or receiver[0] == 'P'):
 			# Message for a client (User or Peluche), forward it to the right destination
+			self.send(self._connections[receiver], message)
 
 			print("> Message has been forwarded to {}".format(receiver))
 			return

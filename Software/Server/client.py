@@ -34,9 +34,3 @@ if __name__ == "__main__":
 
 	# Test message of color function
 	Client.get_instance().send('U123:P314:4242:0000$')
-
-
-
-
-	#Client.get_instance().send('EFGH:987654321:ZYX:$')
-	#Client.get_instance().send('DEFG:987123465:JKW:$')
