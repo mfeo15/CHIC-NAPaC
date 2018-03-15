@@ -28,7 +28,7 @@ class Server(object):
 		self._server_socket = None
 		self._IP = socket.gethostbyname(socket.gethostname())
 		self._PORT = 6789
-		self._connections = []
+		self._connections = {}
 
 	
 	@classmethod

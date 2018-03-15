@@ -16,6 +16,7 @@ class Connection(Thread):
 	"""
 
 	__MESSAGE_LENGTH = 20
+	__MESSAGE_DELIMITER = ':'
 
 	def __init__(self, socket):
 		"""Constructor method of the class.
@@ -37,7 +38,9 @@ class Connection(Thread):
 		
 		if message:
 			print()
-			print("[ SERVER ] Message received from {c}: {m}".format(c=self._get_address(), m=message))
+			print("[ SERVER ] Message received from {c}: \"{m}\"".format(c=self._get_address(), m=message))
+
+			#self.parse(message)
 
 
 	def _get_address(self):
@@ -61,6 +64,16 @@ class Connection(Thread):
 
 		while (self._is_active()):
 			self._receive()
+
+
+	def parse(self, message):
+
+		receiver, sender, identifier, param  = message.split(self.__MESSAGE_DELIMITER)
+
+		print("[ SERVER ] RECEIVER: {t}".format(t=receiver))
+		print("[ SERVER ] SENDER: {t}".format(t=sender))
+		print("[ SERVER ] MSG_ID: {t}".format(t=identifier))
+		print("[ SERVER ] PARAM: {t}".format(t=param))
 
 
 
