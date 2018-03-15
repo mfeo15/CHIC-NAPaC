@@ -68,7 +68,7 @@ class Server(object):
 
 	def send(self, connection_socket, message):
 		"""Method sending new message to a client. """
-		threading.Thread( target=connection_socket.sendall(message.encode()) ).start()
+		threading.Thread( target=lambda: connection_socket.sendall(message.encode()) ).start()
 
 
 	def parse(self, connection_socket, message):
