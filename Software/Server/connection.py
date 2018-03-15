@@ -38,9 +38,9 @@ class Connection(Thread):
 		
 		if message:
 			print()
-			print("[ SERVER ] Message received from {c}: \"{m}\"".format(c=self._get_address(), m=message))
+			print("> Message received from {c}: \"{m}\"".format(c=self._get_address(), m=message))
 
-			#self.parse(message)
+			self.parse(message)
 
 
 	def _get_address(self):
@@ -70,10 +70,10 @@ class Connection(Thread):
 
 		receiver, sender, identifier, param  = message.split(self.__MESSAGE_DELIMITER)
 
-		print("[ SERVER ] RECEIVER: {t}".format(t=receiver))
-		print("[ SERVER ] SENDER: {t}".format(t=sender))
-		print("[ SERVER ] MSG_ID: {t}".format(t=identifier))
-		print("[ SERVER ] PARAM: {t}".format(t=param))
+		print("  RECEIVER: {t}".format(t=receiver))
+		print("  SENDER: {t}".format(t=sender))
+		print("  MSG_ID: {t}".format(t=identifier))
+		print("  PARAM: {t}".format(t=param))
 
 
 

@@ -64,7 +64,7 @@ class Server(object):
 			print("")
 			print("")
 			print("NAPaC Server : ON")
-			print("[ SERVER ] Server Socket inizialiazed : {}".format(self._IP))
+			print("> Server Socket inizialiazed : {}".format(self._IP))
 
 			self.listen()
 
@@ -85,7 +85,7 @@ class Server(object):
 		self._server_socket.listen(5)
 
 		try:
-			print("[ SERVER ] Now listening")
+			print("  Now listening...")
 
 			while True:
 
@@ -93,7 +93,7 @@ class Server(object):
 				connection_socket, client_address = self._server_socket.accept()
 
 				print()
-				print("[ SERVER ] New Client IP Address : {}".format(client_address) )
+				print("> New Client IP Address : {}".format(client_address) )
 
 				# Instance a new connection for the new client and save it
 				connection = Connection(connection_socket)
