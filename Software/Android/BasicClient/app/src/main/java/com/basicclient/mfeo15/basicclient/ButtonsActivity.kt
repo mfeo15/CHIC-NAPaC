@@ -17,17 +17,17 @@ class ButtonsActivity : AppCompatActivity() {
         button_red.setOnClickListener {
 
             red_status = update_status(red_status)
-            Client.getInstance().asyncSend("U123:P314:4242:RED$red_status$");
+            Client.getInstance().asyncSend("P314:U123:4242:RED$red_status$");
         }
 
         button_green.setOnClickListener {
             green_status = update_status(green_status)
-            Client.getInstance().asyncSend("U123:P314:4242:GRN$green_status$");
+            Client.getInstance().asyncSend("P314:U123:4242:GRN$green_status$");
         }
 
         button_blue.setOnClickListener {
             blue_status = update_status(blue_status)
-            Client.getInstance().asyncSend("U123:P314:4242:BLE$blue_status$");
+            Client.getInstance().asyncSend("P314:U123:4242:BLE$blue_status$");
         }
     }
 
