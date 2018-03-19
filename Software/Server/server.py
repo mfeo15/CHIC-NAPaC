@@ -33,7 +33,8 @@ class Server(object):
 
 		self._server_socket = None
 		self._IP = socket.gethostbyname(socket.gethostname())
-		self._PORT = 6789
+		#self._IP = "172.20.10.9"
+		self._PORT = 6786
 		self._connections = {}
 
 	
@@ -68,7 +69,7 @@ class Server(object):
 
 	def send(self, connection_socket, message):
 		"""Method sending new message to a client. """
-		threading.Thread( target=lambda: connection_socket.sendall(message.encode()) ).start()
+		threading.Thread( target=(lambda c, m : c.sendall(m.encode())), args=(connection_socket, message) ).start()
 
 
 	def parse(self, connection_socket, message):
@@ -94,9 +95,10 @@ class Server(object):
 
 		if (receiver[0] == 'U' or receiver[0] == 'P'):
 			# Message for a client (User or Peluche), forward it to the right destination
-			self.send(self._connections[receiver], message)
+			#self.send(self._connections[receiver], message)
+			self._connections[receiver].sendall(message.encode("utf-8"))
 
-			print("> Message has been forwarded to {}".format(receiver))
+			print("> Message has been forwarded to {}".format(self._connections[receiver].getsockname()[0]))
 			return
 
 
