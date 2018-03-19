@@ -1,5 +1,7 @@
 import socket
 import threading
+import atexit
+import sys, select
 #from threading import Thread
 
 #import _thread
@@ -34,8 +36,11 @@ class Server(object):
 		self._server_socket = None
 		self._IP = socket.gethostbyname(socket.gethostname())
 		#self._IP = "172.20.10.9"
-		self._PORT = 6786
+		self._PORT = 6789
 		self._connections = {}
+
+		atexit.register(self.close)
+
 
 	
 	@classmethod
@@ -56,15 +61,23 @@ class Server(object):
 	def receive(self, connection_socket):
 		"""Method handling new message received from the client. """
 
-		while True:
-			message  = connection_socket.recv(self.__MESSAGE_LENGTH).decode("utf-8")
-		
-			if message:
-				print()
-				print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getsockname()[0], m=message))
+		try:
 
-				if (message[self.__MESSAGE_LENGTH-1] == '$'):
-					self.parse(connection_socket, message[:-1])
+			while True:
+				message  = connection_socket.recv(self.__MESSAGE_LENGTH).decode("utf-8")
+		
+				if message:
+					print()
+					print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getsockname()[0], m=message))
+
+					if (message[self.__MESSAGE_LENGTH-1] == '$'):
+						#connection_socket.sendall(message.encode("utf-8"))
+						self.parse(connection_socket, message[:-1])
+
+		except Exception as e:
+			print()
+			print("> Connection {c} has crashed unexpectedly and the socket has been closed".format(c=connection_socket.getsockname()[0]))
+			connection_socket.close()
 
 
 	def send(self, connection_socket, message):
@@ -95,8 +108,8 @@ class Server(object):
 
 		if (receiver[0] == 'U' or receiver[0] == 'P'):
 			# Message for a client (User or Peluche), forward it to the right destination
-			#self.send(self._connections[receiver], message)
-			self._connections[receiver].sendall(message.encode("utf-8"))
+			self.send(self._connections[receiver], message)
+			#self._connections[receiver].sendall(message.encode("utf-8"))
 
 			print("> Message has been forwarded to {}".format(self._connections[receiver].getsockname()[0]))
 			return
@@ -113,12 +126,15 @@ class Server(object):
 			# Create a TCP/IP socket
 			self._server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+			# Reuse the address of socket after closing for debugging
+			self._server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
 			# Bind the socket to the port
 			self._server_socket.bind((self._IP, self._PORT))
 
 			# Print out a log information
-			print("")
-			print("")
+			print()
+			print()
 			print("NAPaC Server : ON")
 			print("> Server Socket inizialiazed : {}".format(self._IP))
 
@@ -154,9 +170,8 @@ class Server(object):
 				# Instance a new connection for the new client and save it
 				threading.Thread(target=self.receive, args=[connection_socket]).start()
 
-
-		except Exception as e: 
-			print("Error during connection")
+		except Exception as e:
+			print("Error during listening")
 			print(e)
 
 		finally:
@@ -167,7 +182,6 @@ class Server(object):
 
 	def close(self):
 		"""Method close and clean-up the Server object when not needed anymore """
-
 		self._server_socket.close()
 
 

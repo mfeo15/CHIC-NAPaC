@@ -11,7 +11,7 @@ class Client(object):
 		self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 		# Connect the socket to the port where the server is listening
-		server_address = ('128.179.134.123', 6786)
+		server_address = ('128.178.74.149', 6789)
 		self.__client_socket.connect(server_address)
 
 	@classmethod
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 	Client.get_instance()
 
 	# Introduzione
-	Client.get_instance().send('S001:P314:0001:0000$')
+	Client.get_instance().send('S001:U123:0001:0000$')
 
-	# Test message of color function
-	Client.get_instance().receive()
+	# Test message to be forwarded
+	#Client.get_instance().send('P314:U123:4242:RED1$')
