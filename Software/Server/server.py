@@ -34,8 +34,8 @@ class Server(object):
 		"""
 
 		self._server_socket = None
-		self._IP = socket.gethostbyname(socket.gethostname())
-		#self._IP = "172.20.10.9"
+		#self._IP = socket.gethostbyname(socket.gethostname())
+		self._IP = "172.20.10.9"
 		self._PORT = 6789
 		self._connections = {}
 
@@ -68,7 +68,7 @@ class Server(object):
 		
 				if message:
 					print()
-					print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getsockname()[0], m=message))
+					print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getpeername()[0], m=message))
 
 					if (message[self.__MESSAGE_LENGTH-1] == '$'):
 						#connection_socket.sendall(message.encode("utf-8"))
@@ -76,7 +76,7 @@ class Server(object):
 
 		except Exception as e:
 			print()
-			print("> Connection {c} has crashed unexpectedly and the socket has been closed".format(c=connection_socket.getsockname()[0]))
+			print("> Connection {c} has crashed unexpectedly and the socket has been closed".format(c=connection_socket.getpeername()[0]))
 			connection_socket.close()
 
 
@@ -102,7 +102,7 @@ class Server(object):
 			 	# Message for introduction, store the name of the connection
 			 	self.register_connection(connection_socket, sender)
 
-			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[sender].getsockname()[0], a=sender))
+			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[sender].getpeername()[0], a=sender))
 
 			 return
 
@@ -111,7 +111,7 @@ class Server(object):
 			self.send(self._connections[receiver], message)
 			#self._connections[receiver].sendall(message.encode("utf-8"))
 
-			print("> Message has been forwarded to {}".format(self._connections[receiver].getsockname()[0]))
+			print("> Message has been forwarded to {}".format(self._connections[receiver].getpeername()[0]))
 			return
 
 
