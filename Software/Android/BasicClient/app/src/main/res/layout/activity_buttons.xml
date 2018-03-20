@@ -7,28 +7,28 @@
     tools:context="com.basicclient.mfeo15.basicclient.ButtonsActivity">
 
     <Button
-        android:id="@+id/button_blue"
+        android:id="@+id/button_green"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="24dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_green" />
+        app:layout_constraintTop_toBottomOf="@+id/button_yellow" />
 
     <Button
-        android:id="@+id/button_green"
+        android:id="@+id/button_yellow"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button_blue"
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toTopOf="@+id/button_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -42,7 +42,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button_green"
+        app:layout_constraintBottom_toTopOf="@+id/button_yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
