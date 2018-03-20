@@ -109,7 +109,6 @@ class Server(object):
 		if (receiver[0] == 'U' or receiver[0] == 'P'):
 			# Message for a client (User or Peluche), forward it to the right destination
 			self.send(self._connections[receiver], message)
-			#self._connections[receiver].sendall(message.encode("utf-8"))
 
 			print("> Message has been forwarded to {}".format(self._connections[receiver].getpeername()[0]))
 			return
