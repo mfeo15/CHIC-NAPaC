@@ -1,5 +1,7 @@
 
-<img src="http://oi63.tinypic.com/2v01nk7.jpg" width="450" alt="Toygether logo" align="right" />
+<p align="center">
+  <img src="http://oi63.tinypic.com/2v01nk7.jpg" width="450" alt="Toygether logo" align="top" />
+</p>
 
 # CHIC-NAPaC
 
