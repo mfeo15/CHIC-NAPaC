@@ -38,7 +38,7 @@ The different files are organized like in the tree structure below. The three ma
 
 ## Languages and libraries
 
-* [Kotlin](hthttps://kotlinlang.org/) : Android App
+* [Kotlin](https://kotlinlang.org/) : Android App
 * [Python](https://www.python.org/) : TCP Server
 * [Java](https://www.java.com/en/) : Android App (in support to the main code in Kotlin)
 
