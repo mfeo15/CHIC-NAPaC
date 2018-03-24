@@ -11,7 +11,7 @@ class Client(object):
 		self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 		# Connect the socket to the port where the server is listening
-		server_address = ('localhost', 6789)
+		server_address = ('128.178.74.149', 6789)
 		self.__client_socket.connect(server_address)
 
 	@classmethod
@@ -25,8 +25,21 @@ class Client(object):
  		self.__client_socket.sendall(message.encode())
  		print("[ CLIENT ] Message sent : {}".format(message))
 
+	def receive(self):
+ 		while True:
+ 			message  = self.__client_socket.recv(20).decode("utf-8")
+
+ 			if message:
+ 				print()
+ 				print("> Message received: \"{m}\"".format(m=message))
+
+
 if __name__ == "__main__":
 	print("Standalone execution")
 	Client.get_instance()
 
-	Client.get_instance().send('Hello World')
+	# Introduzione
+	Client.get_instance().send('S001:U123:0001:0000$')
+
+	# Test message to be forwarded
+	#Client.get_instance().send('P314:U123:4242:RED1$')
