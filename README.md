@@ -12,8 +12,6 @@ The team NAPaC identified itself in the Toygether brand image, that clearly show
 
 ## Repo structure
 
-## 1. File hierarchy
-
 The different files are organized like in the tree structure below. The three main folders, `Firmware`, `Software` and `SHS`, separate our main different contents we worked on.
 
 ```
