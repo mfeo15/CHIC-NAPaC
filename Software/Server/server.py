@@ -34,8 +34,8 @@ class Server(object):
 		"""
 
 		self._server_socket = None
-		#self._IP = socket.gethostbyname(socket.gethostname())
-		self._IP = "172.20.10.9"
+		self._IP = socket.gethostbyname(socket.gethostname())
+		#self._IP = "172.20.10.9"
 		self._PORT = 6789
 		self._connections = {}
 
@@ -76,7 +76,7 @@ class Server(object):
 
 		except Exception as e:
 			print()
-			print("> Connection {c} has crashed unexpectedly and the socket has been closed".format(c=connection_socket.getpeername()[0]))
+			print("> A connection has crashed unexpectedly and the socket has been closed")
 			connection_socket.close()
 
 

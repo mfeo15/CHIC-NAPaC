@@ -1,4 +1,8 @@
 import socket
+import sys
+
+serverIP = '127.0.0.1'
+serverPORT = 6789
 
 class Client(object):
 
@@ -11,7 +15,7 @@ class Client(object):
 		self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 		# Connect the socket to the port where the server is listening
-		server_address = ('128.178.74.149', 6789)
+		server_address = (serverIP, serverPORT)
 		self.__client_socket.connect(server_address)
 
 	@classmethod
@@ -36,10 +40,16 @@ class Client(object):
 
 if __name__ == "__main__":
 	print("Standalone execution")
+
+	if (len(sys.argv) > 1):
+		serverIP = sys.argv[1]
+		if (len(sys.argv) == 3):
+			serverPORT = int(sys.argv[2])
+
 	Client.get_instance()
 
 	# Introduzione
 	Client.get_instance().send('S001:U123:0001:0000$')
 
 	# Test message to be forwarded
-	#Client.get_instance().send('P314:U123:4242:RED1$')
+	Client.get_instance().send('P314:U123:4242:RED1$')
