@@ -2,11 +2,9 @@ import socket
 import threading
 import atexit
 import sys, select
-#from threading import Thread
 
-#import _thread
-
-#from connection import Connection
+import ASCII
+from message import Message
 
 class Server(object):
 	"""Class to model a TCP Server with multiple client capabilities.
@@ -20,9 +18,6 @@ class Server(object):
 	"""
 
 	__instance = None
-
-	__MESSAGE_LENGTH = 20
-	__MESSAGE_DELIMITER = ':'
 
 
 	def __init__(self):
@@ -62,21 +57,30 @@ class Server(object):
 		"""Method handling new message received from the client. """
 
 		try:
-
 			while True:
-				message  = connection_socket.recv(self.__MESSAGE_LENGTH).decode("utf-8")
-		
+
+				# Construct a new incoming message by reading a Byte-at-a-time until EOT
+				input_stream = connection_socket.recv(1).decode("utf-8")
+				while not input_stream.endswith(ASCII.EOT):
+					input_stream += connection_socket.recv(1).decode("utf-8")
+			
+				message = Message.from_string(input_stream)
+
 				if message:
 					print()
-					print("> Message received from {c}: \"{m}\"".format(c=connection_socket.getpeername()[0], m=message))
+					print("> Message received from {c}: \"{m}\" ".format(c=connection_socket.getpeername()[0], m=message.to_string(delimiter=" ") ))
+					print("  DEST: {t}".format(t=message.destination))
+					print("  SOURCE: {t}".format(t=message.source))
+					print("  MSG_ID: {t}".format(t=message.msg_id))
+					print("  PARAM: {t}".format(t=message.parameters))
+					print()
 
-					if (message[self.__MESSAGE_LENGTH-1] == '$'):
-						#connection_socket.sendall(message.encode("utf-8"))
-						self.parse(connection_socket, message[:-1])
+					self.parse(connection_socket, message)
 
 		except Exception as e:
 			print()
 			print("> A connection has crashed unexpectedly and the socket has been closed")
+			print(e)
 			connection_socket.close()
 
 
@@ -87,31 +91,22 @@ class Server(object):
 
 	def parse(self, connection_socket, message):
 
-		receiver, sender, identifier, param  = message.split(self.__MESSAGE_DELIMITER)
-
-		print("  RECEIVER: {t}".format(t=receiver))
-		print("  SENDER: {t}".format(t=sender))
-		print("  MSG_ID: {t}".format(t=identifier))
-		print("  PARAM: {t}".format(t=param))
-		print()
-
-		if (receiver[0] == 'S'):
+		if (message.destination[0] == 'S'):
 			 # Message for the server, do something !
 
-			 if (identifier == "0001"):
+			 if (message.msg_id == "0001"):
 			 	# Message for introduction, store the name of the connection
-			 	self.register_connection(connection_socket, sender)
+			 	self.register_connection(connection_socket, message.source)
 
-			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[sender].getpeername()[0], a=sender))
+			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[message.source].getpeername()[0], a=message.source))
 
 			 return
 
-		if (receiver[0] == 'U' or receiver[0] == 'P'):
-			# Message for a client (User or Peluche), forward it to the right destination
-			recomposed_message = "{m}$".format(m=message)
-			self.send(self._connections[receiver], recomposed_message)
+		if (message.destination[0] == 'U' or message.destination[0] == 'P'):
+			# Message for a client (User or Plush Toy), forward it to the right destination
+			self.send(self._connections[message.destination], message.to_string())
 
-			print("> Message has been forwarded to {}".format(self._connections[receiver].getpeername()[0]))
+			print("> Message has been forwarded to {}".format(self._connections[message.destination].getpeername()[0]))
 			return
 
 

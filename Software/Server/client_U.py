@@ -1,6 +1,8 @@
 import socket
 import sys
 
+import ASCII
+
 serverIP = '127.0.0.1'
 serverPORT = 6789
 
@@ -49,7 +51,7 @@ if __name__ == "__main__":
 	Client.get_instance()
 
 	# Introduzione
-	Client.get_instance().send('S001:U123:0001:0000$')
+	Client.get_instance().send("{stx}0000{rs}S001{rs}U123{rs}0001{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
 
 	# Test message to be forwarded
-	Client.get_instance().send('P314:U123:4242:RED1$')
+	Client.get_instance().send("{stx}0000{rs}P314{rs}U123{rs}4242{rs}2{us}17{us}06{eot}".format(stx=ASCII.STX, rs=ASCII.RS, us=ASCII.US, eot=ASCII.EOT))
