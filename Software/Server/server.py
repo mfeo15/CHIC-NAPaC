@@ -99,8 +99,14 @@ class Server(object):
 			 	self.register_connection(connection_socket, message.source)
 
 			 	print("> Connection {c} has been renamed to {a}".format(c=self._connections[message.source].getpeername()[0], a=message.source))
+			 	return
 
-			 return
+			 if (message.msg_id == "0002"):
+			 	# Message for closing the connection
+			 	self.unregister_connection(message.source)
+
+			 	print("> Client {c}connection has been closed and un-registered from the server {a}".format(c=message.source))
+			 	return
 
 		if (message.destination[0] == 'U' or message.destination[0] == 'P'):
 			# Message for a client (User or Plush Toy), forward it to the right destination
@@ -114,6 +120,13 @@ class Server(object):
 		"""Method to add the new connection in the list with the other ones. """
 
 		self._connections[identifier] = c
+
+	def unregister_connection(self, identifier):
+		c = self._connections[identifier]
+		del self._connections[identifier]
+
+		c.close()
+
 
 
 	def start(self):
