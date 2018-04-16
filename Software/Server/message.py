@@ -55,6 +55,8 @@ class Message(object):
 
 		return output
 
+
+
 if __name__ == "__main__":
 	print("Standalone execution", end="\n\n")
 
