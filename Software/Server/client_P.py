@@ -1,6 +1,8 @@
 import socket
 import sys
 
+import ASCII
+
 serverIP = '127.0.0.1'
 serverPORT = 6789
 
@@ -50,6 +52,9 @@ if __name__ == "__main__":
 
 	# Introduzione
 	Client.get_instance().send("{stx}0000{rs}S001{rs}P314{rs}0001{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+
+	# Message to forward and fail
+	Client.get_instance().send("{stx}0000{rs}U999{rs}P314{rs}9999{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
 
 	# Test message of color function
 	Client.get_instance().receive()
