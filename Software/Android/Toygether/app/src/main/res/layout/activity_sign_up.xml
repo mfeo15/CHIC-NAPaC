@@ -72,30 +72,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="220dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:buttonTint="@color/colorPrimary"
         android:checked="true"
         android:text="remember me"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/editText_signIn_password" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="23dp"
         android:layout_height="26dp"
         android:layout_marginBottom="72dp"
-        android:layout_marginStart="68dp"
         android:text="or"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="@dimen/text_size_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/editText_signIn_password" />
 
     <Button
         android:id="@+id/button_sign_in"

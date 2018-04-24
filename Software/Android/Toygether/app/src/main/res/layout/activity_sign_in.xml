@@ -81,13 +81,12 @@
         android:layout_width="23dp"
         android:layout_height="26dp"
         android:layout_marginBottom="72dp"
-        android:layout_marginStart="68dp"
         android:text="or"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="@dimen/text_size_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/button_enter" />
 
     <Button
         android:id="@+id/button_sign_up"
@@ -113,6 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="27dp"
         android:layout_marginBottom="80dp"
+        android:layout_marginStart="4dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="password forgotten?"
         android:textAllCaps="false"
