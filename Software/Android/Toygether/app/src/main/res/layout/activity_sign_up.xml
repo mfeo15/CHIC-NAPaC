@@ -30,13 +30,13 @@
         android:text="New Account"
         android:textAllCaps="false"
         android:textSize="@dimen/text_size_main"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/editText_signIn_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editText_signIn_password"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -46,13 +46,13 @@
         android:hint="password"
         android:inputType="textPassword"
         android:textSize="@dimen/text_size_secondary"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_signIn_remember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_signIn_email"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -62,18 +62,20 @@
         android:hint="email"
         android:inputType="textEmailAddress"
         android:textSize="@dimen/text_size_secondary"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_signIn_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBox_signIn_remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="220dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:buttonTint="@color/colorPrimary"
+        android:checked="true"
         android:text="remember me"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_secondary"

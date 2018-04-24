@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/editText_signIn_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editText_signIn_password"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_signIn_email"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -59,15 +59,17 @@
         android:hint="email"
         android:inputType="textEmailAddress"
         android:textSize="@dimen/text_size_secondary"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_signIn_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBox_signIn_remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:buttonTint="@color/colorPrimary"
+        android:checked="true"
         android:text="remember me"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_secondary"
@@ -117,7 +119,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_secondary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
-        app:layout_constraintStart_toStartOf="@+id/editText" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_signIn_remember"
+        app:layout_constraintStart_toStartOf="@+id/editText_signIn_password" />
 
 </android.support.constraint.ConstraintLayout>

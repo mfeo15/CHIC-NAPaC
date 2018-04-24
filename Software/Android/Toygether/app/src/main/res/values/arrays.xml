@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notifications_timeout">
+        <item>05 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>01 hour</item>
+        <item>02 minutes</item>
+        <item>03 minutes</item>
+        <item>04 minutes</item>
+        <item>05 minutes</item>
+    </string-array>
+</resources>

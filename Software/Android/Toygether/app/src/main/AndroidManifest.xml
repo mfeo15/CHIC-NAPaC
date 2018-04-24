@@ -24,10 +24,12 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".PasswordForgottenActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ToysActivity" />
+        <activity android:name=".ToysEmptyActivity" />
         <activity android:name=".QRCodeActivity" />
         <activity android:name=".barcode.BarcodeCaptureActivity" />
-        <activity android:name=".SaveNewToyActivity"></activity>
+        <activity android:name=".SaveNewToyActivity" />
+        <activity android:name=".ToysOneLinkedActivity" />
+        <activity android:name=".SettingsNotificationsActivity"></activity>
     </application>
 
 </manifest>

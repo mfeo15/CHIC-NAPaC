@@ -1,5 +1,6 @@
 package ch.epfl.chic.napac.toygether.toygether
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,7 @@ class QRCodeActivity : AppCompatActivity() {
                     val barcode = data.getParcelableExtra<Barcode>(BarcodeCaptureActivity.BarcodeObject)
                     val p = barcode.cornerPoints
                     //textView_result.text = barcode.displayValue
-                    startActivity( Intent(this, SaveNewToyActivity::class.java))
+                    parseQRCodeResult(barcode.displayValue)
                 } else
                     textView_result.setText(R.string.no_barcode_captured)
             } else
@@ -36,6 +37,17 @@ class QRCodeActivity : AppCompatActivity() {
                         CommonStatusCodes.getStatusCodeString(resultCode)))
         } else
             super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun parseQRCodeResult(value: String) {
+
+        val prefs = getSharedPreferences(sharedPreferencesConstants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt(sharedPreferencesConstants.KEY_TOYS_COUNT, prefs.getInt(sharedPreferencesConstants.KEY_TOYS_COUNT, 0) + 1)
+        editor.putString(sharedPreferencesConstants.KEY_TOY_CODE, value)
+        editor.apply()
+
+        startActivity( Intent(this, SaveNewToyActivity::class.java))
     }
 
     companion object {
