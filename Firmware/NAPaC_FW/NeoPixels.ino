@@ -35,14 +35,12 @@ void toggleLED(String color)
     
     if (color == "RED") 
     {
-        Serial.println("Toggling RED_LED");
+        //Serial.println("Toggling RED_LED");
         if (red_state == 0){
             strip.SetPixelColor(RED_LED, red);  // turn on the LED
-            Serial.print("Red On\n");
             red_state = 1;}
         else{
             strip.SetPixelColor(RED_LED, black);  // turn on the LED
-            Serial.print("Red Off\n");
             red_state =0;}
         strip.Show();
         return;
@@ -50,14 +48,12 @@ void toggleLED(String color)
   
     if (color == "GRN") 
     {
-        Serial.println("Toggling GRN_LED");
+        //Serial.println("Toggling GRN_LED");
         if (green_state == 0){
             strip.SetPixelColor(GRN_LED, green);  // turn on the LED
-            Serial.print("Green On\n");
             green_state = 1;}
         else{
             strip.SetPixelColor(GRN_LED, black);  // turn on the LED
-            Serial.print("Green Off\n");
             green_state =0;}
         strip.Show();
         return;
@@ -65,14 +61,12 @@ void toggleLED(String color)
   
     if (color == "YEL") 
     {
-        Serial.println("Toggling YEL_LED");
+        //Serial.println("Toggling YEL_LED");
         if (yellow_state == 0){
             strip.SetPixelColor(YEL_LED, yellow);  // turn on the LED
-            Serial.print("Yellow On\n");
             yellow_state = 1;}
         else{
             strip.SetPixelColor(YEL_LED, black);  // turn on the LED
-            Serial.print("Yellow Off\n");
             yellow_state = 0;}
         strip.Show();
         return;

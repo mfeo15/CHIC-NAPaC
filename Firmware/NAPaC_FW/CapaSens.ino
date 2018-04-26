@@ -21,6 +21,7 @@ void readTouchSensor()
     static int prev_read_RED, prev_read_YEL, prev_read_GRN;
     
     int current_read_RED, current_read_YEL, current_read_GRN;
+    
 
     if (first_measure == 1)
     {
@@ -35,7 +36,7 @@ void readTouchSensor()
         
         return;
     }
-
+    
     else if (counter > 1000000/4)
     {
         //Serial.print("Comparing previous_read_RED and current_read_RED with THRESHOLD "); Serial.println(THRESHOLD);
