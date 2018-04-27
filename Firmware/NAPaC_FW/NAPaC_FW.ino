@@ -8,15 +8,19 @@
  */
 
 int incomingByte = 0;
+//const char* server_host = "192.168.1.10";
 
 void setup()
 {
     Serial.begin(115200);
     delay(1000); // give me time to bring up serial monitor
 
-    setup_pixels();
-    //setup_wifi();
+    setup_pixels();   
+    setup_wifi();
+    connect_to_server();
+    setup_alphabet();
     hello();
+    first_message();
 }
 
 void loop()
@@ -26,7 +30,7 @@ void loop()
 //      Serial.println("received:");
 //      Serial.println(incomingByte, DEC);
 //    }
-    
+
     readTouchSensor();
     //displayMonitorTouchSensors();
 

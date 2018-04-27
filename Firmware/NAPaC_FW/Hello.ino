@@ -16,4 +16,6 @@ void hello(){
     Serial.println("Toygether Welcomes You To MS4!");
     Serial.println();
     Serial.println();
+
+    //set_pixels_colour(black);
 }

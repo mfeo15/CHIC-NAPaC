@@ -19,6 +19,7 @@ RgbColor red(colorSaturation, 0, 0);
 RgbColor yellow(colorSaturation, colorSaturation, 0);
 RgbColor green(0, colorSaturation, 0);
 RgbColor blue(0, 0, colorSaturation);
+RgbColor purple(colorSaturation, 0, colorSaturation);
 RgbColor black(0, 0, 0);
 
 NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);
@@ -28,6 +29,13 @@ void setup_pixels(void){
     strip.Begin();
     strip.Show();
 }
+
+//void set_pixels_colour(RgbColor colour){
+//  strip.SetPixelColor(RED_LED,colour);
+//    strip.SetPixelColor(YEL_LED,colour);
+//    strip.SetPixelColor(GRN_LED,colour);
+//    strip.Show();
+//}
 
 void toggleLED(String color)
 {

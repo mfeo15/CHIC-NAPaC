@@ -4,15 +4,16 @@
  */
 
 #include "WiFi.h"
+#include <NeoPixelBus.h> 
 
 /*
  * SmartConfig setup from Wifi SmartConfig example
  */
 
-char * server_host;
+//char * server_host;
  
 void setup_wifi() {
-  Serial.begin(115200);
+  //set_pixels_colour(blue);
 
   //Init WiFi as Station, start SmartConfig
   WiFi.mode(WIFI_AP_STA);
@@ -35,7 +36,7 @@ void setup_wifi() {
     Serial.print(".");
   }
       Serial.println("WiFi Connected.");
-    * server_host = WiFi.localIP();
+    //* server_host = WiFi.localIP(); // constant defined by Yann
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
  }

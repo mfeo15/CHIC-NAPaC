@@ -12,11 +12,12 @@ WiFiMulti WiFiMulti;
 // Use WiFiClient class to create TCP connections
 WiFiClient client;
 const uint16_t server_port = 6789;  
+const char* server_host = "192.168.1.10";
 
 /*
  * Waits until connects to the TCP server, at the given host ip and port
  */
-void connect_to_server(char * server_host)
+void connect_to_server()//char * server_host
 {   
     Serial.print("connecting to Server ");
     Serial.println(server_host);
@@ -33,6 +34,10 @@ void connect_to_server(char * server_host)
     Serial.println();
 }
 
+void send_message(const char *message){ //send the string reference to avoid heap Swiss cheese
+ client.print(message); 
+}
+
 /*
  * Sends data packet to server
  * First packet : the microcontroller presents itself to the server, so that
@@ -42,6 +47,7 @@ void connect_to_server(char * server_host)
  */
 void send_Message_to_Server()
 {
+    //set_pixels_colour(purple);
     static unsigned int counter;
     static bool first_message = 1; 
 
