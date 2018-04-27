@@ -3,6 +3,10 @@
     package="ch.epfl.chic.napac.toygether.toygether">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -30,7 +34,9 @@
         <activity android:name=".barcode.BarcodeCaptureActivity" />
         <activity android:name=".SaveNewToyActivity" />
         <activity android:name=".ToysOneLinkedActivity" />
-        <activity android:name=".SettingsNotificationsActivity"></activity>
+        <activity android:name=".SettingsNotificationsActivity" />
+        <activity android:name=".LinkNewToyIntroActivity" />
+        <activity android:name=".EsptouchDemoActivity" android:noHistory="true" />
     </application>
 
 </manifest>

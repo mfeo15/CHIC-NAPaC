@@ -16,6 +16,10 @@ class QRCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrcode)
 
+        button_qrcode_close.setOnClickListener {
+            finish()
+        }
+
         button_scan.setOnClickListener {
             val intent = Intent(applicationContext, BarcodeCaptureActivity::class.java)
             startActivityForResult(intent, BARCODE_READER_REQUEST_CODE)
@@ -30,8 +34,7 @@ class QRCodeActivity : AppCompatActivity() {
                     val p = barcode.cornerPoints
                     //textView_result.text = barcode.displayValue
                     parseQRCodeResult(barcode.displayValue)
-                } else
-                    textView_result.setText(R.string.no_barcode_captured)
+                }
             } else
                 Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
                         CommonStatusCodes.getStatusCodeString(resultCode)))

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="notifications_timeout">
         <item>05 minutes</item>
         <item>10 minutes</item>
@@ -11,4 +12,14 @@
         <item>04 minutes</item>
         <item>05 minutes</item>
     </string-array>
+
+    <integer-array name="taskResultCount">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
 </resources>

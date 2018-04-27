@@ -21,7 +21,7 @@ class ToysEmptyActivity : AppCompatActivity() {
             startActivity( Intent(this, ToysOneLinkedActivity::class.java))
 
         button_link_your_toy.setOnClickListener {
-            startActivity( Intent(this, QRCodeActivity::class.java))
+            startActivity( Intent(this, EsptouchDemoActivity::class.java))
         }
 
         button_toys_empty_settings.setOnClickListener {
