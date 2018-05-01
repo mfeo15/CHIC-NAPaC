@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_waiting_toy_close"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="66dp"
         android:layout_height="wrap_content"

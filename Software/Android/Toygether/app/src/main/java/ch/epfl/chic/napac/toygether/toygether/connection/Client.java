@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Client implements Runnable {
+import ch.epfl.chic.napac.toygether.toygether.WaitingForToyActivity;
+
+public class Client extends Observable implements Runnable {
 
     private static Client instance = null;
 
@@ -103,6 +106,30 @@ public class Client implements Runnable {
     }
 
     private void parse(Message m) {
-        Log.d("Client", m.toString());
+        //Log.d("Client", m.toString());
+
+        notifyChangement(m);
+    }
+
+
+
+
+
+    public void notifyChangement(Object o) {
+
+        setChanged();
+        notifyObservers(o);
+    }
+
+    public void addNewObserver(Observer obs) {
+        addObserver(obs);
+    }
+
+    public void deleteAnObserver(Observer obs) {
+        deleteObserver(obs);
+    }
+
+    public void deleteAllObservers() {
+        deleteObservers();
     }
 }

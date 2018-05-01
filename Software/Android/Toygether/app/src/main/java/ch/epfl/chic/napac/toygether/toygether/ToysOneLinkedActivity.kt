@@ -27,5 +27,6 @@ class ToysOneLinkedActivity : AppCompatActivity() {
                 startActivity( nextActivityIntent)
             }
         }
+
     }
 }
