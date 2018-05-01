@@ -32,11 +32,12 @@
         <activity android:name=".ToysEmptyActivity" />
         <activity android:name=".QRCodeActivity" />
         <activity android:name=".barcode.BarcodeCaptureActivity" />
+        <activity android:name=".SmartConfigActivity" />
         <activity android:name=".SaveNewToyActivity" />
         <activity android:name=".ToysOneLinkedActivity" />
         <activity android:name=".SettingsNotificationsActivity" />
         <activity android:name=".LinkNewToyIntroActivity" />
-        <activity android:name=".EsptouchDemoActivity" android:noHistory="true" />
+        <activity android:name=".WaitingForToyActivity" />
     </application>
 
 </manifest>

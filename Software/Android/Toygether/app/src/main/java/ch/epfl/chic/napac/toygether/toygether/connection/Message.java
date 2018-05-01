@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class Message {
 
+    private Boolean legit = false;
     private String destination;
     private String source;
     private String messageID;
@@ -19,6 +20,7 @@ public class Message {
         this.destination = destination;
         this.source = source;
         this.messageID = messageID;
+        this.legit = true;
     }
 
     public Message(String destination, String source, String messageID, String[] parameters ) {
@@ -30,6 +32,9 @@ public class Message {
 
     public Message(String m) {
 
+        if (m == null)
+            return;
+
         if (!(m.startsWith(ASCII.STX()) && m.endsWith(ASCII.EOT())))
             return;
 
@@ -39,6 +44,7 @@ public class Message {
             this.destination = records[1];
             this.source = records[2];
             this.messageID = records[3];
+            this.legit = true;
             return;
         }
 
@@ -46,11 +52,16 @@ public class Message {
             this.destination = records[1];
             this.source = records[2];
             this.messageID = records[3];
+            this.legit = true;
 
             String[] parameters = records[4].split(ASCII.US());
             this.parameters = Arrays.copyOfRange(parameters, 1, parameters.length);
             return;
         }
+    }
+
+    public Boolean isLegit() {
+        return this.legit;
     }
 
     public String toString() {

@@ -29,9 +29,9 @@ import com.espressif.iot.esptouch.util.EspAES;
 
 import java.util.List;
 
-public class EsptouchDemoActivity extends AppCompatActivity implements OnClickListener {
+public class SmartConfigActivity extends AppCompatActivity implements OnClickListener {
 
-    private static final String TAG = "EsptouchDemoActivity";
+    private static final String TAG = "SmartConfigActivity";
 
     private TextView mTvApSsid;
 
@@ -41,16 +41,10 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
 
     private Button mButtonClose;
 
-    private EspWifiAdminSimple mWifiAdmin;
-    /*
-    private IEsptouchListener myListener = new IEsptouchListener() {
+    private Button mButtonDEBUGSKIP;
 
-        @Override
-        public void onEsptouchResultAdded(final IEsptouchResult result) {
-            onEsptoucResultAddedPerform(result);
-        }
-    };
-    */
+    private EspWifiAdminSimple mWifiAdmin;
+
     private EsptouchAsyncTask3 mTask;
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -68,7 +62,7 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
                         if (mTask != null) {
                             mTask.cancelEsptouch();
                             mTask = null;
-                            new AlertDialog.Builder(EsptouchDemoActivity.this)
+                            new AlertDialog.Builder(SmartConfigActivity.this)
                                     .setMessage("Wifi disconnected or changed")
                                     .setNegativeButton(android.R.string.cancel, null)
                                     .show();
@@ -92,26 +86,13 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
         mButtonClose = findViewById(R.id.button_smartConfig_close);
         mButtonClose.setOnClickListener(this);
 
-        //initSpinner();
+        mButtonDEBUGSKIP = findViewById(R.id.button_smartconfig_skip);
+        mButtonDEBUGSKIP.setOnClickListener(this);
 
         IntentFilter filter = new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         registerReceiver(mReceiver, filter);
     }
-/*
-    private void initSpinner() {
-        mSpinnerTaskCount = findViewById(R.id.spinnerTaskResultCount);
-        int[] spinnerItemsInt = getResources().getIntArray(R.array.taskResultCount);
-        int length = spinnerItemsInt.length;
-        Integer[] spinnerItemsInteger = new Integer[length];
-        for (int i = 0; i < length; i++) {
-            spinnerItemsInteger[i] = spinnerItemsInt[i];
-        }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
-                android.R.layout.simple_list_item_1, spinnerItemsInteger);
-        mSpinnerTaskCount.setAdapter(adapter);
-        mSpinnerTaskCount.setSelection(1);
-    }
-*/
+    
     @Override
     protected void onResume() {
         super.onResume();
@@ -151,24 +132,13 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
             mTask = new EsptouchAsyncTask3();
             mTask.execute(apSsid, apBssid, apPassword, taskResultCountStr);
 
+        } else if (v == mButtonDEBUGSKIP) {
+            SmartConfigActivity.this.startActivity( new Intent(SmartConfigActivity.this, QRCodeActivity.class));
         } else if (v == mButtonClose) {
             finish();
         }
     }
-/*
-    private void onEsptoucResultAddedPerform(final IEsptouchResult result) {
-        runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                String text = result.getBssid() + " is connected to the wifi";
-                Toast.makeText(EsptouchDemoActivity.this, text,
-                        Toast.LENGTH_LONG).show();
-            }
-
-        });
-    }
-*/
+    
     private class EsptouchAsyncTask3 extends AsyncTask<String, Void, List<IEsptouchResult>> {
 
         // without the lock, if the user tap confirm and cancel quickly enough,
@@ -193,7 +163,7 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
 
         @Override
         protected void onPreExecute() {
-            mProgressDialog = new ProgressDialog(EsptouchDemoActivity.this);
+            mProgressDialog = new ProgressDialog(SmartConfigActivity.this);
             mProgressDialog
                     .setMessage("Let me find your Plush toy... \n\nBe sure to have it close by during this process !");
             mProgressDialog.setCanceledOnTouchOutside(false);
@@ -214,7 +184,7 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
                     "Waiting...", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            EsptouchDemoActivity.this.startActivity( new Intent(EsptouchDemoActivity.this, QRCodeActivity.class));
+                            SmartConfigActivity.this.startActivity( new Intent(SmartConfigActivity.this, QRCodeActivity.class));
                         }
                     });
             mProgressDialog.show();
@@ -236,11 +206,10 @@ public class EsptouchDemoActivity extends AppCompatActivity implements OnClickLi
                 if (useAes) {
                     byte[] secretKey = "1234567890123456".getBytes(); // TODO modify your own key
                     EspAES aes = new EspAES(secretKey);
-                    mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, aes, EsptouchDemoActivity.this);
+                    mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, aes, SmartConfigActivity.this);
                 } else {
-                    mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, null, EsptouchDemoActivity.this);
+                    mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, null, SmartConfigActivity.this);
                 }
-                //mEsptouchTask.setEsptouchListener(myListener);
             }
             List<IEsptouchResult> resultList = mEsptouchTask.executeForResults(taskResultCount);
             return resultList;

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_toys_one_linked_play"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="275dp"
         android:layout_height="wrap_content"

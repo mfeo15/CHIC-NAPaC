@@ -14,8 +14,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Client.getInstance().setupParamters("192.168.1.105", 6789)
-        //Thread( Client.getInstance()).start()
+        Client.getInstance().setupParameters("192.168.1.10", 6789)
+        Thread( Client.getInstance()).start()
 
         val prefs = getSharedPreferences(sharedPreferencesConstants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
         val userLogged = prefs.getBoolean(sharedPreferencesConstants.KEY_USER_LOGGED, false)

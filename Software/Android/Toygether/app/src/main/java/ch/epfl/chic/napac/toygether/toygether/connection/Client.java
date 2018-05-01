@@ -1,11 +1,12 @@
 package ch.epfl.chic.napac.toygether.toygether.connection;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 public class Client implements Runnable {
@@ -26,37 +27,36 @@ public class Client implements Runnable {
         return instance;
     }
 
-	public void setupParamters(String ServerIP, int serverPort) {
+	public void setupParameters(String ServerIP, int serverPort) {
         this.ServerIP = ServerIP;
         this.serverPort = serverPort;
     }
 
-    @Override
-    public void run() {
-
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    private void init() {
         try {
             socket = new Socket(ServerIP, serverPort);
 
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.out = new PrintStream(socket.getOutputStream());
 
-            //Send introduction of the new client to the server
-            //this.asyncSend("S001:U123:0001:0000$");
+            this.send( new Message("S001", "U123", "0001").toString() );
 
-        } catch (UnknownHostException e1) {
-            e1.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void send(String message) throws IOException {
+    @Override
+    public void run() {
+
+        // Run the initial configuration with the previoslty provided parameters
+        this.init();
+
+        while (true)
+            receive();
+    }
+
+    private void _send(String message) throws IOException {
 
         if (socket == null)
             return;
@@ -65,16 +65,44 @@ public class Client implements Runnable {
         out.flush();
     }
 
-    public void asyncSend(final String message){
+    public void send(final String message){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    send(message);
+                    _send(message);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void receive() {
+
+        try {
+            // Read and build the incoming string stream until EOT is found
+            String messageString = String.valueOf( (char) this.in.read() );
+            while (! messageString.endsWith(ASCII.EOT())) {
+                messageString += (char) this.in.read();
+            }
+
+            // Build a Message object from such stream
+            Message m = new Message(  messageString );
+
+            // If the Message obtained is legit (follow the protocol) then parse it
+            if (m.isLegit()) {
+                parse(m);
+            }
+
+
+        } catch (IOException e) {
+            Log.d("Client", "ERROR !!!!");
+            e.printStackTrace();
+        }
+    }
+
+    private void parse(Message m) {
+        Log.d("Client", m.toString());
     }
 }
