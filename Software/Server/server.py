@@ -119,6 +119,9 @@ class Server(object):
 				print("> Permissione denied: message could not be forwarded because {d} and {s} are not associated".format(s=message.source, d=message.destination))
 				return
 
+			if "\n" in message.to_string():
+				print("ATTENZIONE!")
+
 			# Message for a client (User or Plush Toy), forward it to the right destination
 			self.send(self._connections[message.destination], message.to_string())
 
@@ -182,6 +185,7 @@ class Server(object):
 				# Wait for a connection
 				connection_socket, client_address = self._server_socket.accept()
 
+				print()
 				print()
 				print("> New Client IP Address : {}".format(client_address) )
 
