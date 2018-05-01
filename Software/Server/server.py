@@ -30,8 +30,8 @@ class Server(object):
 		"""
 
 		self._server_socket = None
-		self._IP = socket.gethostbyname(socket.gethostname())
-		#self._IP = "172.20.10.9"
+		#self._IP = socket.gethostbyname(socket.gethostname())
+		self._IP = "192.168.1.10"
 		self._PORT = 6789
 		self._connections = {}
 
