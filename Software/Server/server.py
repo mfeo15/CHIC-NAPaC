@@ -4,6 +4,7 @@ import atexit
 import sys, select
 
 import ASCII
+import database_manager as db
 from message import Message
 
 class Server(object):
@@ -29,8 +30,8 @@ class Server(object):
 		"""
 
 		self._server_socket = None
-		self._IP = socket.gethostbyname(socket.gethostname())
-		#self._IP = "172.20.10.9"
+		#self._IP = socket.gethostbyname(socket.gethostname())
+		self._IP = "192.168.1.10"
 		self._PORT = 6789
 		self._connections = {}
 
@@ -109,6 +110,15 @@ class Server(object):
 			 	return
 
 		if (message.destination[0] == 'U' or message.destination[0] == 'P'):
+
+			if not db.ToyParentAssociationExist(message.destination, message.source):
+				# The two clients are not associated together and the forward is not authorized
+				# Prepare a new message of error
+				self.send(self._connections[message.source], Message(message.source, "S001", "0004", ["0001"]).to_string())
+
+				print("> Permissione denied: message could not be forwarded because {d} and {s} are not associated".format(s=message.source, d=message.destination))
+				return
+
 			# Message for a client (User or Plush Toy), forward it to the right destination
 			self.send(self._connections[message.destination], message.to_string())
 

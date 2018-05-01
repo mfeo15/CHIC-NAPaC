@@ -54,7 +54,7 @@ if __name__ == "__main__":
 	Client.get_instance().send("{stx}0000{rs}S001{rs}U123{rs}0001{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
 
 	# Close
-	Client.get_instance().send("{stx}0000{rs}S001{rs}U123{rs}0002{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+	#Client.get_instance().send("{stx}0000{rs}S001{rs}U123{rs}0002{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
 
 	# Test message to be forwarded
-	#Client.get_instance().send("{stx}0000{rs}P314{rs}U123{rs}4242{rs}2{us}17{us}06{eot}".format(stx=ASCII.STX, rs=ASCII.RS, us=ASCII.US, eot=ASCII.EOT))
+	Client.get_instance().send("{stx}0000{rs}P314{rs}U123{rs}4242{rs}2{us}17{us}06{eot}".format(stx=ASCII.STX, rs=ASCII.RS, us=ASCII.US, eot=ASCII.EOT))
