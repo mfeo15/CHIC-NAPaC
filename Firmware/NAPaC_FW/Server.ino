@@ -45,48 +45,25 @@ void send_message(const char *message){ //send the string reference to avoid hea
  * Following packets : when an action on the plush toy needs to be notified to the
  *  parent on the app (to be implemented)
  */
-void send_Message_to_Server()
+void send_message()
 {
-    //set_pixels_colour(purple);
-    static unsigned int counter;
-    static bool first_message = 1; 
-
-    if (first_message == 1)
-    {
-        // First message to send to server : "RECEIVER:SENDER:MSG_ID:PARAM$" with
-        // RECEIVER "S001" (SERVER_NAME)
-        // SENDER   "P314" (MICROCONTROLLER_NAME)
-        // MSG_ID   "0001" (Identification)
-        // PARAM    "0000"
-        // and finish with caracter '$'
-        client.print("S001:P314:0001:0000$");
-
-        first_message = 0;
-        counter = 0;
-        return;
-    }
-
-    else 
-    {
-        //To be implemented here : sending back messages to the TCP server
-        // Write data to server "RECEIVER:SENDER:MSG_ID:PARAM$"
-        //client.print("U123:P314:4242:RED1$");
-    }   
+  //dunno
 }
 
-/*
- * Reads the message stored on the server, sent by the parent from the app
- */
-String read_Message_from_Server() 
+//Reads the message stored on the server, sent by the parent from the app
+String read_message() 
 {
     String stringa = "";
-  
-    for (int i=0; i<20; i++)
-    {
-        char c = client.read();  // lettura di un byte
+    char c;
+
+    c = client.read();
+    if (c == char(2)){      //STX[0] = char(2);
+    do{
         stringa += c;
+        c = client.read();  // lettura di un byte  
+        Serial.println(c);
+    }while(c != char(4));//EOT[0] = char(4);
     }
-    
     return stringa;
 }
 
@@ -130,7 +107,7 @@ void check_to_activateLED()
 {
     if (client.available() )
     {
-          String line = read_Message_from_Server(); 
+          String line = read_message(); 
           Serial.println();
           Serial.println();
           Serial.println("_______________________________________________________");
@@ -145,7 +122,7 @@ void check_to_activateLED()
                String color = line.substring(15, 18);  //char from 15 included to 18 not included
                Serial.print("Request from server received: Activate LED of color "); Serial.println(color);
                Serial.println();
-               toggleLED(color);
+               //toggleLED(color);
           }
     }
 }

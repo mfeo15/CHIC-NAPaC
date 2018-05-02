@@ -3,83 +3,59 @@
  * touch sensors in NAPaC project
  */
 
-const int RED_TOUCH = T3; //IO15
-const int YEL_TOUCH = T6; //IO14
-const int GRN_TOUCH = T4; //IO13
+//enum capa_pads{0,T6,T2,T3};
 
-const int THRESHOLD_RED = 10; //to compare first and current sensor input
-const int THRESHOLD_YEL = 30; //to compare first and current sensor input
-const int THRESHOLD_GRN = 25; //to compare first and current sensor input
+//const uint8_t CAP1 = T6; //IO14
+//const uint8_t CAP2 = T2; //IO02
+//const uint8_t CAP3 = T3; //IO15
 
-const int MAX_DIFF = 3; //to compare previous and current sensor input
+const uint8_t CAP_PIN[] = {0,T6,T2,T3};
+uint8_t nb_capa = 4; //nb capa +1
+int capa_init[4];
 
-void readTouchSensor()
-{
-    static bool first_measure = 1; 
-    static unsigned int counter, debug_measurement;
-    static int first_read_RED, first_read_YEL, first_read_GRN;
-    static int prev_read_RED, prev_read_YEL, prev_read_GRN;
-    
-    int current_read_RED, current_read_YEL, current_read_GRN;
-    
-
-    if (first_measure == 1)
-    {
-        //Initialization
-        first_read_RED = touchRead(RED_TOUCH);
-        first_read_YEL = touchRead(YEL_TOUCH);
-        first_read_GRN = touchRead(GRN_TOUCH);
-            
-        first_measure = 0;
-        counter = 0;
-        debug_measurement = 0;
-        
-        return;
-    }
-    
-    else if (counter > 1000000/4)
-    {
-        //Serial.print("Comparing previous_read_RED and current_read_RED with THRESHOLD "); Serial.println(THRESHOLD);
-//        Serial.println(debug_measurement);
-//        displayMonitorTouchSensors();
-        
-        current_read_RED = touchRead(RED_TOUCH);
-        current_read_YEL = touchRead(YEL_TOUCH);
-        current_read_GRN = touchRead(GRN_TOUCH);
-        
-        if ( current_read_RED < THRESHOLD_RED ){
-                toggleLED("RED");
-        }
-          
-
-        else if ( current_read_YEL < THRESHOLD_RED )
-        {
-                toggleLED("YEL");
-        }
-       
-
-        else if (current_read_GRN < THRESHOLD_RED)
-        {
-                toggleLED("GRN");  
-        }
-
-       prev_read_RED = current_read_RED;
-       prev_read_YEL = current_read_YEL;
-       prev_read_GRN = current_read_GRN;
-       
-       counter = 0;
-       debug_measurement++;
-    } 
-
-    counter++;
+void setup_capa(){
+  for (uint8_t i=1; i <= nb_capa; i++){
+    capa_init[i] = touchRead(CAP_PIN[i]);
+  }
 }
 
-void displayMonitorTouchSensors()
-{
-    Serial.print("RED : "); Serial.println(touchRead(RED_TOUCH));
-    Serial.print("YEL : "); Serial.println(touchRead(YEL_TOUCH));
-    Serial.print("GRN : "); Serial.println(touchRead(GRN_TOUCH));
-    Serial.println("");
+
+// Reads&returns the capacitive value read on corresponding pin
+int touch_read_value(uint8_t touch_id){
+  uint8_t touch_pin;
+  
+  switch(touch_id){
+    case 1: touch_pin = CAP_PIN[1]; break;
+    case 2: touch_pin = CAP_PIN[2]; break;
+    case 3: touch_pin = CAP_PIN[3]; break;
+  }
+  
+  int read = touchRead(touch_pin);
+
+  return read;
 }
 
+bool touched(uint8_t touch_id){
+  int read = touch_read_value(touch_id);
+
+  if (read < capa_init[touch_id] - 200){
+    return 1;}
+  else{
+    return 0;}
+}
+
+bool presence(){
+  for (uint8_t i=1; i <= nb_capa; i++){
+    if (touched[i]) return 1;
+  }
+  return 0;
+}
+
+//void displayMonitorTouchSensors()
+//{
+//    Serial.print("RED : "); Serial.println(touchRead(RED_TOUCH));
+//    Serial.print("YEL : "); Serial.println(touchRead(YEL_TOUCH));
+//    Serial.print("GRN : "); Serial.println(touchRead(GRN_TOUCH));
+//    Serial.println("");
+//}
 

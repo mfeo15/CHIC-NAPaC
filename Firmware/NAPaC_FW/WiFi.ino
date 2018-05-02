@@ -1,20 +1,14 @@
 /*
  * WiFi file containing functions for managing WiFi in NAPaC project
+ * SmartConfig setup from Wifi SmartConfig example
  * 
  */
 
 #include "WiFi.h"
-#include <NeoPixelBus.h> 
-
-/*
- * SmartConfig setup from Wifi SmartConfig example
- */
 
 //char * server_host;
  
 void setup_wifi() {
-  //set_pixels_colour(blue);
-
   //Init WiFi as Station, start SmartConfig
   WiFi.mode(WIFI_AP_STA);
   WiFi.beginSmartConfig();
