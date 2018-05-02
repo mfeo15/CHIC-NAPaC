@@ -32,8 +32,8 @@ class QRCodeActivity : AppCompatActivity() {
                 if (data != null) {
                     val barcode = data.getParcelableExtra<Barcode>(BarcodeCaptureActivity.BarcodeObject)
                     val p = barcode.cornerPoints
-                    //textView_result.text = barcode.displayValue
-                    parseQRCodeResult(barcode.displayValue)
+
+                    passTheCodeToTheNextActivity(barcode.displayValue)
                 }
             } else
                 Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
@@ -42,15 +42,11 @@ class QRCodeActivity : AppCompatActivity() {
             super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun parseQRCodeResult(value: String) {
+    private fun passTheCodeToTheNextActivity(value: String) {
 
-        val prefs = getSharedPreferences(sharedPreferencesConstants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putInt(sharedPreferencesConstants.KEY_TOYS_COUNT, prefs.getInt(sharedPreferencesConstants.KEY_TOYS_COUNT, 0) + 1)
-        editor.putString(sharedPreferencesConstants.KEY_TOY_CODE, value)
-        editor.apply()
-
-        startActivity( Intent(this, SaveNewToyActivity::class.java))
+        val nextActivityIntent = Intent(this, SaveNewToyActivity::class.java)
+        nextActivityIntent.putExtra("toy_code", value)
+        startActivity( nextActivityIntent)
     }
 
     companion object {

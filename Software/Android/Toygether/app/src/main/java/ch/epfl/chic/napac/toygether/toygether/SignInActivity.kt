@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import ch.epfl.chic.napac.toygether.toygether.connection.DataSaver
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : AppCompatActivity() {
@@ -45,12 +46,9 @@ class SignInActivity : AppCompatActivity() {
 
     private fun checkCredentials(email : String, password :String, rememberAccess : Boolean) {
 
-        if (rememberAccess) {
-            val editor = getSharedPreferences(sharedPreferencesConstants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit()
+        if (rememberAccess)
+            DataSaver(this).isUserLogged = true
 
-            editor.putBoolean(sharedPreferencesConstants.KEY_USER_LOGGED, true)
-            editor.apply()
-        }
 
         startActivity( Intent(this, ToysEmptyActivity::class.java))
     }

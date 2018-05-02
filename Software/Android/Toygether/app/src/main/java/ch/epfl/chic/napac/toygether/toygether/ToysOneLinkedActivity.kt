@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import ch.epfl.chic.napac.toygether.toygether.connection.DataSaver
 import kotlinx.android.synthetic.main.activity_toys_one_linked.*
 
 class ToysOneLinkedActivity : AppCompatActivity() {
@@ -18,10 +19,8 @@ class ToysOneLinkedActivity : AppCompatActivity() {
 
         button_toys_one_linked_play.setOnClickListener {
 
-            val prefs = getSharedPreferences(sharedPreferencesConstants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-            val toyCode = prefs.getString(sharedPreferencesConstants.KEY_TOY_CODE, null)
-
-            if (toyCode != null) {
+            val toyCode = DataSaver(this).toyCode
+            if (toyCode != "") {
                 val nextActivityIntent = Intent(this, WaitingForToyActivity::class.java)
                 nextActivityIntent.putExtra("toy_code", toyCode)
                 startActivity( nextActivityIntent)
