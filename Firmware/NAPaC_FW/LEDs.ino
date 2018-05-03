@@ -1,6 +1,5 @@
 /*
- * CapaSens file containing functions for managing SK9822
- * touch sensors in NAPaC project
+ * LEDs file containing functions for managing SK9822
  */
 
 
@@ -14,6 +13,11 @@ const uint8_t clockPin = 4;
 
 // Create an object for writing to the LED strip.
 APA102<dataPin, clockPin> ledStrip;
+
+  //second LED strip for MS4
+  //const uint8_t dataPin2 = 13;
+  //const uint8_t clockPin2 = 12;
+  //APA102<dataPin2, clockPin2> ledStrip2;
 
 // Define LEDs on the plush toy
 const uint16_t ledCount = 1;
@@ -42,9 +46,10 @@ void setup_LEDs(void){
 
   for (uint8_t i = 0; i < ledCount; i++)
   {
-    colours[i] = rgb_color(0,0,255);
+    colours[i] = rgb_color(0,0,0);
   }
   ledStrip.write(colours, ledCount, brightness);
+  //ledStrip2.write(colours, ledCount, brightness);
 }
 
 void set_LED(uint8_t LEDid, uint8_t colour){
@@ -56,7 +61,12 @@ void set_LED(uint8_t LEDid, uint8_t colour){
     case purple: colours[LEDid] = rgb_purple; break;
     case yellow: colours[LEDid] = rgb_yellow; break;
   }
-  ledStrip.write(colours, ledCount, brightness);
+//  if (LEDid == 10){
+//    ledStrip2.write(colours, 1, brightness);
+//  }
+//  else{
+    ledStrip.write(colours, ledCount, brightness);
+//  }
 }
 
 void blink_LED(uint8_t LEDid, uint8_t colour){

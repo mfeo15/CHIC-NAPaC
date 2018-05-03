@@ -61,8 +61,9 @@ String read_message()
     do{
         stringa += c;
         c = client.read();  // lettura di un byte  
-        Serial.println(c);
+        //Serial.println(c);
     }while(c != char(4));//EOT[0] = char(4);
+    Serial.println(stringa);
     }
     return stringa;
 }

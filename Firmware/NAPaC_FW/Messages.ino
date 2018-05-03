@@ -26,12 +26,32 @@ void first_message(){
 }
 
 void accept_game_message(){
+  Serial.println("Child accepted game session!");
   char message1[22]={0};
   sprintf(message1,"%c0020%cU123%cP314%c2002%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
   send_message(message1);
   Serial.println("message sent!");
 }
 
+void hello(){
+    Serial.println();
+    Serial.println("                                                                                ");
+    Serial.println("  _   _    _    ____        ____   _____ _                                      ");
+    Serial.println(" | \\ | |  / \\  |  _ \\ __ _ / ___| |  ___(_)_ __ _ __ _____      ____ _ _ __ ___ ");
+    Serial.println(" |  \\| | / _ \\ | |_) / _` | |     | |_  | | '__| '_ ` _ \\ \\ /\\ / / _` | '__/ _ \\");
+    Serial.println(" | |\\  |/ ___ \\|  __/ (_| | |___  |  _| | | |  | | | | | \\ V  V / (_| | | |  __/");
+    Serial.println(" |_| \\_/_/   \\_\\_|   \\__,_|\\____| |_|   |_|_|  |_| |_| |_|\\_/\\_/ \\__,_|_|  \\___|");
+    Serial.println();
+    Serial.println();
+    Serial.println();
+    Serial.println();
+    
+    Serial.println("Toygether Welcomes You To MS4!");
+    Serial.println();
+    Serial.println();
+
+    //set_pixels_colour(black);
+}
  
 
 

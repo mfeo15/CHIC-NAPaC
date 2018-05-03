@@ -38,24 +38,21 @@ int touch_read_value(uint8_t touch_id){
 bool touched(uint8_t touch_id){
   int read = touch_read_value(touch_id);
 
-  if (read < capa_init[touch_id] - 200){
+  if (read < 5){//capa_init[touch_id] - 20
+    Serial.println("Touch sensor touched! On sensor:");
+    Serial.println(touch_id);
     return 1;}
   else{
     return 0;}
 }
 
 bool presence(){
-  for (uint8_t i=1; i <= nb_capa; i++){
-    if (touched[i]) return 1;
+  for (uint8_t i=1; i <= 1; i++){//i <= nb_capa
+    if (touched(i)){ 
+      return 1;
+    }
   }
   return 0;
 }
 
-//void displayMonitorTouchSensors()
-//{
-//    Serial.print("RED : "); Serial.println(touchRead(RED_TOUCH));
-//    Serial.print("YEL : "); Serial.println(touchRead(YEL_TOUCH));
-//    Serial.print("GRN : "); Serial.println(touchRead(GRN_TOUCH));
-//    Serial.println("");
-//}
 
