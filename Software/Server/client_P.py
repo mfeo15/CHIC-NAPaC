@@ -7,6 +7,8 @@ serverIP = '127.0.0.1'
 serverPORT = 6789
 
 class Client(object):
+	
+	count = 1
 
 	__client_socket = None
 
@@ -42,7 +44,9 @@ class Client(object):
  				print()
  				print("> Message received: \"{m}\"".format(m=message))
 
- 				Client.get_instance().send("{stx}0000{rs}U123{rs}P314{rs}2002{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+ 				if self.count > 0:
+ 					Client.get_instance().send("{stx}0000{rs}U123{rs}P314{rs}2002{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+ 					self.count = 0
 
 
 if __name__ == "__main__":
