@@ -16,7 +16,7 @@ class WaitingForToyActivity : AppCompatActivity(), Observer {
             is Client -> {
                 if (arg is Message) {
 
-                    //Client.getInstance().deleteAnObserver(this)
+                    Client.getInstance().deleteAnObserver(this)
 
                     val nextActivityIntent = Intent(this, PlayingActivity::class.java)
                     nextActivityIntent.putExtra("toy_code", intent.extras.getString("toy_code"))
