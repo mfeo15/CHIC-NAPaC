@@ -15,15 +15,24 @@ class WaitingForToyActivity : AppCompatActivity(), Observer {
         when (o) {
             is Client -> {
                 if (arg is Message) {
-
-                    Client.getInstance().deleteAnObserver(this)
-
                     val nextActivityIntent = Intent(this, PlayingActivity::class.java)
                     nextActivityIntent.putExtra("toy_code", intent.extras.getString("toy_code"))
                     startActivity( nextActivityIntent)
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Client.getInstance().addNewObserver(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Client.getInstance().deleteAnObserver(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,14 +43,7 @@ class WaitingForToyActivity : AppCompatActivity(), Observer {
             finish()
         }
 
-        Client.getInstance().addNewObserver(this)
-
         val toyCode = intent.extras.getString("toy_code")
         Client.getInstance().send( Message(toyCode, "U123", "2001").toString() )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Client.getInstance().deleteAnObserver(this)
     }
 }
