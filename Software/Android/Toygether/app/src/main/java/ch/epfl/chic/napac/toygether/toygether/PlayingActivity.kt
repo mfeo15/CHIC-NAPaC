@@ -34,6 +34,7 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
         val toyCode = intent.extras.getString("toy_code")
 
         button_playing_close.setOnClickListener {
+            Client.getInstance().send(Message(toyCode, "U123", "2004").toString())
             finish()
         }
 

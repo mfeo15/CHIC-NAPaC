@@ -1,6 +1,5 @@
 package ch.epfl.chic.napac.toygether.toygether
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

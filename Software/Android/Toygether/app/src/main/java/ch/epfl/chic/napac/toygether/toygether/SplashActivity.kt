@@ -1,6 +1,5 @@
 package ch.epfl.chic.napac.toygether.toygether
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -16,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Client.getInstance().setupParameters("192.168.1.10", 6789)
-        //Thread( Client.getInstance()).start()
+        Thread( Client.getInstance()).start()
 
         if (DataSaver(this).isUserLogged) {
             startActivity( Intent(this, ToysEmptyActivity::class.java))

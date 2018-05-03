@@ -15,6 +15,9 @@ class WaitingForToyActivity : AppCompatActivity(), Observer {
         when (o) {
             is Client -> {
                 if (arg is Message) {
+
+                    //Client.getInstance().deleteAnObserver(this)
+
                     val nextActivityIntent = Intent(this, PlayingActivity::class.java)
                     nextActivityIntent.putExtra("toy_code", intent.extras.getString("toy_code"))
                     startActivity( nextActivityIntent)
@@ -35,5 +38,10 @@ class WaitingForToyActivity : AppCompatActivity(), Observer {
 
         val toyCode = intent.extras.getString("toy_code")
         Client.getInstance().send( Message(toyCode, "U123", "2001").toString() )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Client.getInstance().deleteAnObserver(this)
     }
 }

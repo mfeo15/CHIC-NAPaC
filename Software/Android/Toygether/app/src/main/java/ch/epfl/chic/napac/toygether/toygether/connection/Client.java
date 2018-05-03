@@ -93,6 +93,8 @@ public class Client extends Observable implements Runnable {
             // Build a Message object from such stream
             Message m = new Message(  messageString );
 
+            Log.d("Client IN", m.toString());
+
             // If the Message obtained is legit (follow the protocol) then parse it
             if (m.isLegit()) {
                 parse(m);
