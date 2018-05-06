@@ -1,10 +1,14 @@
 import socket
 import sys
 
+import ASCII
+
 serverIP = '127.0.0.1'
 serverPORT = 6789
 
 class Client(object):
+	
+	count = 1
 
 	__client_socket = None
 
@@ -31,11 +35,18 @@ class Client(object):
 
 	def receive(self):
  		while True:
- 			message  = self.__client_socket.recv(20).decode("utf-8")
+
+ 			message = self.__client_socket.recv(1).decode("utf-8")
+ 			while not message.endswith(ASCII.EOT):
+					message += self.__client_socket.recv(1).decode("utf-8")
 
  			if message:
  				print()
  				print("> Message received: \"{m}\"".format(m=message))
+
+ 				if self.count > 0:
+ 					Client.get_instance().send("{stx}0000{rs}U123{rs}P314{rs}2002{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+ 					self.count = 0
 
 
 if __name__ == "__main__":
@@ -49,7 +60,10 @@ if __name__ == "__main__":
 	Client.get_instance()
 
 	# Introduzione
-	Client.get_instance().send('S001:P314:0001:0000$')
+	Client.get_instance().send("{stx}0000{rs}S001{rs}P314{rs}0001{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
+
+	# Message to forward and fail
+	#Client.get_instance().send("{stx}0000{rs}U999{rs}P314{rs}9999{eot}".format(stx=ASCII.STX, rs=ASCII.RS, eot=ASCII.EOT))
 
 	# Test message of color function
 	Client.get_instance().receive()
