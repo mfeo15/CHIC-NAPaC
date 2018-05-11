@@ -14,17 +14,19 @@ const uint8_t clockPin = 4;
 // Create an object for writing to the LED strip.
 APA102<dataPin, clockPin> ledStrip;
 
-  //second LED strip for MS4
-  //const uint8_t dataPin2 = 13;
-  //const uint8_t clockPin2 = 12;
-  //APA102<dataPin2, clockPin2> ledStrip2;
+//  second LED strip for MS4
+  const uint8_t dataPin2 = 13;
+  const uint8_t clockPin2 = 12;
+  APA102<dataPin2, clockPin2> ledStrip2;
 
 // Define LEDs on the plush toy
 const uint16_t ledCount = 1;
+const uint16_t ledCount2 = 1;
 
 
 // Create a buffer for holding the colors (3 bytes per color).
 rgb_color colours[ledCount];
+rgb_color colours2[ledCount2];
 
 //Colour alphabet
 //enum colours{off,red,green,blue,purple,yellow};
@@ -44,29 +46,41 @@ void setup_LEDs(void){
   pinMode(dataPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
 
+  pinMode(dataPin2, OUTPUT);
+  pinMode(clockPin2, OUTPUT);
+
   for (uint8_t i = 0; i < ledCount; i++)
   {
     colours[i] = rgb_color(0,0,0);
+    colours2[i] = rgb_color(0,0,0);
   }
   ledStrip.write(colours, ledCount, brightness);
-  //ledStrip2.write(colours, ledCount, brightness);
+  ledStrip2.write(colours2, ledCount2, brightness);
 }
 
 void set_LED(uint8_t LEDid, uint8_t colour){
-  switch(colour){
-    case off: colours[LEDid] = rgb_black; break;
-    case red: colours[LEDid] = rgb_red; break;
-    case green: colours[LEDid] = rgb_green; break;
-    case blue: colours[LEDid] = rgb_blue; break;
-    case purple: colours[LEDid] = rgb_purple; break;
-    case yellow: colours[LEDid] = rgb_yellow; break;
+  if (LEDid == 10){
+    switch(colour){
+      case off: colours[0] = rgb_black; break;
+      case red: colours[0] = rgb_red; break;
+      case green: colours[0] = rgb_green; break;
+      case blue: colours[0] = rgb_blue; break;
+      case purple: colours[0] = rgb_purple; break;
+      case yellow: colours[0] = rgb_yellow; break;
+    } 
+    ledStrip2.write(colours2, ledCount2, 20);
   }
-//  if (LEDid == 10){
-//    ledStrip2.write(colours, 1, brightness);
-//  }
-//  else{
+   else{
+    switch(colour){
+      case off: colours[LEDid] = rgb_black; break;
+      case red: colours[LEDid] = rgb_red; break;
+      case green: colours[LEDid] = rgb_green; break;
+      case blue: colours[LEDid] = rgb_blue; break;
+      case purple: colours[LEDid] = rgb_purple; break;
+      case yellow: colours[LEDid] = rgb_yellow; break;
+    } 
     ledStrip.write(colours, ledCount, brightness);
-//  }
+  }
 }
 
 void blink_LED(uint8_t LEDid, uint8_t colour){

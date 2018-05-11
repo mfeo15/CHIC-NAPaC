@@ -21,17 +21,18 @@ bool accept_game_request(){
 
 void start_game_session(){
   Serial.println("Beginning of game session!");
-  blink_LED(0,red);
+  set_LED(0,red);
   game_session_on =1;
 }
 
 void end_game_session(){
   Serial.println("End of game session!");
+  set_LED(0,off);
   game_session_on = 0;
 }
 
 bool LED_sequence_request(String message){
-  uint8_t game_led = 0;
+  uint8_t game_led = 10;  //MS4
   int offset = 48; // = "1"
   int nb_LED = (int) message.charAt(21) - offset;
   Serial.println(nb_LED);
@@ -41,16 +42,17 @@ bool LED_sequence_request(String message){
     return 0;
   }
 
-  set_LED(game_led , yellow); //MS4
-  Serial.println("LED on");
+  set_LED(game_led, yellow);
+  Serial.println("game LED on");
   
   while (1){
     if (presence()){
       for (uint8_t i = 1; i <= nb_LED; i++){
-      set_LED(i, off);
-      set_LED(game_led,off);//MS4
+      //set_LED(i, off);
       Serial.println("LED off");
       }
+      set_LED(game_led,off);//MS4
+      set_LED(0,red);
       return 1;
     }
   }
