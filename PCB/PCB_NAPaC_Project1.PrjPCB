@@ -173,6 +173,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[GeneratedDocument1]
+DocumentPath=NAPaC_PCB1 11-05-2018 17-55-01.WAS
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
