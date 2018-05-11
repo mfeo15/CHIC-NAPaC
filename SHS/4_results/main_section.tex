@@ -1,5 +1,79 @@
 \section{Results}
 \label{results}
 
-We report on the results of our study, organized around the questionnaires...
+In this section are reported the results of our study, organized around the questionnaires. In total, xyz persons have answered to the questions presented previously. 55.9\% of the questionnaires have been filled with the English form, against 40.1\% in French. The results of both questionnaires have first been merged together, to gather as much information as possible. ...\% of the persons were children (\% male and \% female), and ... \% were parents (...\% male and ...\% female). As can be seen in table \ref{tab:stats_children}, with a mean age of 14.31 years old, the 87 children having spent at least three days away from their family rated the importance of communication 5.80 over 7, with a standard deviation of 1.46. Table \ref{tab:stats_parents} shows the importance of communication rated by the 29 questioned parents (with mean age of the considered child of 9 years old) at 5.79, with standard deviation of 1.69. Despite the difference in the total number of parents and children having participated to the survey, both final results are surprisingly close to each other.
+
+
+
+
+\begin{table}[ht]
+\centering
+\caption{Statistics for the child results of the survey}
+\label{tab:stats_children}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+                            & \textbf{Child's age} & \textbf{Importance Rating {[}0-7{]}} \\ \hline
+\multicolumn{1}{|c|}{Mean}  & 14,31                & 5,80                                 \\ 
+\multicolumn{1}{|c|}{Std}   & 5,06                 & 1,46                                 \\ 
+\multicolumn{1}{|c|}{Min}   & 2                    & 2                                    \\ 
+\multicolumn{1}{|c|}{25\%}  & 10                   & 5                                    \\ 
+\multicolumn{1}{|c|}{50\%}  & 14                   & 6                                    \\ 
+\multicolumn{1}{|c|}{75\%}  & 18                   & 7                                    \\ 
+\multicolumn{1}{|c|}{Max}   & 23                   & 7                                    \\ \hline
+\multicolumn{1}{|c|}{Count} & \multicolumn{2}{c|}{87}                                     \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Statistics for the parent results of the survey}
+\label{tab:stats_parents}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+                            & \textbf{Child's age} & \textbf{Importance Rating {[}0-7{]}} \\ \hline
+\multicolumn{1}{|c|}{Mean}  & 9,00                 & 5,79                                 \\ 
+\multicolumn{1}{|c|}{Std}   & 3,23                 & 1,69                                 \\ 
+\multicolumn{1}{|c|}{Min}   & 3                    & 0                                    \\ 
+\multicolumn{1}{|c|}{25\%}  & 7                    & 5                                    \\ 
+\multicolumn{1}{|c|}{50\%}  & 9                    & 6                                    \\ 
+\multicolumn{1}{|c|}{75\%}  & 10                   & 7                                    \\ 
+\multicolumn{1}{|c|}{Max}   & 17                   & 7                                    \\ \hline
+\multicolumn{1}{|c|}{Count} & \multicolumn{2}{c|}{29}                                     \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+         \begin{axis}
+            [
+            ytick={1,2},
+            yticklabels={Parents, Children},
+            ]
+            \addplot+[
+            boxplot prepared={
+              median=6,
+              upper quartile=7,
+              lower quartile=5,
+              upper whisker=7,
+              lower whisker=0
+            },
+            ] coordinates {};
+            \addplot+[
+            boxplot prepared={
+              median=6,
+              upper quartile=7,
+              lower quartile=5,
+              upper whisker=7,
+              lower whisker=2
+            },
+            ] coordinates {};
+         \end{axis}
+    \end{tikzpicture}
+    \caption{Statistical comparison between parents and children results on the importance rating}
+    \label{fig:box_plots}
+\end{figure}
+
+
+%To be added : quanta gente ha risposto, di cui blabla children and tot parents
 

@@ -1,8 +1,18 @@
 \documentclass[conference]{IEEEtran}
 
+\usepackage{graphicx}
+
 %\usepackage{biblatex}
 \usepackage[backend=biber, style=authoryear]{biblatex}
 \bibliography{bibliography}
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{1}
+\setlist[todolist]{label=$\square$}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
 
 \begin{document}
 
@@ -67,6 +77,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 The authors would like to thank...
 
 \printbibliography
+
+\input{appendix.tex}
 
 \end{document}
 
