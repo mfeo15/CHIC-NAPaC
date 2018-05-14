@@ -6,13 +6,19 @@
 
 #include "WiFi.h"
 #include <EEPROM.h>
+#include <ssl_client.h>
+#include <WiFiClientSecure.h>
+#include <WiFi.h>
+#include <WiFiMulti.h>
+
+WiFiMulti wifiMulti;
 
 //char * server_host;
 
 #define EEPROM_SIZE 64 // I DON'T KNOW WHY
 
-uint8_t num_smartconfig = 0;
-int adress = 0;
+uint8_t num_smartconfig = -1;
+int address = 0;
 int address_SSID = 0; 
 int address_pwd = 0; 
 
@@ -28,22 +34,25 @@ void setup_EEPROM() {
   }
 }
  
-void setup_wifi() { //NOT TESTED
+void setup_wifi() {
   //Init WiFi as Station, start SmartConfig
   WiFi.mode(WIFI_AP_STA);
 
-  num_smartconfig = EEPROM.readString(address);
+  //To reinitialise smartconfig memory, run setup_eeprom.ino
+  num_smartconfig =  EEPROM.readByte(address); 
+  Serial.println("Smartconfigs found:");
+  Serial.println(num_smartconfig);
   
-  if (num_smartconfig = 0){
+  if (num_smartconfig == 0){
     Serial.println("No saved Smartconfig - initialising Smartconfig");
     smartconfig(); //saves smartconfig in EEPROM
   }
 
   for (uint8_t i=0; i<num_smartconfig;i++){
     address_SSID  = address + sizeof(num_smartconfig);
-    String SSID_s = EEPROM.readString(address_SSID);
+    const char *SSID_s = EEPROM.readString(address_SSID).c_str();
     address_pwd   = address_SSID + sizeof(SSID_s);
-    String PWD    = EEPROM.readString(address_pwd);
+    const char* PWD    = EEPROM.readString(address_pwd).c_str();
     Serial.println("WiFi config found:");
     Serial.println(SSID_s);
     Serial.println(PWD);
@@ -51,12 +60,16 @@ void setup_wifi() { //NOT TESTED
   }
   //From WiFiMulti example
   Serial.println("Connecting Wifi...");
-    if(wifiMulti.run() == WL_CONNECTED) {
-        Serial.println("");
-        Serial.println("WiFi connected");
-        Serial.println("IP address: ");
-        Serial.println(WiFi.localIP());
+  while(wifiMulti.run() != WL_CONNECTED) {
+        Serial.print(".");
+        delay(500);
     }
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+
+    delay(500);
 }
 
 
@@ -79,12 +92,10 @@ void smartconfig(){
     delay(500);
     Serial.print(".");
   }
-      Serial.println("WiFi Connected.");
+      Serial.println("\n WiFi Connected.");
     //* server_host = WiFi.localIP(); // constant defined by Yann
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP());
-
-    Serial.println("\nTesting EEPROM Library\n");
+//    Serial.print("IP Address: ");
+//    Serial.println(WiFi.localIP());
 
     //save SSID and PWD in strings
     String SSID_s = WiFi.SSID();
@@ -93,19 +104,25 @@ void smartconfig(){
     Serial.println(SSID_s);
 
     String PWD = WiFi.psk();
-    Serial.println("PWD:");
-    Serial.println(PWD);
+//    Serial.println("PWD:");
+//    Serial.println(PWD);
 
 
     //save wifi config in eeprom
-    Serial.println("read&write from eeprom");
+    Serial.println("\nRead&write from eeprom");
+    address_SSID = address + sizeof(num_smartconfig);
     EEPROM.writeString(address_SSID, SSID_s);
-    Serial.println("SSID written in EEPROM");
-    Serial.println(EEPROM.readString(address_SSID));
     address_pwd = address_SSID + sizeof(SSID_s);
     EEPROM.writeString(address_pwd, PWD);
-    Serial.println(EEPROM.readString(address_pwd));
     // WORKS BUT HAS AN EXTRA CHARACTER - CHECK END OF LINE?
+
+    Serial.println("SSID & PWD written in EEPROM:");
+    Serial.println(EEPROM.readString(address_SSID));
+    Serial.println(EEPROM.readString(address_pwd));
+
+    num_smartconfig++;
+    EEPROM.writeByte(address, num_smartconfig);
+    EEPROM.commit();
   
 }
 
