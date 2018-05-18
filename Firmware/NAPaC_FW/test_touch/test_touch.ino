@@ -11,10 +11,8 @@ void setup()
 void loop()
 {
   Serial.println("Touch pad 1:");
-  Serial.println(touchRead(T6));  // get value using T0
-  Serial.println("Touch pad 2:");
   Serial.println(touchRead(T2));  // get value using T0
-  Serial.println("Touch pad 3:");
-  Serial.println(touchRead(T3));  // get value using T0
+  Serial.println("Touch pad 2:");
+  Serial.println(touchRead(T1));  // get value using T0
   delay(1000);
 }

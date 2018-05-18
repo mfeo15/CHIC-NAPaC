@@ -17,7 +17,7 @@ WiFiMulti wifiMulti;
 
 #define EEPROM_SIZE 64 // I DON'T KNOW WHY
 
-uint8_t num_smartconfig = -1;
+uint8_t num_smartconfig = 0;
 int address = 0;
 int address_SSID = 0; 
 int address_pwd = 0; 
@@ -38,10 +38,18 @@ void setup_wifi() {
   //Init WiFi as Station, start SmartConfig
   WiFi.mode(WIFI_AP_STA);
 
+  
+  wifiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
+//  num_smartconfig++;
+//  EEPROM.writeByte(address, num_smartconfig);
+//  EEPROM.commit();
+
   //To reinitialise smartconfig memory, run setup_eeprom.ino
   num_smartconfig =  EEPROM.readByte(address); 
   Serial.println("Smartconfigs found:");
   Serial.println(num_smartconfig);
+
+  
   
   if (num_smartconfig == 0){
     Serial.println("No saved Smartconfig - initialising Smartconfig");

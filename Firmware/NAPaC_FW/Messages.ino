@@ -9,7 +9,7 @@ char EOT[1];
 char RS[1];
 char US[1];
 
-void setup_alphabet(){
+void setup_messages_alphabet(){
   STX[0] = char(2);
   EOT[0] = char(4);
   RS[0]  = char(30);

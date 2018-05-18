@@ -1,7 +1,5 @@
 /*
- *  Edited code looking horrible to demonstrate neopixels on esp32
- *  Capa pads on soft paw turn on neopixels
- *  Random colours may turn on for unknown reasons
+ * NAPaC main Firmware file by Chloe Dickson for Toygether project, CHIC 2018
  */
 
 int incomingByte = 0;
@@ -20,25 +18,30 @@ void setup(){
     setup_LEDs();
     setup_capa();
 
-    blink_LED(0,green);
-    set_LED(0,green);   
-    //setup_wifi();
-
-    blink_LED(0,purple);
-    set_LED(0,purple);
-    //connect_to_server();
-    
-    setup_alphabet();
-
-    blink_LED(0,yellow);
-    hello();
-    first_message();
+////    blink_LED(0,green);
+////    set_LED(0,green);   
+//    //setup_wifi();
+//
+//    blink_LED(0,purple);
+//    set_LED(0,purple);
+//    //connect_to_server();
+//    
+//    setup_messages_alphabet();
+//
+//    blink_LED(0,yellow);
+//    hello();
+//    first_message();
 }
 
 void loop()
 {    
-    set_LED(10, yellow);
-//    message = read_message();
+    //test_LEDs();
+    //test_touch_values();
+    test_if_touched();
+
+    //solo_game();
+    
+  //    message = read_message();
 //    //blink_LED(0,yellow);
 //    messageID = message.substring(16, 20).toInt();
 //    

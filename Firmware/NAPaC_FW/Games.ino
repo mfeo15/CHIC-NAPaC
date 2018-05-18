@@ -3,6 +3,7 @@
  */
 
 //bool game_session_on = 0;
+uint8_t LED_status_game[9] = {0};
 
 bool accept_game_request(){
   blink_LED(0,purple);
@@ -54,6 +55,25 @@ bool LED_sequence_request(String message){
       set_LED(game_led,off);//MS4
       set_LED(0,red);
       return 1;
+    }
+  }
+}
+
+void solo_game(){
+  while(1){
+    for (uint8_t i=1; i < 6; i++){ //i < nb_capa
+      if (capa_touched(i)){
+        if (LED_status_game[i] == 0){
+          set_LED(i, blue);
+          LED_status_game[i] = 1;
+        }
+        else
+        {
+          set_LED(i, off);
+          LED_status_game[i] = 0;
+        }
+        delay(100);
+      }
     }
   }
 }
