@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="http://oi63.tinypic.com/2v01nk7.jpg" width="450" alt="Toygether logo" align="top" />
+  <img src="http://oi63.tinypic.com/35ldrtz.jpg width="450" alt="Toygether logo" align="top" />
 </p>
 
 
@@ -12,7 +12,7 @@ The team NAPaC identified itself in the Toygether brand image, that clearly show
 
 ## Repo structure
 
-The different files are organized like in the tree structure below. The three main folders, `Firmware`, `Software` and `SHS`, separate our main different contents we worked on.
+The different files are organized like in the tree structure below. The five main folders, `Firmware`, `PCB`, `Software`, `SHS` and `Report` separate our main different contents we worked on. 
 
 ```
 .
@@ -21,6 +21,8 @@ The different files are organized like in the tree structure below. The three ma
 |   ├── TBD
 |   └── TBD
 |
+├── PCB
+|
 ├── Software
 |   ├── Android
 |   |    ├── BasicClient
@@ -28,7 +30,11 @@ The different files are organized like in the tree structure below. The three ma
 |   |
 |   └── Server
 |
-└── SHS
+├── SHS
+|   ├── Pre-processing
+|   └── Server
+|
+└── Report
 ```
 
 ## Mainly develped with 
