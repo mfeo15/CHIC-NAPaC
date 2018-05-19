@@ -58,7 +58,7 @@ Collaborated on the different aspects of the project:
 * **Estelle Geneux** *(UNIL-HEC)*
 * **Matteo Yann Feo** *(EPFL)*
 * **Simone Sanso** *(EPFL)*
-* **Luca Sassoli de Bianchi** *(EPFL)* 
+* **Luca Sassoli de Bianchi** *(ECAL)* 
 
 ## External references
 
