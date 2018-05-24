@@ -14,7 +14,11 @@
 
 const uint8_t CAP_PIN[] = {0,T0,T2,T3,T4,T5,T6,T7,T8};
 const uint8_t nb_capa = 9; //nb capa +1
+bool touch_state[nb_capa];
 int capa_init[nb_capa];
+
+const bool PRESSED = 1;
+const bool RELEASED = 0;
 
 void setup_capa(){
   for (uint8_t i=1; i <= nb_capa; i++){
@@ -28,16 +32,25 @@ int touch_read_value(uint8_t touch_id){
   return read;
 }
 
-bool capa_touched(uint8_t touch_id){
-  if (touch_read_value(touch_id) < 10){//capa_init[touch_id] - 20
+bool capa_state(uint8_t touch_id){
+  if (touch_read_value(touch_id) < 15){//capa_init[touch_id] - 20
     delay(100);
-    if (touch_read_value(touch_id) < 10){
-      Serial.print("Touch sensor touched! On sensor:");
-      Serial.print(touch_id);
-      Serial.print("\t Read value:");
-      Serial.println(touch_read_value(touch_id));
-      return 1;
+    if (touch_read_value(touch_id) < 15){ 
+      touch_state[touch_id] = PRESSED;     
+      return PRESSED;
     }
+  }
+  touch_state[touch_id] = RELEASED;
+  return RELEASED;
+}
+
+bool capa_touched(uint8_t touch_id){
+  if (capa_state(touch_id) == PRESSED){
+    Serial.print("Touch sensor touched! On sensor:");
+    Serial.print(touch_id);
+    Serial.print("\t Read value:");
+    Serial.println(touch_read_value(touch_id));
+    return 1;
   }
   else{
     return 0;}

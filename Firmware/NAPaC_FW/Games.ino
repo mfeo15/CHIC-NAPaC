@@ -68,17 +68,12 @@ void solo_game(){
         Serial.print("Capa touched on ");
         Serial.println(i); 
         if (LED_status_game[i] == 0){
-          set_LED(i, blue);
-          Serial.print("LED on ");
-          Serial.println(i);          
+          set_LED(i, blue);          
           LED_status_game[i] = 1;
         }
-        else
-        {
+        else{
           set_LED(i, off);
           LED_status_game[i] = 0;
-          Serial.print("LED off ");
-          Serial.println(i);
         }
         delay(100);
       }

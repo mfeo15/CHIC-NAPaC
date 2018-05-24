@@ -38,7 +38,7 @@ rgb_color colours2[ledCount2];
 //Colour alphabet
 //enum colours{off,red,green,blue,purple,yellow};
 uint8_t max_bright = 255;
-const uint8_t brightness = 20; // Set the brightness to use (the maximum is 31).
+const uint8_t brightness = 15; // Set the brightness to use (the maximum is 31).
 rgb_color rgb_off = {0, 0, 0};
 rgb_color rgb_red = {max_bright, 0, 0};
 rgb_color rgb_green = {0, max_bright, 0};
@@ -82,7 +82,7 @@ void set_LED(uint8_t LEDid, uint8_t colour){
     } 
     ledStrip1.write(colours1, ledCount1, brightness);
     if (LEDid == 0 ){
-      ledStrip1.write(colours1, ledCount1, 10);//stronger brightness for heart LED
+      ledStrip1.write(colours1, ledCount1, 31);//stronger brightness for heart LED
     }
   }
    else{
