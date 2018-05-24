@@ -71,6 +71,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=KUPXOWIE
 
+[Document3]
+DocumentPath=NAPaC_DetachableModule_PcbLib.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=MRARBWKB
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for NAPaC_DetachableModule\Design Rule Check - NAPaC_DetachableModule.html
 DItemRevisionGUID=
