@@ -30,10 +30,15 @@ int touch_read_value(uint8_t touch_id){
 
 bool capa_touched(uint8_t touch_id){
   if (touch_read_value(touch_id) < 10){//capa_init[touch_id] - 20
-    Serial.println("Touch sensor touched! On sensor:");
-    Serial.println(touch_id);
-    Serial.println(touch_read_value(touch_id));
-    return 1;}
+    delay(100);
+    if (touch_read_value(touch_id) < 10){
+      Serial.print("Touch sensor touched! On sensor:");
+      Serial.print(touch_id);
+      Serial.print("\t Read value:");
+      Serial.println(touch_read_value(touch_id));
+      return 1;
+    }
+  }
   else{
     return 0;}
 }

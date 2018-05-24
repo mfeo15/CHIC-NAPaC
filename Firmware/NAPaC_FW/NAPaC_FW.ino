@@ -37,9 +37,9 @@ void loop()
 {    
     //test_LEDs();
     //test_touch_values();
-    test_if_touched();
+    //test_if_touched();
 
-    //solo_game();
+    solo_game();
     
   //    message = read_message();
 //    //blink_LED(0,yellow);

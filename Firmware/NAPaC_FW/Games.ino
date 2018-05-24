@@ -60,17 +60,25 @@ bool LED_sequence_request(String message){
 }
 
 void solo_game(){
+  set_LED(0, purple);
+  Serial.println("Solo Game session initiated");
   while(1){
     for (uint8_t i=1; i < 6; i++){ //i < nb_capa
       if (capa_touched(i)){
+        Serial.print("Capa touched on ");
+        Serial.println(i); 
         if (LED_status_game[i] == 0){
           set_LED(i, blue);
+          Serial.print("LED on ");
+          Serial.println(i);          
           LED_status_game[i] = 1;
         }
         else
         {
           set_LED(i, off);
           LED_status_game[i] = 0;
+          Serial.print("LED off ");
+          Serial.println(i);
         }
         delay(100);
       }
