@@ -70,10 +70,12 @@ void solo_game(){
         if (LED_status_game[i] == 0){
           set_LED(i, blue);          
           LED_status_game[i] = 1;
+          play_tone((int)i);
         }
         else{
           set_LED(i, off);
           LED_status_game[i] = 0;
+          play_tone_short((int)i);
         }
         delay(100);
       }

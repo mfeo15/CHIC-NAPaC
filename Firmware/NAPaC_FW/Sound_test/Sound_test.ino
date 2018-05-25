@@ -3,19 +3,28 @@
  *  Example: https://techtutorialsx.com/2017/07/01/esp32-arduino-controlling-a-buzzer-with-pwm/ 
  */
 
-#define Do 261
-#define Do_Di 277
-#define Re 294
-#define Re_Di 311
-#define Mi 329
-#define Fa 349
-#define Fa_Di 370
-#define Sol 392
-#define Sol_Di 415
-#define La 440
-#define La_Di 466
-#define Si 493
-#define DO 523
+//#define Do 261
+//#define Do_Di 277
+//#define Re 294
+//#define Re_Di 311
+//#define Mi 329
+//#define Fa 349
+//#define Fa_Di 370
+//#define Sol 392
+//#define Sol_Di 415
+//#define La 440
+//#define La_Di 466
+//#define Si 493
+//#define DO 523
+
+#define Do 523
+#define Re 587
+#define Mi 659
+#define Fa 698
+#define Sol 784
+#define La 880
+#define Si 988
+#define DO 1047
 
 const uint8_t soundPin = 21;
 const int gamme[]={Do,Re,Mi,Fa,Sol,La,Si,DO};
@@ -77,6 +86,32 @@ void sound_test_chloe(){
   ledcWriteTone(channel, 0);
 }
 
+void mario(){
+  ledcWriteTone(channel,660);
+  delay(150);
+  ledcWriteTone(channel, 0);
+  delay(100);
+  ledcWriteTone(channel,660);
+  delay(150);
+  ledcWriteTone(channel, 0);
+  delay(100);
+  ledcWriteTone(channel,660);
+  delay(150);
+  ledcWriteTone(channel, 0);
+  delay(100);
+  ledcWriteTone(channel,510);
+  delay(100);
+  ledcWriteTone(channel, 0);
+  delay(100);
+  ledcWriteTone(channel,660);
+  delay(150);
+  ledcWriteTone(channel, 0);
+  delay(100);
+  ledcWriteTone(channel,770);
+  delay(300);
+  ledcWriteTone(channel, 0);
+}
+
 
 void setup() {
   Serial.begin(115200);
@@ -88,6 +123,7 @@ void setup() {
 
   //sound_test_techtuto();
   sound_test_chloe();
+  mario();
 
 }
 

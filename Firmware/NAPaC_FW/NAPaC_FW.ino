@@ -19,6 +19,11 @@ void setup(){
     setup_capa();
     setup_sound();
 
+    //sound_test();
+    mario();
+
+    
+
 ////    blink_LED(0,green);
 ////    set_LED(0,green);   
 //    //setup_wifi();
@@ -39,6 +44,7 @@ void loop()
     //test_LEDs();
     //test_touch_values();
     //test_if_touched();
+    
 
     solo_game();
     
