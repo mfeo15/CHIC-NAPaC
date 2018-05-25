@@ -17,6 +17,7 @@ void setup(){
 
     setup_LEDs();
     setup_capa();
+    setup_sound();
 
 ////    blink_LED(0,green);
 ////    set_LED(0,green);   
