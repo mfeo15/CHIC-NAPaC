@@ -20,7 +20,7 @@ void setup(){
     setup_sound();
 
     //sound_test();
-    mario();
+   mario();
 
     
 
@@ -32,7 +32,7 @@ void setup(){
 //    set_LED(0,purple);
 //    //connect_to_server();
 //    
-//    setup_messages_alphabet();
+//    //setup_messages_alphabet();
 //
 //    blink_LED(0,yellow);
 //    hello();

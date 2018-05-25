@@ -35,24 +35,22 @@ void setup_sound(){
 }
 
 void play_tone(int tone){
-  ledcWriteTone(channel, gamme[tone]);
+  ledcWriteTone(channel, gamme[tone-1]);
   delay(200);
   ledcWriteTone(channel, 0);
 }
 
 void play_tone_short(int tone){
-  ledcWriteTone(channel, gamme[tone]);
-  delay(50);
+  ledcWriteTone(channel, gamme[tone-1]);
+  delay(70);
   ledcWriteTone(channel, 0);
 }
 
 // Sound test: plays do-re-mi-fa-sol-la-si-Do
 void sound_test(){ 
-  for (uint8_t i=0; i<8; i++){
-    ledcWriteTone(channel, gamme[i]);
-    delay(500);
-    ledcWriteTone(channel, 0);
-    delay(500);
+  for (uint8_t i=1; i <= 8; i++){
+    play_tone(i);
+    delay(100);
   }
   ledcWriteTone(channel, 0);
 }

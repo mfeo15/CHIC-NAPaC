@@ -12,7 +12,7 @@
   * test_if_touched(); prints touched sensors in serial
   */
 
-const uint8_t CAP_PIN[] = {0,T0,T2,T3,T4,T5,T6,T7,T8};
+const uint8_t CAP_PIN[] = {0,T0,T2,T3,T4,T5,T6,T7,T9};
 const uint8_t nb_capa = 9; //nb capa +1
 bool touch_state[nb_capa];
 int capa_init[nb_capa];
@@ -20,10 +20,21 @@ int capa_init[nb_capa];
 const bool PRESSED = 1;
 const bool RELEASED = 0;
 
-void setup_capa(){
-  for (uint8_t i=1; i <= nb_capa; i++){
-    capa_init[i] = touchRead(CAP_PIN[i]);
+void setup_capa(){ // TOUCH 8 NOT WORKING
+  pinMode(32, INPUT);
+  Serial.println("Initial capa values:");
+  for (uint8_t i=1; i < nb_capa; i++){
+    Serial.print(i);
+    Serial.print("\t");
   }
+ Serial.print("\n"); 
+  for (uint8_t i=1; i < nb_capa; i++){
+    pinMode(CAP_PIN[i], INPUT);
+    capa_init[i] = touchRead(CAP_PIN[i]);
+    Serial.print(capa_init[i]);
+    Serial.print("\t");
+  }
+ Serial.print("\n"); 
 }
 
 // Reads&returns the capacitive value read on corresponding pin
@@ -67,8 +78,9 @@ bool presence(){
 
 void test_touch_values(){
   for (uint8_t i=1; i < nb_capa; i++){
-    Serial.println("Touch sensor read:");
-    Serial.println(i);
+    Serial.print("Touch sensor read: ");
+    Serial.print(i);
+    Serial.print("\t");
     Serial.println(touch_read_value(i));
   }
   delay(500);
