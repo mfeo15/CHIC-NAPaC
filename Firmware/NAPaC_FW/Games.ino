@@ -81,3 +81,28 @@ void solo_game(){
   }
 }
 
+void parent_game(){
+  message = read_message();
+    //blink_LED(0,yellow);
+    messageID = message.substring(16, 20).toInt();
+    
+    switch(messageID){
+      case 2001:
+        Serial.println("Message 2001 received from server");
+        if(accept_game_request()){
+          start_game_session();
+          game_session_on = 1;
+          };break; //Turn on LED to signal game session invitation
+      //when touched send 2002
+      case 2003:
+        Serial.println("Message 2003 received from server");
+        if(game_session_on){
+          LED_sequence_request(message);
+          };break; //LED interactive sequence
+      case 2005:
+        end_game_session();
+        game_session_on = 0;
+        break; //end game session
+    }
+}
+

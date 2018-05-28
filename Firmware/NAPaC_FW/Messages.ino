@@ -1,6 +1,17 @@
 /*
- * Messages file containing messages sent and received by server
+ * Messages file containing messages sent and received by server for NAPaC project
  */
+
+ /*
+  * setup_messages(); sets up message headers - not yet in use
+  * first_message(); The toy presents itself to the server in initiate pairing
+  * hello(); Prints NAPaC FW in serial 
+  * 
+  * accept_game_message(); Sends start of game session to parent
+  * LED_on_message(LEDid); For play session with parent, tells the parent the child has turned a LED on
+  * LED_off_message(LEDid); For play session with parent, tells the parent the child has turned a LED off
+  * 
+  */
  
 #include <string.h>
 
@@ -16,6 +27,13 @@ char US[1]  = {char(31)};
 //  US[0]  = char(31);
 //}
 
+//Not in use yet - header for messages relevant to the user and parent, to be updated with signup etc
+void setup_messages(){
+  char message_header[22]={0};
+  sprintf(message_header,"%c0020%cS001%cP314%c", STX[0],RS[0],RS[0],RS[0]);
+  Serial.println("messages setup!");
+}
+
 //First packet : the microcontroller presents itself to the server, so that
 //the server can link its IP address with its microcontroller name
 void first_message(){
@@ -29,6 +47,30 @@ void accept_game_message(){
   Serial.println("Child accepted game session!");
   char message1[22]={0};
   sprintf(message1,"%c0020%cU123%cP314%c2002%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
+  send_message(message1);
+  Serial.println("message sent!");
+}
+
+//Message to tell parent a kid turned on a LED - no error checking
+void LED_on_message(uint8_t LEDid){
+  Serial.print("Child turned on LED");
+  Serial.println(LEDid);
+  char message1[22]={0};
+  char led_id = (char)LEDid;
+  //header+2003+RS+PC+US+(n)+EOT
+  sprintf(message1,"%c0020%cU123%cP314%c2003%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
+  send_message(message1);
+  Serial.println("message sent!");
+}
+
+//Message to tell parent a kid turned off a LED - no error checking
+void LED_off_message(uint8_t LEDid){
+  Serial.print("Child turned off LED");
+  Serial.println(LEDid);
+  char message1[22]={0};
+  char led_id = (char)LEDid;
+  //header+2004+RS+PC+US+(n)+EOT
+  sprintf(message1,"%c0020%cU123%cP314%c2004%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
   send_message(message1);
   Serial.println("message sent!");
 }
@@ -48,7 +90,7 @@ void hello(){
     Serial.println();
     Serial.println();
     
-    Serial.println("Toygether Welcomes You To MS4!");
+    Serial.println("Toygether Welcomes You To MS5!");
     Serial.println();
     Serial.println();
 
