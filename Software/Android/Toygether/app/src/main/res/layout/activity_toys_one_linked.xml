@@ -8,28 +8,64 @@
 
     <Button
         android:id="@+id/button_toys_one_linked_settings"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="72dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Settings"
+        android:background="@drawable/settings_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_toys_one_linked_play"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="275dp"
+        android:id="@+id/button_play_kid"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="596dp"
-        android:text="Ask to Play"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/kid_recently"
         android:textAllCaps="false"
         android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_play_kid_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/dosis_semibold"
+        android:text="( recently played with the toy )"
+        android:textColor="@color/toygether_blue"
+        android:textSize="@dimen/text_size_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_play_kid" />
+
+    <Button
+        android:id="@+id/button_play_kid_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/play_yes_button"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/button_play_kid"
+        app:layout_constraintEnd_toEndOf="@+id/button_play_kid" />
+
+    <Button
+        android:id="@+id/button_play_kid_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/play_no_button"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/button_play_kid"
+        app:layout_constraintStart_toStartOf="@+id/button_play_kid" />
 
 </android.support.constraint.ConstraintLayout>
