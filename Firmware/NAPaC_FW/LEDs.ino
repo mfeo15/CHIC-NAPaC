@@ -8,6 +8,7 @@
  * blink_LED(LEDid, rgb_colour); blinks twice an individual LED (1 second)
  * test_LEDs(); turns on heart LED in all colours one after another then blinks all LEDs
  *              one after another from 0 to 9
+ * all_LED_off(); turns off all game LEDs
  * 
  * game_set_LED(LEDid, LED_mode); Sets LED during game according to mode on_parent/_kid
  *                                 turn on/off or blink
@@ -62,6 +63,23 @@ void setup_LEDs(void){
   pinMode(clockPin2, OUTPUT);
   
   uint8_t j = 0;
+  for (uint8_t i = 1; i < ledCount; i++)
+  {
+    if (i<5){
+      colours1[i] = rgb_off;}
+    else{
+      j = i - 5;
+      colours2[j] = rgb_off;
+    }
+    LED_status[i]=0;
+    zone_status[i]=0;
+  }
+  ledStrip1.write(colours1, ledCount1, brightness);
+  ledStrip2.write(colours2, ledCount2, brightness);
+}
+
+void all_LED_off(){
+  uint8_t j = 0;
   for (uint8_t i = 0; i < ledCount; i++)
   {
     if (i<5){
@@ -71,6 +89,7 @@ void setup_LEDs(void){
       colours2[j] = rgb_off;
     }
     LED_status[i]=0;
+    zone_status[i]=0;
   }
   ledStrip1.write(colours1, ledCount1, brightness);
   ledStrip2.write(colours2, ledCount2, brightness);
@@ -78,28 +97,33 @@ void setup_LEDs(void){
 
 void game_set_LED(uint8_t LEDid, uint8_t LED_mode){
   switch(LED_mode){
-      case off: set_LED(LEDid, off); break;
+      case off: 
+        set_LED(LEDid, off); 
+        zone_status[LEDid]=off;
+        break;
       case on_parent: 
-        if(LED_status[LEDid]=1){
+        if(zone_status[LEDid]=1){
           blink_LED(LEDid, white);
         }
         set_LED(LEDid, parent);
+        zone_status[LEDid]=on_parent;
         break;
         
       case on_kid: 
-        if(LED_status[LEDid]=1){
+        if(zone_status[LEDid]=1){
             blink_LED(LEDid, white);
           }
-          set_LED(LEDid, kid);
-          break;
+        set_LED(LEDid, kid);
+        zone_status[LEDid]=on_kid;  
+        break;
   }
 }
 
 void set_LED(uint8_t LEDid, uint8_t colour){
-  LED_status[LEDid]=1;
+  zone_status[LEDid]=1;
   if (LEDid < 5){
     switch(colour){
-      case off: colours1[LEDid] = rgb_off; LED_status[LEDid]=0; break;
+      case off: colours1[LEDid] = rgb_off; zone_status[LEDid]=0; break;
       case white: colours1[LEDid] = rgb_white; break;
       case red: colours1[LEDid] = rgb_red; break;
       case green: colours1[LEDid] = rgb_green; break;
@@ -117,7 +141,7 @@ void set_LED(uint8_t LEDid, uint8_t colour){
    else{
     LEDid = LEDid - 5;
     switch(colour){
-      case off: colours2[LEDid] = rgb_off; LED_status[LEDid]=0; break;
+      case off: colours2[LEDid] = rgb_off; zone_status[LEDid]=0; break;
       case white: colours2[LEDid] = rgb_white; break;
       case red: colours2[LEDid] = rgb_red; break;
       case green: colours2[LEDid] = rgb_green; break;

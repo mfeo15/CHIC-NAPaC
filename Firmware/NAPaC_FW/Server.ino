@@ -24,7 +24,7 @@ void connect_to_server()//char * server_host
 
     while (!client.connect(server_host, server_port)) 
     {
-        Serial.println("connection failed");
+        Serial.println("connection to server failed");
         Serial.println("wait 5 sec...");
         delay(5000);
     }
@@ -36,18 +36,6 @@ void connect_to_server()//char * server_host
 
 void send_message(const char *message){ //send the string reference to avoid heap Swiss cheese
  client.print(message); 
-}
-
-/*
- * Sends data packet to server
- * First packet : the microcontroller presents itself to the server, so that
- *  the server can link its IP address with its microcontroller name
- * Following packets : when an action on the plush toy needs to be notified to the
- *  parent on the app (to be implemented)
- */
-void send_message()
-{
-  //dunno
 }
 
 //Reads the message stored on the server, sent by the parent from the app
@@ -98,32 +86,5 @@ void check_to_close_ServerConnection()
             Serial.println("connection already closed");
             Serial.println("Please reset the board to start again the program");
         }
-    }
-}
-
-/*
- * Reads from Server if any request has been sent from the app to activate a LED
- */
-void check_to_activateLED()
-{
-    if (client.available() )
-    {
-          String line = read_message(); 
-          Serial.println();
-          Serial.println();
-          Serial.println("_______________________________________________________");
-          Serial.println("> Message from server:");
-          Serial.print("  "); Serial.println(line);
-          Serial.println();
-          //Serial.println(line.charAt(18));          
-
-          if (line.charAt(18) == '1')     //If the LED needs to be turned ON
-          {
-               //read color of the LED to light ON 
-               String color = line.substring(15, 18);  //char from 15 included to 18 not included
-               Serial.print("Request from server received: Activate LED of color "); Serial.println(color);
-               Serial.println();
-               //toggleLED(color);
-          }
     }
 }

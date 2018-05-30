@@ -45,7 +45,7 @@ int touch_read_value(uint8_t touch_id){
 
 bool capa_state(uint8_t touch_id){
   if (touch_read_value(touch_id) < 15){//capa_init[touch_id] - 20
-    delay(100);
+    delay(50);
     if (touch_read_value(touch_id) < 15){ 
       touch_state[touch_id] = PRESSED;     
       return PRESSED;

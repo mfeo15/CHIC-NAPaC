@@ -20,20 +20,11 @@ void setup(){
     setup_sound();
 
     //sound_test();
-   //mario();
+    //mario();
 
-    
-
-    blink_LED(0,green);
-    set_LED(0,green);   
-    setup_wifi_smartconfig();
-    //setup_wifi();
-
-    blink_LED(0,purple);
-    set_LED(0,purple);
+    //setup_wifi_smartconfig();
+    setup_wifi();
     connect_to_server();
-    
-    //setup_messages_alphabet();
 
     blink_LED(0,yellow);
     hello();
@@ -46,28 +37,20 @@ void loop()
   //test_touch_values();
   //test_if_touched();
   //solo_game();
+
+  //set_LED(0, kid);
   
   message = read_message();
-  blink_LED(0,yellow);
   messageID = message.substring(16, 20).toInt();
+
+  //accept_game_request();
+  //parent_game();
   
   switch(messageID){
     case 2001:
       Serial.println("Message 2001 received from server");
-      if(accept_game_request()){
-        parent_game();
-        game_session_on = 1;
-        };break; //Turn on LED to signal game session invitation
-    //when touched send 2002
-//    case 2003:
-//      Serial.println("Message 2003 received from server");
-//      if(game_session_on){
-//        LED_sequence_request(message);
-//        };break; //LED interactive sequence
-//    case 2005:
-//      end_game_session();
-//      game_session_on = 0;
-//      break; //end game session
+      accept_game_request();
+      break;
   }
 
 //    check_to_close_ServerConnection();

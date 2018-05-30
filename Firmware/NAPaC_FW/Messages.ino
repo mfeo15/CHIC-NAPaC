@@ -20,12 +20,7 @@ char EOT[1] = {char(4)};
 char RS[1]  = {char(30)};
 char US[1]  = {char(31)};
 
-//void setup_messages_alphabet(){
-//  STX[0] = char(2);
-//  EOT[0] = char(4);
-//  RS[0]  = char(30);
-//  US[0]  = char(31);
-//}
+int offset = 48; // = "1"
 
 //Not in use yet - header for messages relevant to the user and parent, to be updated with signup etc
 void setup_messages(){
@@ -40,39 +35,36 @@ void first_message(){
   char message1[22]={0};
   sprintf(message1,"%c0020%cS001%cP314%c0001%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
   send_message(message1);
-  Serial.println("message sent!");
+  Serial.println("First Hello to server sent!");
 }
 
 void accept_game_message(){
-  Serial.println("Child accepted game session!");
   char message1[22]={0};
   sprintf(message1,"%c0020%cU123%cP314%c2002%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
   send_message(message1);
-  Serial.println("message sent!");
+  Serial.println("Message sent: Child accepted game session!");
 }
 
 //Message to tell parent a kid turned on a LED - no error checking
 void LED_on_message(uint8_t LEDid){
-  Serial.print("Child turned on LED");
-  Serial.println(LEDid);
-  char message1[22]={0};
-  char led_id = (char)LEDid;
+  char message1[31]={0};
+  char led_id = (char)LEDid + offset;
   //header+2003+RS+PC+US+(n)+EOT
-  sprintf(message1,"%c0020%cU123%cP314%c2003%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
+  sprintf(message1,"%c0020%cU123%cP314%c2003%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
   send_message(message1);
-  Serial.println("message sent!");
+  Serial.print("Message sent: Child turned on LED");
+  Serial.println(LEDid);
 }
 
 //Message to tell parent a kid turned off a LED - no error checking
 void LED_off_message(uint8_t LEDid){
-  Serial.print("Child turned off LED");
-  Serial.println(LEDid);
-  char message1[22]={0};
-  char led_id = (char)LEDid;
+  char message1[31]={0};
+  char led_id = (char)LEDid + offset;
   //header+2004+RS+PC+US+(n)+EOT
-  sprintf(message1,"%c0020%cU123%cP314%c2004%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
+  sprintf(message1,"%c0020%cU123%cP314%c2004%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
   send_message(message1);
-  Serial.println("message sent!");
+  Serial.print("Message sent: Child turned off LED");
+  Serial.println(LEDid);
 }
 
 
@@ -93,8 +85,6 @@ void hello(){
     Serial.println("Toygether Welcomes You To MS5!");
     Serial.println();
     Serial.println();
-
-    //set_pixels_colour(black);
 }
  
 

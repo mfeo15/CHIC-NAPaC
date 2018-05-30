@@ -38,7 +38,8 @@ void setup_wifi_smartconfig(){
   //Wait for SmartConfig packet from mobile
   Serial.println("Waiting for SmartConfig.");
   while (!WiFi.smartConfigDone()) {
-    delay(500);
+    //delay(500);
+    blink_LED(0,green);
     Serial.print(".");
   }
 
@@ -51,29 +52,32 @@ void setup_wifi_smartconfig(){
     delay(500);
     Serial.print(".");
   }
-      Serial.println("WiFi Connected.");
+    Serial.println("WiFi Connected.");
     //* server_host = WiFi.localIP(); // constant defined by Yann
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+    set_LED(0,green);
+    delay(1000);
+    set_LED(0,off);
 }
  
 void setup_wifi() {
-//  //Init WiFi as Station, start SmartConfig
-//  WiFi.mode(WIFI_AP_STA);
-//
-//  wifiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
-//  //From WiFiMulti example
-//  Serial.println("Connecting Wifi...");
-//  while(wifiMulti.run() != WL_CONNECTED) {
-//        Serial.print(".");
-//        delay(500);
-//    }
-//  Serial.println("");
-//  Serial.println("WiFi connected from WiFiMulti");
-//  Serial.println("IP address: ");
-//  Serial.println(WiFi.localIP());
-//
-//  delay(500);
+  //Init WiFi as Station, start SmartConfig
+  WiFi.mode(WIFI_AP_STA);
+
+  WiFiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
+  //From WiFiMulti example
+  Serial.println("Connecting Wifi...");
+  while(WiFiMulti.run() != WL_CONNECTED) {
+        Serial.print(".");
+        delay(500);
+    }
+  Serial.println("");
+  Serial.println("WiFi connected from WiFiMulti");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  delay(500);
 }
 
 

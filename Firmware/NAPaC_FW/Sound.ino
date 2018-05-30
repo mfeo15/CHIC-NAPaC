@@ -94,6 +94,7 @@ void sound_game_on(){
   delay(100);
   ledcWriteTone(channel, Sol);
   delay(100);
+  ledcWriteTone(channel, 0);
 }
 
 
@@ -104,5 +105,6 @@ void sound_game_off(){
   delay(100);
   ledcWriteTone(channel, Do);
   delay(100);
+  ledcWriteTone(channel, 0);
 }
 
