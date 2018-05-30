@@ -5,31 +5,35 @@
  */
 
 #include "WiFi.h"
-#include <ssl_client.h>
-#include <WiFiClientSecure.h>
-#include <WiFi.h>
-#include <WiFiMulti.h>
 
-#include <ETH.h>
-#include <WiFi.h>
-#include <WiFiAP.h>
-#include <WiFiClient.h>
-#include <WiFiGeneric.h>
-#include <WiFiMulti.h>
-#include <WiFiScan.h>
-#include <WiFiServer.h>
-#include <WiFiSTA.h>
-#include <WiFiType.h>
-#include <WiFiUdp.h>
-#include <ssl_client.h>
-#include <WiFiClientSecure.h>
+//#include <ssl_client.h>
+//#include <WiFiClientSecure.h>
+//#include <WiFi.h>
+//#include <WiFiMulti.h>
 
+//#include <ETH.h>
+//#include <WiFi.h>
+//#include <WiFiAP.h>
+//#include <WiFiClient.h>
+//#include <WiFiGeneric.h>
+//#include <WiFiMulti.h>
+//#include <WiFiScan.h>
+//#include <WiFiServer.h>
+//#include <WiFiSTA.h>
+//#include <WiFiType.h>
+//#include <WiFiUdp.h>
+//#include <ssl_client.h>
+//#include <WiFiClientSecure.h>
+//
 
 //char * server_host;
 //WiFiMulti wifiMulti;
 
 void setup_wifi_smartconfig(){
+  WiFi.mode(WIFI_AP_STA);
   WiFi.beginSmartConfig();
+
+  
   
   //Wait for SmartConfig packet from mobile
   Serial.println("Waiting for SmartConfig.");
@@ -68,8 +72,8 @@ void setup_wifi() {
 //  Serial.println("WiFi connected from WiFiMulti");
 //  Serial.println("IP address: ");
 //  Serial.println(WiFi.localIP());
-
-  delay(500);
+//
+//  delay(500);
 }
 
 

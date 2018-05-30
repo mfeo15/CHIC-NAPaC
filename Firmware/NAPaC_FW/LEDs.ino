@@ -4,10 +4,13 @@
 
 /*
  * setup_LEDs(); sets up LED strips and turns all LEDs off
- * set_LED(LEDid, colour); colour = rgb_off/_red/_blue... turns on one individual LED
- * blink_LED(LEDid, colour); blinks twice an individual LED (1 second)
+ * set_LED(LEDid, rgb_colour); colour = rgb_off/_red/_blue... turns on one individual LED
+ * blink_LED(LEDid, rgb_colour); blinks twice an individual LED (1 second)
  * test_LEDs(); turns on heart LED in all colours one after another then blinks all LEDs
  *              one after another from 0 to 9
+ * 
+ * game_set_LED(LEDid, LED_mode); Sets LED during game according to mode on_parent/_kid
+ *                                 turn on/off or blink
  */
 
 #include <APA102.h>
@@ -40,11 +43,15 @@ rgb_color colours2[ledCount2];
 uint8_t max_bright = 255;
 const uint8_t brightness = 15; // Set the brightness to use (the maximum is 31).
 rgb_color rgb_off = {0, 0, 0};
+rgb_color rgb_white = {max_bright, max_bright, max_bright};
 rgb_color rgb_red = {max_bright, 0, 0};
 rgb_color rgb_green = {0, max_bright, 0};
 rgb_color rgb_blue = {0, 0, max_bright};
 rgb_color rgb_purple = {max_bright, 0, max_bright};
 rgb_color rgb_yellow = {max_bright, max_bright, 0};
+
+rgb_color parent_colour = rgb_blue;
+rgb_color kid_colour    = rgb_yellow;
 
 
 void setup_LEDs(void){
@@ -69,16 +76,38 @@ void setup_LEDs(void){
   ledStrip2.write(colours2, ledCount2, brightness);
 }
 
+void game_set_LED(uint8_t LEDid, uint8_t LED_mode){
+  switch(LED_mode){
+      case off: set_LED(LEDid, off); break;
+      case on_parent: 
+        if(LED_status[LEDid]=1){
+          blink_LED(LEDid, white);
+        }
+        set_LED(LEDid, parent);
+        break;
+        
+      case on_kid: 
+        if(LED_status[LEDid]=1){
+            blink_LED(LEDid, white);
+          }
+          set_LED(LEDid, kid);
+          break;
+  }
+}
+
 void set_LED(uint8_t LEDid, uint8_t colour){
   LED_status[LEDid]=1;
   if (LEDid < 5){
     switch(colour){
       case off: colours1[LEDid] = rgb_off; LED_status[LEDid]=0; break;
+      case white: colours1[LEDid] = rgb_white; break;
       case red: colours1[LEDid] = rgb_red; break;
       case green: colours1[LEDid] = rgb_green; break;
       case blue: colours1[LEDid] = rgb_blue; break;
       case purple: colours1[LEDid] = rgb_purple; break;
       case yellow: colours1[LEDid] = rgb_yellow; break;
+      case parent: colours1[LEDid] = parent_colour; break;
+      case kid: colours1[LEDid] = kid_colour; break;
     } 
     ledStrip1.write(colours1, ledCount1, brightness);
     if (LEDid == 0 ){
@@ -89,11 +118,14 @@ void set_LED(uint8_t LEDid, uint8_t colour){
     LEDid = LEDid - 5;
     switch(colour){
       case off: colours2[LEDid] = rgb_off; LED_status[LEDid]=0; break;
+      case white: colours2[LEDid] = rgb_white; break;
       case red: colours2[LEDid] = rgb_red; break;
       case green: colours2[LEDid] = rgb_green; break;
       case blue: colours2[LEDid] = rgb_blue; break;
       case purple: colours2[LEDid] = rgb_purple; break;
       case yellow: colours2[LEDid] = rgb_yellow; break;
+      case parent: colours2[LEDid] = parent_colour; break;
+      case kid: colours2[LEDid] = kid_colour; break;
     } 
     ledStrip2.write(colours2, ledCount2, brightness);
   }

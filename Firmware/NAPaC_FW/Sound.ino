@@ -7,6 +7,9 @@
 
  /*
   * setup_sound(); sets pin output for piezo on pin IO21
+  * play_tone(tone); Plays tone for 200ms
+  * play_tone_short(tone); Plays tone for 70ms
+  * 
   * sound_test(); Sound test: plays do-re-mi-fa-sol-la-si-Do
   * mario(); plays mario tune
   */
@@ -33,6 +36,7 @@ void setup_sound(){
   ledcSetup(channel, freq, resolution);
   ledcAttachPin(21, channel);
 }
+
 
 void play_tone(int tone){
   ledcWriteTone(channel, gamme[tone-1]);
@@ -82,3 +86,23 @@ void mario(){
   delay(300);
   ledcWriteTone(channel, 0);
 }
+
+void sound_game_on(){
+  ledcWriteTone(channel, Do);
+  delay(100);
+  ledcWriteTone(channel, Mi);
+  delay(100);
+  ledcWriteTone(channel, Sol);
+  delay(100);
+}
+
+
+void sound_game_off(){
+  ledcWriteTone(channel, Sol);
+  delay(100);
+  ledcWriteTone(channel, Mi);
+  delay(100);
+  ledcWriteTone(channel, Do);
+  delay(100);
+}
+
