@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
-PCB File : C:\CHIC-NAPaC\PCB\NAPaC_PCB1.PcbDoc
-Date     : 24/05/2018
-Time     : 21:30:53
+PCB File : D:\Users\Rene\switchdrive\Projets_Etudiants\P2018\China_NaPac\CHIC-NAPaC-EE_PCB_20180524\PCB\NAPaC_PCB1.PcbDoc
+Date     : 25.05.2018
+Time     : 02:15:41
 
 Processing Rule : Clearance Constraint (Gap=0.15mm) (All),(All)
 Rule Violations :0
@@ -48,4 +48,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:01
+Time Elapsed        : 00:00:00
