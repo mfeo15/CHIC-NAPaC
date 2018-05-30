@@ -120,8 +120,6 @@ void parent_game(){
     message = read_message();
     Serial.print(message);
     if (!message.equals("")){
-    //if (message == ""){}
-    //else{  
       messageID = message.substring(16, 20).toInt();
       display_zone_status();
       //Serial.print("Message ID:");

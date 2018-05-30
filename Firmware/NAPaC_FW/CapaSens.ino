@@ -12,7 +12,7 @@
   * test_if_touched(); prints touched sensors in serial
   */
 
-const uint8_t CAP_PIN[] = {0,T0,T2,T3,T4,T5,T6,T7,T9};
+const uint8_t CAP_PIN[] = {0,T0,T2,T3,T4,T5,T6,T7,T8};
 const uint8_t nb_capa = 9; //nb capa +1
 bool touch_state[nb_capa];
 int capa_init[nb_capa];

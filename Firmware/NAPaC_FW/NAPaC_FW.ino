@@ -23,24 +23,26 @@ void setup(){
     //mario();
 
     //setup_wifi_smartconfig();
-    setup_wifi();
-    connect_to_server();
+    //setup_wifi();
+    //connect_to_server();
 
     blink_LED(0,yellow);
     hello();
-    first_message();
+    //first_message();
 }
 
 void loop()
 {    
-  //test_LEDs();
+  test_LEDs();
   //test_touch_values();
   //test_if_touched();
   //solo_game();
 
   
   message = read_message();
-  messageID = message.substring(16, 20).toInt();
+  if (!message.equals("")){
+    messageID = message.substring(16, 20).toInt();
+  }
 
   //accept_game_request();
   //parent_game();
