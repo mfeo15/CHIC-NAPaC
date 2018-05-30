@@ -32,7 +32,7 @@ const uint16_t ledCount1 = 5;
 const uint16_t ledCount2 = 5;
 const uint16_t ledCount = ledCount1 + ledCount2;
 
-uint8_t LED_status[ledCount];
+//uint8_t LED_status[ledCount];
 
 
 // Create a buffer for holding the colors (3 bytes per color).
@@ -71,7 +71,7 @@ void setup_LEDs(void){
       j = i - 5;
       colours2[j] = rgb_off;
     }
-    LED_status[i]=0;
+    //LED_status[i]=0;
     zone_status[i]=0;
   }
   ledStrip1.write(colours1, ledCount1, brightness);
@@ -88,7 +88,7 @@ void all_LED_off(){
       j = i - 5;
       colours2[j] = rgb_off;
     }
-    LED_status[i]=0;
+    //LED_status[i]=0;
     zone_status[i]=0;
   }
   ledStrip1.write(colours1, ledCount1, brightness);
@@ -97,12 +97,14 @@ void all_LED_off(){
 
 void game_set_LED(uint8_t LEDid, uint8_t LED_mode){
   switch(LED_mode){
-      case off: 
+    
+      case LED_off: 
         set_LED(LEDid, off); 
-        zone_status[LEDid]=off;
+        zone_status[LEDid] = LED_off;
         break;
+        
       case on_parent: 
-        if(zone_status[LEDid]=1){
+        if(zone_status[LEDid] == on_parent){
           blink_LED(LEDid, white);
         }
         set_LED(LEDid, parent);
@@ -110,7 +112,7 @@ void game_set_LED(uint8_t LEDid, uint8_t LED_mode){
         break;
         
       case on_kid: 
-        if(zone_status[LEDid]=1){
+        if(zone_status[LEDid] == on_kid){
             blink_LED(LEDid, white);
           }
         set_LED(LEDid, kid);
@@ -123,7 +125,7 @@ void set_LED(uint8_t LEDid, uint8_t colour){
   zone_status[LEDid]=1;
   if (LEDid < 5){
     switch(colour){
-      case off: colours1[LEDid] = rgb_off; zone_status[LEDid]=0; break;
+      case off: colours1[LEDid] = rgb_off; zone_status[LEDid] = LED_off; break;
       case white: colours1[LEDid] = rgb_white; break;
       case red: colours1[LEDid] = rgb_red; break;
       case green: colours1[LEDid] = rgb_green; break;
@@ -141,7 +143,7 @@ void set_LED(uint8_t LEDid, uint8_t colour){
    else{
     LEDid = LEDid - 5;
     switch(colour){
-      case off: colours2[LEDid] = rgb_off; zone_status[LEDid]=0; break;
+      case off: colours2[LEDid] = rgb_off; zone_status[LEDid] = LED_off; break;
       case white: colours2[LEDid] = rgb_white; break;
       case red: colours2[LEDid] = rgb_red; break;
       case green: colours2[LEDid] = rgb_green; break;

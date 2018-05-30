@@ -38,7 +38,6 @@ void loop()
   //test_if_touched();
   //solo_game();
 
-  //set_LED(0, kid);
   
   message = read_message();
   messageID = message.substring(16, 20).toInt();
