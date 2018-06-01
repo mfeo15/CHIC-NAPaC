@@ -1,12 +1,10 @@
 \section{Results}
-\label{results}
+\label{sec:results}
 
-In this section are reported the results of our study, organized around the questionnaires. In total, xyz persons have answered to the questions presented previously. 55.9\% of the questionnaires have been filled with the English form, against 40.1\% in French. The results of both questionnaires have first been merged together, to gather as much information as possible. ...\% of the persons were children (\% male and \% female), and ... \% were parents (...\% male and ...\% female). As can be seen in table \ref{tab:stats_children}, with a mean age of 14.31 years old, the 87 children having spent at least three days away from their family rated the importance of communication 5.80 over 7, with a standard deviation of 1.46. Table \ref{tab:stats_parents} shows the importance of communication rated by the 29 questioned parents (with mean age of the considered child of 9 years old) at 5.79, with standard deviation of 1.69. Despite the difference in the total number of parents and children having participated to the survey, both final results are surprisingly close to each other.
-
-
+This section reports the results of our study, organized around the questionnaires. In total, 116 persons have answered the questions that have been presented previously. Before diving into the analysis (see section \ref{subsec:analysis-results}), the collected statistics need to be objectively presented. First of all, the sampled population present the following characteristics:  55.9\% of the questionnaires have been filled with the English form, against 40.1\% in French; 75\% of the population was composed of children (37.9\% sons and 62.1\% daughters), and 25\% by parents (10.3\% fathers and 89.7\% mothers). The two main features of interest are the \textit{Child's age}, to compare the input with the LBC issue, and the \textit{Importance of communication} from which we aim to draw relevant conclusions. Such characteristics are presented in tables \ref{tab:stats_children} and \ref{tab:stats_parents}, for the children and parents population, respectively. The first class contains 87 children, with a mean age of 14 years and 3 months old (14.31), having spent at least three days away from their family. These children rated, on average, the importance of communication 5.80 over a maximum score of 7, with a standard deviation of 1.46. The second class (29 questioned parents having lived a distant parenting experience with a child of 9 years old on average) rated the importance of communication at 5.79, with a standard deviation of 1.69. Despite the difference in the total number of parents and children having participated to the survey, both final results regarding such latter feature are surprisingly close to each other.
 
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Statistics for the child results of the survey}
 \label{tab:stats_children}
@@ -24,7 +22,7 @@ In this section are reported the results of our study, organized around the ques
 \end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Statistics for the parent results of the survey}
 \label{tab:stats_parents}
@@ -42,15 +40,58 @@ In this section are reported the results of our study, organized around the ques
 \end{tabular}
 \end{table}
 
-\begin{figure}[ht]
+To conclude the section, we present to the user the statistics illustrated in the previous tables by adopting box-plot representation for each feature. Figure \ref{fig:box_plots_child_age} illustrates the different input data regarding children's age. Even though the parent population is considerably smaller than the children one, it generally focuses on a younger age range that better matches the premises of the research. Despite the heterogeneity of the two sampled categories, figure \ref{fig:box_plots_importance} illustrates surprising close results regarding the importance of communication.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+         \begin{axis}
+            [
+            ytick={1,2},
+            yticklabels={Children\\(Parents' survey), Children\\(Children's survey)},
+            yticklabel style={align=center},
+            xlabel=Children's age
+            ]
+            \addplot+[
+            fill={rgb:red,15;green,127;blue,18}, 
+            draw=black,
+            boxplot prepared={
+              median=9,
+              upper quartile=10,
+              lower quartile=7,
+              upper whisker=17,
+              lower whisker=3
+            },
+            ] coordinates {};
+            \addplot+[
+            fill=red, 
+            draw=black,
+            boxplot prepared={
+              median=14,
+              upper quartile=18,
+              lower quartile=10,
+              upper whisker=23,
+              lower whisker=2
+            },
+            ] coordinates {};
+         \end{axis}
+    \end{tikzpicture}
+    \caption{Age of the children by the two categories of samples. Notice that the 'Parents' samples have filled their children's age, illustrated above.}
+    \label{fig:box_plots_child_age}
+\end{figure}
+
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=0.75]
          \begin{axis}
             [
             ytick={1,2},
             yticklabels={Parents, Children},
+            xlabel=Importance of communication
             ]
             \addplot+[
+            fill={rgb:red,15;green,127;blue,18}, 
+            draw=black,
             boxplot prepared={
               median=6,
               upper quartile=7,
@@ -60,6 +101,8 @@ In this section are reported the results of our study, organized around the ques
             },
             ] coordinates {};
             \addplot+[
+            fill=red, 
+            draw=black,
             boxplot prepared={
               median=6,
               upper quartile=7,
@@ -70,10 +113,7 @@ In this section are reported the results of our study, organized around the ques
             ] coordinates {};
          \end{axis}
     \end{tikzpicture}
-    \caption{Statistical comparison between parents and children results on the importance rating}
-    \label{fig:box_plots}
+    \caption{Importance of communication rated by the two categories of samples}
+    \label{fig:box_plots_importance}
 \end{figure}
-
-
-%To be added : quanta gente ha risposto, di cui blabla children and tot parents
 
