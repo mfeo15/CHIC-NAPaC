@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         if (DataSaver(this).isUserLogged) {
             startActivity( Intent(this, ToysEmptyActivity::class.java))
         } else {
-            startActivity( Intent(this, SignInActivity::class.java))
+            startActivity( Intent(this, IntroUserActivity::class.java))
         }
     }
 }
