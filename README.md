@@ -26,13 +26,14 @@ The different files are organized like in the tree structure below. The five mai
 ├── Software
 |   ├── Android
 |   |    ├── BasicClient
-|   |    └── TBD
+|   |    ├── SwissKnife
+|   |    └── Toygether
 |   |
 |   └── Server
 |
 ├── SHS
 |   ├── Pre-processing
-|   └── Server
+|   └── Report
 |
 └── Report
 ```
