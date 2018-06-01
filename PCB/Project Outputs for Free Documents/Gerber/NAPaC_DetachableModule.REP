@@ -1,0 +1,145 @@
+*************************************************************
+FileName = NAPaC_DetachableModule.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Layer
+      File : NAPaC_DetachableModule.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D11
+    D12
+    D13
+    D17
+    D18
+    D19
+*************************************************************
+
+*************************************************************
+Generating : Bottom Paste
+      File : NAPaC_DetachableModule.GBP
+
+    Adding Layer      : Bottom Paste
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Bottom Overlay
+      File : NAPaC_DetachableModule.GBO
+
+    Adding Layer      : Bottom Overlay
+
+    Adding Layer      : Mechanical 6
+
+
+Used DCodes :
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : NAPaC_DetachableModule.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D11
+    D13
+    D17
+    D18
+    D19
+*************************************************************
+
+*************************************************************
+Generating : Top Overlay
+      File : NAPaC_DetachableModule.GTO
+
+    Adding Layer      : Top Overlay
+
+    Adding Layer      : Mechanical 6
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Top Paste
+      File : NAPaC_DetachableModule.GTP
+
+    Adding Layer      : Top Paste
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : NAPaC_DetachableModule.GTS
+
+    Adding Layer      : Top Solder
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+    D14
+    D15
+    D16
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : NAPaC_DetachableModule.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Mechanical 6
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+    D14
+    D15
+    D16
+*************************************************************
+

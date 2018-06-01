@@ -1,0 +1,15 @@
+Component   : PINS_HEADER-21
+PCB Library : NAPaC_PcbLib.PcbLib
+Date        : 11/05/2018
+Time        : 14:59:24
+
+
+
+Dimension : 2.12 x 0.155 in
+
+ Layer(s)              Pads(s)  Tracks(s)  Fill(s)  Arc(s)  Text(s)
+--------------------------------------------------------------------
+ Multi Layer                21          0        0       0        0
+ Top Overlay                 1          4        0       0        0
+--------------------------------------------------------------------
+ Total                      22          4        0       0        0

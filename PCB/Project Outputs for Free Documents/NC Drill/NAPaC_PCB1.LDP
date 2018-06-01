@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: D:\Users\Rene\switchdrive\Projets_Etudiants\P2018\China_NaPac\CHIC-NAPaC-EE_PCB_20180524\PCB\NAPaC_PCB1.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=napac_pcb1-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=napac_pcb1-slotholes.txt|DrillLayers=gtl,gbl
