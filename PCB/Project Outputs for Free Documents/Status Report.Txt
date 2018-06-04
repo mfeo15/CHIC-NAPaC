@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [NAPaC_PCB1.PcbDoc]
+   Generated File[NAPaC_PCB1-RoundHoles.TXT]
+   Generated File[NAPaC_PCB1-SlotHoles.TXT]
+   Generated File[NAPaC_PCB1.LDP]
+   Generated File[NAPaC_PCB1.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 00:12:44 On 25.05.2018
