@@ -16,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -26,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".PasswordForgottenActivity" />
@@ -34,13 +32,23 @@
         <activity android:name=".ToysEmptyActivity" />
         <activity android:name=".QRCodeActivity" />
         <activity android:name=".barcode.BarcodeCaptureActivity" />
-        <activity android:name=".SmartConfigActivity" android:noHistory="true" />
+        <activity
+            android:name=".SmartConfigActivity"
+            android:noHistory="true" />
         <activity android:name=".SaveNewToyActivity" />
         <activity android:name=".ToysOneLinkedActivity" />
         <activity android:name=".SettingsNotificationsActivity" />
         <activity android:name=".LinkNewToyIntroActivity" />
-        <activity android:name=".WaitingForToyActivity" android:noHistory="true" />
-        <activity android:name=".PlayingActivity"></activity>
+        <activity
+            android:name=".WaitingForToyActivity"
+            android:noHistory="true" />
+        <activity android:name=".PlayingActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".IntroUserActivity"></activity>
     </application>
 
 </manifest>

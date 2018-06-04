@@ -14,8 +14,8 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        button_sign_up.setOnClickListener {
-            startActivity( Intent(this, SignUpActivity::class.java))
+        button_back.setOnClickListener {
+            finish()
         }
 
         button_enter.setOnClickListener {
@@ -30,7 +30,8 @@ class SignInActivity : AppCompatActivity() {
     private fun signInButtonHasBeenPressed() {
         val email = editText_signIn_email.text.toString()
         val password = editText_signIn_password.text.toString()
-        val rememberAccess = checkBox_signIn_remember.isChecked
+        //val rememberAccess = checkBox_signIn_remember.isChecked
+        val rememberAccess = true
 
         if (email.isEmpty() or password.isEmpty()) {
 

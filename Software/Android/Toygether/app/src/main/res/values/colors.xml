@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3665AA</color>
-    <color name="colorPrimaryDark">#3665AA</color>
-    <color name="colorAccent">#f5a730</color>
+    <color name="colorPrimary">#62c2d7</color>
+    <color name="colorPrimaryDark">#415dd7</color>
+    <color name="colorAccent">#F3D364</color>
+
+    <color name="toygether_azure">#62c2d7</color>
+    <color name="toygether_blue">#415dd7</color>
+    <color name="toygether_gold">#F3D364</color>
+    <color name="toygether_dark">#3b3851</color>
+
+    <color name="background">#FEFEDE </color>
 </resources>

@@ -1,0 +1,100 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{graphicx}
+
+%\usepackage{biblatex}
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\bibliography{bibliography}
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{1}
+\setlist[todolist]{label=$\square$}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
+
+\usepackage{CJKutf8}
+\usepackage{float}
+
+\begin{document}
+
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+
+% \title{Communication Technologies for \\Children in Rural China, \\Left Behind from Migrant-Working Parents \vspace{0.5cm}}
+\title{Communication Technologies for \\Left-Behind Children in Rural China \vspace{0.5cm}}
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Matteo Yann Feo}
+\IEEEauthorblockA{Master of Computer Science\\
+Swiss Federal Institute of Technology, EPFL\\
+Lausanne, Switzerland\\
+Email: matteo.feo@epfl.ch}
+\and
+\IEEEauthorblockN{Simone Aron Sanso}
+\IEEEauthorblockA{Master of Micro Engineering\\
+Swiss Federal Institute of Technology, EPFL\\
+Lausanne, Switzerland\\
+Email: simone.sanso@epfl.ch}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% make the title area
+\maketitle
+
+%to force the numbering of the pages
+\thispagestyle{plain}
+\pagestyle{plain}
+
+% As a general rule, do not put math, special symbols or citations in the abstract
+\begin{abstract}
+Starting from a literature review focusing on the effects of distant parenting on left-behind children in rural China, it has been shown that increased remittances (i.e. sending of money) allowed an enhancement of physical health and academic performance. However, mental health was found to be seriously affected by the lack of parental care, thus increasing the likelihood of depressions during the children's growth. A comparative analysis has been then realized, comparing three different scenarios of distant parenting: the first one covered the hospitalization of children, the second incarcerated parents and the third transnational parents, out-migrating for the same reason of the Chinese context. All three scenarios revealed the importance and the pros of communication technologies in distant parenting situations. To validate our assumptions, a survey has been forwarded towards parents and children having lived at distance during a continuous period of time, because of activities organized for the children (boy-scouting, summer camps and intercultural exchange programs). Both parents and children demonstrated to rate as essential the importance of communication between parents and children at distance. With even stronger and more sensitive settings than those joyful ones presented here, we anticipate how even more crucial the communication technologies might be rated by families of left-behind children. During an interview with an expert in Chinese anthropology and urban sociology, this hypothesis has been ascertained. Envisioning further investigations on the Chinese field, an interview protocol has been implemented and can be used to validate or refute our hypothesis, by questioning parents of left-behind children. Furthermore, the interview protocol provides a useful tool to analyze more in-depth the psychological effects of parents in this situation.
+
+\end{abstract}
+
+% no keywords
+
+\input{abbreviations.tex}
+
+\input{1_introduction/main_section.tex}
+
+\input{2_related_work/main_section.tex}
+
+\input{3_methods/main_section.tex}
+
+\input{4_results/main_section.tex}
+
+\input{5_discussion/main_section.tex}
+
+\input{6_conclusion/main_section.tex}
+
+% conference papers do not normally have an appendix
+
+% use section* for acknowledgment
+\section*{Acknowledgment}
+We would like to thank the contacted associations (listed in the appendix \ref{appendix:contacts_list}) that helped us forwarding the survey about the importance of communication. We are also grateful to the 116 persons who spent a few minutes answering the survey. Finally, last but by no means least, a very special gratitude goes out to Mr. Laperrouza,  Ms. Graezer Bideau, Ms. Preissmann and our peer-reviewers who assisted us during this research. It has been a fantastic opportunity to work with experts and have insights from different fields on the question of LBC in rural China. 
+
+\printbibliography
+
+\vfill
+\listoffigures
+
+\listoftables
+
+\clearpage
+\input{appendix.tex}
+
+
+\end{document}
+
+
