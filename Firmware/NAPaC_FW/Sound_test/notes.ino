@@ -1,0 +1,13 @@
+#define Do 261
+#define Do_Di 277
+#define Re 294
+#define Re_Di 311
+#define Mi 329
+#define Fa 349
+#define Fa_Di 370
+#define Sol 392
+#define Sol_Di 415
+#define La 440
+#define La_Di 466
+#define Si 493
+#define DO 523

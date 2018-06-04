@@ -2,57 +2,183 @@
  * Game file containing functions for managing game sessions on Toygether plush
  */
 
+ /*
+  * accept_game_request(); Blinks heart light to signal game session request from parent.
+  *   Waits until the child presses the toy, sends an accept message to server.
+  * parent_game(); loops on parent/child game session until parent breaks off connection
+  *   reads & sends message to/from server for interactions
+  */
+
+
 //bool game_session_on = 0;
+enum LED_mode { LED_off, on_kid, on_parent};
+uint8_t zone_status[9] = {0};
+uint8_t LEDid;
+int c = 0;
 
 bool accept_game_request(){
-  blink_LED(0,purple);
+  mario();
+  blink_LED(0,parent);
   Serial.println("Parent requested game session");
-  int c = 0;
+  Serial.println("Waiting for kid to accept game request");
 
-  while (1){
-    blink_LED(0,purple);
+  while (!game_session_on){
+    if ( c++ == 10 ){
+      set_LED(0,parent);
+    }
+    else if ( c == 20){
+      set_LED(0, off);
+      c = 0;
+      Serial.print(".");
+    }
     if (presence()){
       accept_game_message();
-      blink_LED(0,yellow);
+      game_session_on = 1;
+      set_LED(0,parent);
+      parent_game();
       return 1;
     }
+    delay(100);
   }
 }
 
-void start_game_session(){
-  Serial.println("Beginning of game session!");
-  blink_LED(0,red);
-  game_session_on =1;
-}
 
 void end_game_session(){
   Serial.println("End of game session!");
+  blink_LED(0, parent);
+  blink_LED(0, parent);
+  blink_LED(0, parent);
+  sound_game_off();
+  set_LED(0,off);
+  all_LED_off();
+  reset_zone_status();
+  display_zone_status();
   game_session_on = 0;
 }
 
-bool LED_sequence_request(String message){
-  uint8_t game_led = 0;
+uint8_t read_LEDid(String message){
   int offset = 48; // = "1"
-  int nb_LED = (int) message.charAt(21) - offset;
-  Serial.println(nb_LED);
-  
-  if (nb_LED > 1){
-    Serial.println("Stupid you, we only have one LED working!");
-    return 0;
-  }
+  int LEDid = (int) message.charAt(23) - offset; // CHAR AT 23 TO BE TESTED
+  Serial.println(LEDid);
+  return LEDid;
+}
 
-  set_LED(game_led , yellow); //MS4
-  Serial.println("LED on");
-  
-  while (1){
-    if (presence()){
-      for (uint8_t i = 1; i <= nb_LED; i++){
-      set_LED(i, off);
-      set_LED(game_led,off);//MS4
-      Serial.println("LED off");
+void display_zone_status(){
+  for (uint8_t i=1; i < nb_capa; i++){
+    Serial.print(i);
+    Serial.print("\t");
+  }
+  Serial.print("\n");
+  for (uint8_t i=1; i < nb_capa; i++){
+    Serial.print(zone_status[i]);
+    Serial.print("\t");
+  }
+  Serial.print("\n");
+}
+
+void reset_zone_status(){
+  for (uint8_t i=1; i < nb_capa; i++){
+    zone_status[i] = 0;
+  }
+}
+
+void solo_game(){
+  set_LED(0, kid);
+  Serial.println("Solo Game session initiated");
+  while(1){
+    for (uint8_t i=1; i < nb_capa; i++){ //i < nb_capa
+      if (capa_touched(i)){ 
+        if (zone_status[i] == LED_off){
+          game_set_LED(i, on_kid);
+          //set_LED(i, kid);          
+          //zone_status[i] = on_kid;
+          play_tone((int)i);
+          display_zone_status();
+        }
+        else{
+          game_set_LED(i, off);
+          //set_LED(i, off);
+          //zone_status[i] = off;
+          play_tone_short((int)i);
+          display_zone_status();
+        }
+        delay(100);
       }
-      return 1;
     }
+  }
+}
+
+void parent_game(){
+  //accept_game_request(); //waits until child presses the toy to accept request
+  Serial.println("Parent game session on");
+  sound_game_on();
+
+  display_zone_status();
+  
+  while (game_session_on){
+    messageID = 0;
+    message = read_message();
+    Serial.print(message);
+    if (!message.equals("")){
+      messageID = message.substring(16, 20).toInt();
+      display_zone_status();
+      //Serial.print("Message ID:");
+      //Serial.println(messageID);
+    }
+    
+    switch(messageID){
+      
+      // Area activated by parent
+      case 2003:                                  
+        //Serial.println("Message 2003 received from server");
+        LEDid = read_LEDid(message);
+        Serial.print("LED activated by parent! LEDid:");
+        Serial.println(LEDid);
+        game_set_LED(LEDid, on_parent);
+        play_tone((int)LEDid);
+        display_zone_status();
+        break;
+          
+      // Area turned off by parent
+      case 2004:                                  
+        //Serial.println("Message 2004 received from server");
+        LEDid = read_LEDid(message);
+        Serial.print("LED deactivated by parent! LEDid:");
+        Serial.println(LEDid);
+        game_set_LED(LEDid, off);
+        play_tone_short((int)LEDid);
+        display_zone_status();
+        break;
+          
+      // Parent signals end of game session
+      case 2005:
+        end_game_session();
+        return;  break;
+    }
+    
+    for (uint8_t i=1; i < nb_capa; i++){ //i < nb_capa
+      LEDid=i;
+      if (capa_touched(i)){
+        display_zone_status();
+        if (zone_status[i] == on_parent){
+          Serial.print("LED deactivated by kid! LEDid:");
+          Serial.println(LEDid);
+          game_set_LED(LEDid, off);
+          play_tone_short((int)LEDid);
+          LED_off_message(LEDid);
+          display_zone_status();
+        }
+        else{
+          Serial.print("LED activated by kid! LEDid:");
+          Serial.println(LEDid);
+          set_LED(i, kid);        
+          play_tone((int)LEDid);
+          LED_on_message(LEDid);
+          display_zone_status();
+        }
+        delay(100);
+      }
+    } 
   }
 }
 
