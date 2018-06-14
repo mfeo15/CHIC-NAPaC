@@ -6,45 +6,48 @@
 
 ## Abstract
 
-Repository hosting the final work achieved during the CHIC 2017/2018 project by students from EPFL, ECAL and UNIL. In the repo it is possible to access both Software and Firmware resources generated, as well as the research project paper we wrote to help us contextualize even more the whole experience in the Chinese reality.
+In team composed of a business school student, two designers and three engineers, the goal of CHIC (China Hardware Innovation Camp) is to develop a connected device in relation to the “Urban communities” theme, given to us at the beginning of an ideation process (September 2017). After developing multiple prototyping iterations during the semester, the manufacturing will be finalized during a fieldwork experience in Mainland China within local electronic factories.
 
-The team NAPaC identified itself in the Toygether brand image, that clearly showcases the goal of the whole project. We aim to develop a connected peluche for young kids, allowing them to stay connected with simple interractions with their parents when those are not physically available for personal or working motives.
+Our product, named Toygether, is a connected plush toy that enables children to play with their parents, even when far away. The plush toy is screen-less and the electronics are hidden, allowing the parents to stay in contact with their kids, without having to rely on too present screens.
 
 ## Repo structure
 
-The different files are organized like in the tree structure below. The five main folders, `Firmware`, `PCB`, `Software`, `SHS` and `Report` separate our main different contents we worked on. 
+The repo hosts the end result of the semester project of developping in such CHIC 2018 context. The different files are organized like the tree-structure illustrated below. The three main folders, `Project`, `Report` and `SHS` separate the different contents we worked on. In the `Project` directory, the Firmaware, PCB and Software development has been hosted. On the other hand, the documentation of the project is provided in a group report. Lastly, as part of the Minor STAS that provides the CHIC experience, the `SHS` directory (Social and Human Sciences) provides an anthropological research conduced on the distant-communication topic within the Chinese context and the left-behind children phenomenon.
 
 ```
 .
-├── Firmware
-|   ├── TBD
-|   ├── TBD
-|   └── TBD
-|
-├── PCB
-|
-├── Software
-|   ├── Android
-|   |    ├── BasicClient
-|   |    ├── SwissKnife
-|   |    └── Toygether
+├── Project
 |   |
-|   └── Server
+|   ├── Firmware
+|   |   └── NAPaC_FW
+|   |
+|   ├── PCB
+|   |
+|   └── Software
+|       |
+|       ├── Android
+|       |    ├── BasicClient
+|       |    ├── SwissKnife
+|       |    └── Toygether
+|       |
+|       └── Server
 |
-├── SHS
-|   ├── Pre-processing
-|   └── Report
+├── Report
 |
-└── Report
+└── SHS
+    ├── Pre-processing
+    └── Report
 ```
 
 ## Mainly develped with 
 
+* [Altium Designer](https://www.altium.com/altium-designer/) - PCB design software
 * [Android Studio](https://developer.android.com/studio/index.html) - IDE for Android app
 * [Arduino IDE](https://www.arduino.cc/en/main/software) - IDE microcontroller ESP32
 
 ## Languages and libraries
 
+* [C++ Arduino](https://www.arduino.cc/reference/en/) : ESP32 firmware
 * [Kotlin](https://kotlinlang.org/) : Android App
 * [Python](https://www.python.org/) : TCP Server
 * [Java](https://www.java.com/en/) : Android App (in support to the main code in Kotlin)
@@ -65,5 +68,5 @@ Collaborated on the different aspects of the project:
 
 You can find out more about our team, our story and the whole CHIC program by checkoing out the following links:
 
-* [Team blog-page](https://chi.camp/projects/napac/) : Everything you need to know about us and about our journey
+* [Team landing-page](https://chi.camp/projects/napac/) : Everything you need to know about us and about our journey
 * [CHIC](https://chi.camp/program/) : About the project and the program it offers
