@@ -1,0 +1,194 @@
+\documentclass[a4paper,12pt]{article}
+
+%% Layout
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage[T1]{fontenc}
+\usepackage[8pt]{extsizes}
+
+% Added packages by Simone for the bibliography
+\usepackage[backend=biber, style=numeric]{biblatex}%style=authoryear
+\bibliography{bibliography}
+
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=22mm,
+    right=22mm,
+    top=30mm,
+    bottom=30mm,
+ } 
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{microtype}
+
+% Added packages by Yann for the CHIC report
+\usepackage{pdflscape}
+\usepackage{bytefield}
+\usepackage{lipsum}
+\input{kotlinLanguage.tex}
+\usepackage[maxfloats=100]{morefloats}
+
+% Chloe's add-ins
+\usepackage{blindtext}
+\usepackage{enumitem}
+%\usepackage{subcaption}
+\input{arduinoLanguage.tex} 
+
+\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage{enumerate}
+
+
+\usepackage{hyperref}
+\usepackage{url}
+
+\usepackage[english]{babel}
+\usepackage{units}
+
+\usepackage{textcomp}
+\usepackage{titling}
+\usepackage{blindtext}
+\usepackage{listings}
+\usepackage{todonotes}
+
+\usepackage{braket}
+\usepackage{rotating}
+
+\date{\vfill \today}
+
+\lstdefinestyle{Kotlin}{
+  language=Kotlin,               % choose the language of the code
+  numbers=left,                   % where to put the line-numbers
+  stepnumber=1,                   % the step between two line-numbers.        
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  frame=single, 
+}
+
+\lstdefinestyle{Arduino}{
+  language=Arduino,               % choose the language of the code
+  numbers=left,                   % where to put the line-numbers
+  stepnumber=1,                   % the step between two line-numbers.        
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  frame=single, 
+}
+
+\lstdefinestyle{Java}{
+  language=Java,                  % choose the language of the code
+  numbers=left,                   % where to put the line-numbers
+  stepnumber=1,                   % the step between two line-numbers.        
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  frame=single, 
+  basicstyle=\ttfamily,
+  keywordstyle=\color{Purple}\bfseries,
+  stringstyle=\color{blue}\ttfamily,
+  commentstyle=\color{OliveGreen}\ttfamily,
+  %morecomment=[l][\color{magenta}]{\#}
+}
+
+\lstdefinestyle{Python}{
+  language=Python,                % choose the language of the code
+  numbers=left,                   % where to put the line-numbers
+  stepnumber=1,                   % the step between two line-numbers.        
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  frame=single, 
+  basicstyle=\ttfamily,
+  keywordstyle=\color{Green}\bfseries,
+  stringstyle=\color{red}\ttfamily,
+  commentstyle=\color{OliveGreen}\ttfamily,
+  otherkeywords = {self},
+  %morecomment=[l][\color{magenta}]{\#}
+}
+
+
+\begin{document}
+
+\input{title_page.tex}
+
+\thispagestyle{empty}
+
+\newpage
+\pagestyle{empty}
+{
+    \renewcommand{\thispagestyle}[1]{}
+    \tableofcontents
+}
+\clearpage
+\pagestyle{plain}
+
+\setcounter{page}{1}
+\input{sections/1_introduction/main.tex}
+
+\input{sections/2_context/main.tex}
+
+\input{sections/3_EE/EE_main.tex}
+    \input{sections/3_EE/subsection_1_hardware.tex}
+    \input{sections/3_EE/subsection_2_main_pcb.tex}
+    \input{sections/3_EE/subsection_3_detachable_module.tex}
+
+\input{sections/4_ME/ME_main.tex}
+
+\input{sections/5_FW/FW_main.tex}
+
+\input{sections/6_SW/main.tex}
+    \input{sections/6_SW/subsection_communication.tex}
+    \input{sections/6_SW/subsection_server.tex}
+    \input{sections/6_SW/subsection_android.tex}
+    \input{sections/6_SW/subsection_next.tex}
+
+\input{sections/7_conclusion/main.tex}
+
+\input{sections/appendix/main.tex}
+
+\newpage
+\pagestyle{empty}
+{
+    \renewcommand{\thispagestyle}[1]{}
+    \printbibliography
+}
+
+\end{document}

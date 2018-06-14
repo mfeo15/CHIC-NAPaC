@@ -1,0 +1,90 @@
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\renewcommand\labelitemi{{\boldmath$\cdot$}}
+\numberwithin{figure}{section}
+%	change figure numbering by section
+\numberwithin{equation}{section}
+
+%	change equation numbering by section
+\numberwithin{table}{section}
+%	change tabular counting by section
+\makeatletter
+\renewcommand\p@subfigure{\thefigure}
+\makeatother
+%	correct numbering of subfigures per section
+
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE École polytechnique fédérale de Lausanne}\\[1.5cm] % Name of your university/college
+\textsc{\Large Minor in Science, Technology and Area Studies}\\[0.5cm] % Major heading such as course name
+\textsc{\large  Processor Architecture Laboratory}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm] 
+{ \huge \bfseries Toygether\\\vspace{3mm} 
+    \LARGE \bfseries A connected plush toy for distant\\child/parent play sessions }\\[0.2cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+
+\large Chloe \textsc{Dickson} \\ \texttt{\href{mailto:chloe.dickson@epfl.ch}{chloe.dickson@epfl.ch}} \\ \vspace{3mm}
+\large Matteo Yann \textsc{Feo} \\   \texttt{\href{mailto:matteo.feo@epfl.ch}{matteo.feo@epfl.ch}} \\ \vspace{3mm}
+\large Simone Aron \textsc{Sanso} \\ \texttt{\href{mailto:simone.sanso@epfl.ch}{simone.sanso@epfl.ch}}
+ 
+%\vspace{0.8cm}
+%\large Professeur D. Kyritsis 
+
+%\vspace{0.2cm}
+
+
+
+
+
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+\textsc{Prof. René Beuchat} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[1.5cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large Spring semester 2018\\\vspace{3mm}\today}\\[0.9cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\vfill
+
+\includegraphics[width=0.9\textwidth]{images/header.png}\\ % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+%\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}

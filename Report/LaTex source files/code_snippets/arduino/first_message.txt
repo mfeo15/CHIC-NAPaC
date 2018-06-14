@@ -1,0 +1,4 @@
+void first_message(){
+  sprintf(message1,"%c0020%cS001%cP314%c0001%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
+  send_message(message1);   
+}

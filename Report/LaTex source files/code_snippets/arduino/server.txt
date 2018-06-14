@@ -1,0 +1,17 @@
+WiFiMulti WiFiMulti;
+
+// Use WiFiClient class to create TCP connections
+WiFiClient client;
+const uint16_t server_port = 6789;  
+const char* server_host = "192.168.1.10";
+
+// Waits until connects to the TCP server, at the given host ip and port
+
+void connect_to_server()
+{   
+    while (!client.connect(server_host, server_port)) 
+    {
+        Serial.println("connection to server failed");
+        delay(5000);
+    }
+}
