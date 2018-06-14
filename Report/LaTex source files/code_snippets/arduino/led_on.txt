@@ -1,0 +1,5 @@
+void LED_on_message(uint8_t LEDid){
+  char led_id = (char)LEDid + offset;
+  sprintf(message1,"%c0020%cU123%cP314%c2003%c1%c%c%c", STX[0],RS[0],RS[0],RS[0],RS[0],US[0],led_id,EOT[0]);
+  send_message(message1);
+}

@@ -1,0 +1,4 @@
+void accept_game_message(){
+  sprintf(message1,"%c0020%cU123%cP314%c2002%c", STX[0],RS[0],RS[0],RS[0],EOT[0]);
+  send_message(message1);
+}
