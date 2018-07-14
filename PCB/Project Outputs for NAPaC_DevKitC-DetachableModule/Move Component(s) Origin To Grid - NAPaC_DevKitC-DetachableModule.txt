@@ -1,0 +1,26 @@
+Move Component(s) Origin to Grid
+Filename     : C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc
+Date         : 13.07.2018
+Time         : 12:39:09
+Time Elapsed : 00:00:00
+
+
+    DIP Component U1-ESP32DEVKITC (13.788mm,57.861mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO21-Plug (6.7mm,48.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO15-Plug (49.16mm,38.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO14-Plug (49.06mm,48.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO13-Plug (6.9mm,28.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO12-Plug (7.7mm,62.6mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO4-Plug (7.7mm,6.2mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component IO2-Plug (49.06mm,18.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component GND-Plug (49.06mm,28.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component GND-Plug (6.6mm,38.7mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component GND-Plug (47.7mm,6.2mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component GND-Plug (17.7mm,62.6mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component DI2-Plug (37.699mm,62.6mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component DI1-Plug (27.7mm,6.2mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component CI2-Plug (27.7mm,62.6mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component CI1-Plug (37.7mm,6.2mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component 5V-Plug (47.7mm,62.6mm) on Top Layer - Component pads are OFF grid. No action taken.
+    Small Component 5V-Plug (17.7mm,6.2mm) on Top Layer - Component pads are OFF grid. No action taken.
+count : 18

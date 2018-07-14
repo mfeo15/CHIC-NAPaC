@@ -297,19 +297,7 @@ DocumentPath=NAPaC_PCB1 11-05-2018 17-55-01.WAS
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for PCB_NAPaC_Project1\PCB_NAPaC_Project1.csv
-DItemRevisionGUID=
-
-[GeneratedDocument20]
 DocumentPath=Project Outputs for PCB_NAPaC_Project1\PCB_NAPaC_Project1.pdf
-DItemRevisionGUID=
-
-[GeneratedDocument21]
-DocumentPath=Project Outputs for PCB_NAPaC_Project1\PCB_NAPaC_Project1.txt
-DItemRevisionGUID=
-
-[GeneratedDocument22]
-DocumentPath=Project Outputs for PCB_NAPaC_Project1\PCB_NAPaC_Project1.xls
 DItemRevisionGUID=
 
 [Configuration1]
@@ -434,7 +422,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=HP LaserJet P4014/P4015 PCL6 Class Driver (LAPLP5.EPF.CH)
+TargetPrinter=laplp5 (HP LaserJet P4015)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
@@ -602,7 +590,7 @@ OutputDefault12=0
 [OutputGroup6]
 Name=Report Outputs
 Description=
-TargetPrinter=HP LaserJet P4014/P4015 PCL6 Class Driver (LAPLP5.EPF.CH)
+TargetPrinter=laplp5 (HP LaserJet P4015)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Script
 OutputName1=Script Output

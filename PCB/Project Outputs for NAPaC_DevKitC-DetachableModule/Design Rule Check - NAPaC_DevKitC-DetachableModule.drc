@@ -1,0 +1,101 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc
+Date     : 14.07.2018
+Time     : 14:25:53
+
+WARNING: Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again
+   Polygon named: Abstract polygon ID
+   Polygon named: Top Layer-GND In net GND On Top Layer
+
+Processing Rule : Clearance Constraint (Gap=0.15mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net 5V Between Pad 5V-1(16.481mm,2.4mm) on Multi-Layer And Pad U1-19(35.497mm,7.054mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net 5V Between Pad U1-19(35.497mm,7.054mm) on Multi-Layer And Pad 5V-1(37.481mm,57.5mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO23 Between Pad U1-37(9.837mm,50.234mm) on Multi-Layer And Pad CI1-1(30.481mm,2.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO26 Between Pad CI2-1(9.481mm,2.4mm) on Multi-Layer And Pad U1-10(35.497mm,29.914mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO22 Between Pad U1-36(9.837mm,47.694mm) on Multi-Layer And Pad DI1-1(23.481mm,2.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO25 Between Pad DI2-1(30.48mm,57.5mm) on Multi-Layer And Pad U1-9(35.497mm,32.454mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad U1-38(9.837mm,52.774mm) on Multi-Layer And Pad GND-1(16.481mm,57.5mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(37.481mm,2.4mm) on Multi-Layer And Pad GND-1(39.441mm,10mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(37.481mm,2.4mm) on Multi-Layer And Pad GND-1(48.781mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(48.781mm,4.4mm) on Multi-Layer And Pad GND-1(54.281mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(5.5mm,32mm) on Multi-Layer And Pad U1-14(35.497mm,19.754mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(5.5mm,32mm) on Multi-Layer And Pad U1-32(9.837mm,37.534mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(54.281mm,4.4mm) on Multi-Layer And Pad GND-1(65.781mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad GND-1(65.781mm,4.4mm) on Multi-Layer And Pad GND-1(71.281mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO4 Between Pad T1-1(2.5mm,57.5mm) on Multi-Layer And Pad U1-26(9.837mm,22.294mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO2 Between Pad U1-24(9.837mm,17.214mm) on Multi-Layer And Pad T2-1(77.281mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO15 Between Via (18.778mm,23.615mm) from Top Layer to Bottom Layer And Pad T3-1(39.541mm,30mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO13 Between Pad T4-1(5.5mm,20mm) on Multi-Layer And Pad U1-15(35.497mm,17.214mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO12 Between Pad U1-13(35.497mm,22.294mm) on Multi-Layer And Pad T5-1(60.281mm,4.4mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO14 Between Pad U1-12(35.497mm,24.834mm) on Multi-Layer And Pad T6-1(39.441mm,40mm) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net IO15 Between Pad U1-23(9.837mm,14.674mm) on Multi-Layer And Via (18.778mm,23.615mm) from Top Layer to Bottom Layer 
+   Violation between Un-Routed Net Constraint: Net GND Between Pad U1-32(9.837mm,37.534mm) on Multi-Layer And Pad U1-38(9.837mm,52.774mm) on Multi-Layer 
+Rule Violations :22
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+   Violation between Modified Polygon: Polygon Shelved  (No Net) on Mechanical 1 
+   Violation between Modified Polygon: Polygon Shelved  (Top Layer-GND) on Top Layer 
+Rule Violations :2
+
+Processing Rule : Width Constraint (Min=0.15mm) (Max=2mm) (Preferred=0.2mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.2mm) (Air Gap=0.2mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.3mm) (Max=2.54mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.5mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)
+   Violation between Silk To Solder Mask Clearance Constraint: (0.128mm < 0.15mm) Between Pad U1-4(35.497mm,45.154mm) on Multi-Layer And Text "T6" (36.1mm,42.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.128mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.129mm < 0.15mm) Between Pad U1-5(35.497mm,42.614mm) on Multi-Layer And Text "T6" (36.1mm,42.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.129mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.122mm < 0.15mm) Between Pad U1-8(35.497mm,34.994mm) on Multi-Layer And Text "T3" (36.2mm,32.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.122mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.134mm < 0.15mm) Between Pad U1-9(35.497mm,32.454mm) on Multi-Layer And Text "T3" (36.2mm,32.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.134mm]
+Rule Violations :4
+
+Processing Rule : Silk to Silk (Clearance=0.15mm) (All),(All)
+   Violation between Silk To Silk Clearance Constraint: (0.133mm < 0.15mm) Between Text "GND" (3.819mm,34.7mm) on Top Overlay And Track (8.269mm,5.447mm)(8.269mm,54.261mm) on Top Overlay Silk Text to Silk Clearance [0.133mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.15mm) Between Text "GND" (37.189mm,22.5mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.15mm) Between Text "T3" (36.2mm,32.5mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.15mm) Between Text "T6" (36.1mm,42.6mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+Rule Violations :4
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+   Violation between Net Antennae: Via (18.778mm,23.615mm) from Top Layer to Bottom Layer 
+Rule Violations :1
+
+Processing Rule : Board Clearance Constraint (Gap=0mm) (All)
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad GND-1(48.781mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad GND-1(54.281mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad GND-1(65.781mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad GND-1(71.281mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad T2-1(77.281mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Pad T5-1(60.281mm,4.4mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "GND" (46.99mm,7.207mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "GND" (52.49mm,7.207mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "GND" (63.99mm,7.207mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "GND" (69.49mm,7.207mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "T1" (0.819mm,60.16mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "T2" (75.49mm,7.207mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.3mm) Between Board Edge And Text "T5" (58.49mm,7.207mm) on Top Overlay 
+Rule Violations :13
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 46
+Waived Violations : 0
+Time Elapsed        : 00:00:00

@@ -1,0 +1,504 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Documents\Altium\AD18\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">14.07.2018</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">14:25:53</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc" class="file"><acronym title="C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc">C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">2</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">46</td></tr>
+</table>
+</td>
+</table><a name="IDC54LPUK5HXBZEKPVA1JFSRXFPMVVM5Y2NIKXFGHUQDZFALNROT4P"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBEIGEII1MJSJFXFXLDA5ZT2GEFEBJXHJT034ODM4MIU0EVMFNQAJ">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">2</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEOSC03X5WWHNLU5K1DY1SFWEINTN3F0K0PVW3GBXMGPNTKW0TMC">Clearance Constraint (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1XGPH15KTY23JY3VYR0RVP2IHMJXNF4S3243WBJCBI4CPM3PG0PB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEF20ESRNUY1KNRRNULW33NPS5D1FREJXJGO54YBIJPPOYKDCOZ0K">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFQUNRF1PYRAUMNC4UCGBGVDBBKYECS1LUEQ1RIB432IA3IVXQ23P">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2YAJ4WXE1XXRGNGHZHFV2WT3UNFQISR2CCMKJFNGPPWHU1WEU5EJ">Width Constraint (Min=0.15mm) (Max=2mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJR5V3Y25QDMGDKEI5TJBWDRWQDB35S4WMLXS4COXDABPOOR4BC3L">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.2mm) (Air Gap=0.2mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYYY0OZ4KFOZRFJBGURSQ24Q5UDZAPY22PIYGRBWCNL0JBKKXKIF">Hole Size Constraint (Min=0.3mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEPUTP1XUE1M5F5HLBJFTCFXGZIUJGC2OGKUPJOKBBOEIY4JKI0LH">Hole To Hole Clearance (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFQOK11CM50AJBIHBM03YGDUQTKXWVN3MO1ULDFBKEMIV3GHD0DHM">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSWUUTLL3LCQ1GZEY1BCINCZFYMMJPBQFW5RPHUFL4QTNDOQQV0ON">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0WGJE1VGR5UMC3KBEDL3ILIS2EUKEUUZF10GOWFDH5FVBQDOVRUD">Silk to Silk (Clearance=0.15mm) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGMUN04Q0LH1UKCMEJEIXCOTYCLQ5WUVOF2GDDROZ4Z15UEB2YPZD">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJGTCCS40PI5UKOXLHKUTR44LHDINQTU3HMXK4FKU2VO0VGL0MPYC">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDP2JY3MAW5TXJI5JFSAZYQVRPUPWBGCY1NBS5WZKUUPLP4Y1B2GBI">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">46</td>
+</tr>
+</table><br><a name="IDUAP1UM0HXMGOD5DTN2OXRFA1BDSUOIV4B4LDR0FNBBN525YTRBHO"><h2>Warnings</h2></a><a name="IDBEIGEII1MJSJFXFXLDA5ZT2GEFEBJXHJT034ODM4MIU0EVMFNQAJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: Abstract polygon ID</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: Top Layer-GND In net GND On Top Layer</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEF20ESRNUY1KNRRNULW33NPS5D1FREJXJGO54YBIJPPOYKDCOZ0K"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3057.071mil|Location2.X=3926.427mil|Location1.Y=1809.047mil|Location2.Y=2112.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3057.071mil|Location2.X=3926.427mil|Location1.Y=1809.047mil|Location2.Y=2112.961mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad 5V-1(16.481mm,2.4mm) on Multi-Layer And Pad U1-19(35.497mm,7.054mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4045.275mil|Location1.Y=2033.024mil|Location2.Y=4139.765mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4045.275mil|Location1.Y=2033.024mil|Location2.Y=4139.765mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad U1-19(35.497mm,7.054mm) on Multi-Layer And Pad 5V-1(37.481mm,57.5mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3769.669mil|Location1.Y=1809.047mil|Location2.Y=3812.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3769.669mil|Location1.Y=1809.047mil|Location2.Y=3812.961mil|Absolute=True">Un-Routed Net Constraint: Net IO23 Between Pad U1-37(9.837mm,50.234mm) on Multi-Layer And Pad CI1-1(30.481mm,2.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2781.497mil|Location2.X=3926.427mil|Location1.Y=1809.055mil|Location2.Y=3012.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2781.497mil|Location2.X=3926.427mil|Location1.Y=1809.055mil|Location2.Y=3012.961mil|Absolute=True">Un-Routed Net Constraint: Net IO26 Between Pad CI2-1(9.481mm,2.4mm) on Multi-Layer And Pad U1-10(35.497mm,29.914mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3494.079mil|Location1.Y=1809.047mil|Location2.Y=3712.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3494.079mil|Location1.Y=1809.047mil|Location2.Y=3712.961mil|Absolute=True">Un-Routed Net Constraint: Net IO22 Between Pad U1-36(9.837mm,47.694mm) on Multi-Layer And Pad DI1-1(23.481mm,2.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3608.241mil|Location2.X=3926.427mil|Location1.Y=3033.023mil|Location2.Y=4139.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3608.241mil|Location2.X=3926.427mil|Location1.Y=3033.023mil|Location2.Y=4139.757mil|Absolute=True">Un-Routed Net Constraint: Net IO25 Between Pad DI2-1(30.48mm,57.5mm) on Multi-Layer And Pad U1-9(35.497mm,32.454mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3218.505mil|Location1.Y=3833.023mil|Location2.Y=4139.765mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3218.505mil|Location1.Y=3833.023mil|Location2.Y=4139.765mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-38(9.837mm,52.774mm) on Multi-Layer And Pad GND-1(16.481mm,57.5mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.857mil|Location2.X=4122.44mil|Location1.Y=1809.055mil|Location2.Y=2269.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.857mil|Location2.X=4122.44mil|Location1.Y=1809.055mil|Location2.Y=2269.685mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(37.481mm,2.4mm) on Multi-Layer And Pad GND-1(39.441mm,10mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.857mil|Location2.X=4490.149mil|Location1.Y=1809.055mil|Location2.Y=2049.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.857mil|Location2.X=4490.149mil|Location1.Y=1809.055mil|Location2.Y=2049.209mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(37.481mm,2.4mm) on Multi-Layer And Pad GND-1(48.781mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4328.731mil|Location2.X=4706.684mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4328.731mil|Location2.X=4706.684mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(48.781mm,4.4mm) on Multi-Layer And Pad GND-1(54.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=3926.427mil|Location1.Y=2533.023mil|Location2.Y=3135.826mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=3926.427mil|Location1.Y=2533.023mil|Location2.Y=3135.826mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(5.5mm,32mm) on Multi-Layer And Pad U1-14(35.497mm,19.754mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=2916.189mil|Location1.Y=2974.409mil|Location2.Y=3312.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=2916.189mil|Location1.Y=2974.409mil|Location2.Y=3312.961mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(5.5mm,32mm) on Multi-Layer And Pad U1-32(9.837mm,37.534mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4545.266mil|Location2.X=5159.439mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4545.266mil|Location2.X=5159.439mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(54.281mm,4.4mm) on Multi-Layer And Pad GND-1(65.781mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4998.021mil|Location2.X=5375.974mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4998.021mil|Location2.X=5375.974mil|Location1.Y=1887.791mil|Location2.Y=2049.209mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad GND-1(65.781mm,4.4mm) on Multi-Layer And Pad GND-1(71.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2506.654mil|Location2.X=2916.189mil|Location1.Y=2633.023mil|Location2.Y=4139.764mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2506.654mil|Location2.X=2916.189mil|Location1.Y=2633.023mil|Location2.Y=4139.764mil|Absolute=True">Un-Routed Net Constraint: Net IO4 Between Pad T1-1(2.5mm,57.5mm) on Multi-Layer And Pad U1-26(9.837mm,22.294mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=5612.194mil|Location1.Y=1887.791mil|Location2.Y=2512.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=5612.194mil|Location1.Y=1887.791mil|Location2.Y=2512.961mil|Absolute=True">Un-Routed Net Constraint: Net IO2 Between Pad U1-24(9.837mm,17.214mm) on Multi-Layer And Pad T2-1(77.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3202.637mil|Location2.X=4126.378mil|Location1.Y=2699.41mil|Location2.Y=3057.087mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3202.637mil|Location2.X=4126.378mil|Location1.Y=2699.41mil|Location2.Y=3057.087mil|Absolute=True">Un-Routed Net Constraint: Net IO15 Between Via (18.778mm,23.615mm) from Top Layer to Bottom Layer And Pad T3-1(39.541mm,30mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=3926.427mil|Location1.Y=2433.023mil|Location2.Y=2663.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.764mil|Location2.X=3926.427mil|Location1.Y=2433.023mil|Location2.Y=2663.386mil|Absolute=True">Un-Routed Net Constraint: Net IO13 Between Pad T4-1(5.5mm,20mm) on Multi-Layer And Pad U1-15(35.497mm,17.214mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4942.904mil|Location1.Y=1887.791mil|Location2.Y=2712.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4942.904mil|Location1.Y=1887.791mil|Location2.Y=2712.961mil|Absolute=True">Un-Routed Net Constraint: Net IO12 Between Pad U1-13(35.497mm,22.294mm) on Multi-Layer And Pad T5-1(60.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4122.44mil|Location1.Y=2733.023mil|Location2.Y=3450.789mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.49mil|Location2.X=4122.44mil|Location1.Y=2733.023mil|Location2.Y=3450.789mil|Absolute=True">Un-Routed Net Constraint: Net IO14 Between Pad U1-12(35.497mm,24.834mm) on Multi-Layer And Pad T6-1(39.441mm,40mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3253.818mil|Location1.Y=2333.023mil|Location2.Y=2750.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=3253.818mil|Location1.Y=2333.023mil|Location2.Y=2750.59mil|Absolute=True">Un-Routed Net Constraint: Net IO15 Between Pad U1-23(9.837mm,14.674mm) on Multi-Layer And Via (18.778mm,23.615mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=2916.189mil|Location1.Y=3233.023mil|Location2.Y=3912.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2836.251mil|Location2.X=2916.189mil|Location1.Y=3233.023mil|Location2.Y=3912.961mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-32(9.837mm,37.534mm) on Multi-Layer And Pad U1-38(9.837mm,52.774mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFQUNRF1PYRAUMNC4UCGBGVDBBKYECS1LUEQ1RIB432IA3IVXQ23P"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4555.866mil|Location2.X=4555.866mil|Location1.Y=1657.48mil|Location2.Y=1657.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4555.866mil|Location2.X=4555.866mil|Location1.Y=1657.48mil|Location2.Y=1657.48mil|Absolute=True">Modified Polygon: Polygon Shelved  (No Net) on Mechanical 1 </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2488.937mil|Location2.X=4260.591mil|Location1.Y=1795.276mil|Location2.Y=4157.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2488.937mil|Location2.X=4260.591mil|Location1.Y=1795.276mil|Location2.Y=4157.48mil|Absolute=True">Modified Polygon: Polygon Shelved  (Top Layer-GND) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSWUUTLL3LCQ1GZEY1BCINCZFYMMJPBQFW5RPHUFL4QTNDOQQV0ON"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3900.528mil|Location2.X=3908.345mil|Location1.Y=3533.263mil|Location2.Y=3541.993mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3900.528mil|Location2.X=3908.345mil|Location1.Y=3533.263mil|Location2.Y=3541.993mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.128mm &lt; 0.15mm) Between Pad U1-4(35.497mm,45.154mm) on Multi-Layer And Text "T6" (36.1mm,42.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.128mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3919.078mil|Location2.X=3926.233mil|Location1.Y=3487.082mil|Location2.Y=3494.237mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3919.078mil|Location2.X=3926.233mil|Location1.Y=3487.082mil|Location2.Y=3494.237mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.129mm &lt; 0.15mm) Between Pad U1-5(35.497mm,42.614mm) on Multi-Layer And Text "T6" (36.1mm,42.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.129mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3904.512mil|Location2.X=3912.322mil|Location1.Y=3135.488mil|Location2.Y=3144.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3904.512mil|Location2.X=3912.322mil|Location1.Y=3135.488mil|Location2.Y=3144.286mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.122mm &lt; 0.15mm) Between Pad U1-8(35.497mm,34.994mm) on Multi-Layer And Text "T3" (36.2mm,32.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.122mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3922.912mil|Location2.X=3930.068mil|Location1.Y=3076.267mil|Location2.Y=3083.423mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3922.912mil|Location2.X=3930.068mil|Location1.Y=3076.267mil|Location2.Y=3083.423mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.134mm &lt; 0.15mm) Between Pad U1-9(35.497mm,32.454mm) on Multi-Layer And Text "T3" (36.2mm,32.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.134mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0WGJE1VGR5UMC3KBEDL3ILIS2EUKEUUZF10GOWFDH5FVBQDOVRUD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.15mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2803.287mil|Location2.X=2810.442mil|Location1.Y=3167.836mil|Location2.Y=3174.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2803.287mil|Location2.X=2810.442mil|Location1.Y=3167.836mil|Location2.Y=3174.991mil|Absolute=True">Silk To Silk Clearance Constraint: (0.133mm &lt; 0.15mm) Between Text "GND" (3.819mm,34.7mm) on Top Overlay And Track (8.269mm,5.447mm)(8.269mm,54.261mm) on Top Overlay Silk Text to Silk Clearance [0.133mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3946.232mil|Location2.X=3951.169mil|Location1.Y=2728.618mil|Location2.Y=2733.555mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3946.232mil|Location2.X=3951.169mil|Location1.Y=2728.618mil|Location2.Y=2733.555mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.15mm) Between Text "GND" (37.189mm,22.5mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.861mil|Location2.X=3946.798mil|Location1.Y=3132.315mil|Location2.Y=3137.252mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.861mil|Location2.X=3946.798mil|Location1.Y=3132.315mil|Location2.Y=3137.252mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.15mm) Between Text "T3" (36.2mm,32.5mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.861mil|Location2.X=3946.798mil|Location1.Y=3529.953mil|Location2.Y=3534.89mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.861mil|Location2.X=3946.798mil|Location1.Y=3529.953mil|Location2.Y=3534.89mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.15mm) Between Text "T6" (36.1mm,42.6mm) on Top Overlay And Track (36.967mm,5.451mm)(36.967mm,54.234mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGMUN04Q0LH1UKCMEJEIXCOTYCLQ5WUVOF2GDDROZ4Z15UEB2YPZD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3199.137mil|Location2.X=3267.551mil|Location1.Y=2695.91mil|Location2.Y=2805.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3199.137mil|Location2.X=3267.551mil|Location1.Y=2695.91mil|Location2.Y=2805.329mil|Absolute=True">Net Antennae: Via (18.778mm,23.615mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJGTCCS40PI5UKOXLHKUTR44LHDINQTU3HMXK4FKU2VO0VGL0MPYC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4405.003mil|Location2.X=4413.877mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4405.003mil|Location2.X=4413.877mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad GND-1(48.781mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4621.538mil|Location2.X=4630.412mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4621.538mil|Location2.X=4630.412mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad GND-1(54.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5074.293mil|Location2.X=5083.167mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5074.293mil|Location2.X=5083.167mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad GND-1(65.781mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5290.828mil|Location2.X=5299.702mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5290.828mil|Location2.X=5299.702mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad GND-1(71.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5527.048mil|Location2.X=5535.922mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5527.048mil|Location2.X=5535.922mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad T2-1(77.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4857.758mil|Location2.X=4866.632mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4857.758mil|Location2.X=4866.632mil|Location1.Y=1964.063mil|Location2.Y=1972.937mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Pad T5-1(60.281mm,4.4mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4414.477mil|Location2.X=4423.351mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4414.477mil|Location2.X=4423.351mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "GND" (46.99mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4631.012mil|Location2.X=4639.886mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4631.012mil|Location2.X=4639.886mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "GND" (52.49mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5083.767mil|Location2.X=5092.641mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5083.767mil|Location2.X=5092.641mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "GND" (63.99mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5300.302mil|Location2.X=5309.176mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5300.302mil|Location2.X=5309.176mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "GND" (69.49mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2556.733mil|Location2.X=2565.607mil|Location1.Y=4191.184mil|Location2.Y=4200.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2556.733mil|Location2.X=2565.607mil|Location1.Y=4191.184mil|Location2.Y=4200.058mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "T1" (0.819mm,60.16mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5506.532mil|Location2.X=5515.406mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5506.532mil|Location2.X=5515.406mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "T2" (75.49mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4837.242mil|Location2.X=4846.116mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Simone\Desktop\CHIC-NAPaC\PCB\NAPaC_DevKitC-DetachableModule.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4837.242mil|Location2.X=4846.116mil|Location1.Y=2104.553mil|Location2.Y=2113.427mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.3mm) Between Board Edge And Text "T5" (58.49mm,7.207mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
