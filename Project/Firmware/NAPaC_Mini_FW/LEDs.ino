@@ -23,13 +23,13 @@ const uint8_t dataPin1 = 22;
 const uint8_t clockPin1 = 23;
 APA102<dataPin1, clockPin1> ledStrip1; 
 
-const uint8_t dataPin2 = 26;
-const uint8_t clockPin2 = 25;
+const uint8_t dataPin2 = 32; // LED STRIP2 NOT WORKING IN PROTO
+const uint8_t clockPin2 = 33;
 APA102<dataPin2, clockPin2> ledStrip2;
 
 // Define LEDs on the plush toy
-const uint16_t ledCount1 = 5;
-const uint16_t ledCount2 = 5;
+const uint16_t ledCount1 = 3;
+const uint16_t ledCount2 = 2;
 const uint16_t ledCount = ledCount1 + ledCount2;
 
 //uint8_t LED_status[ledCount];
@@ -42,7 +42,7 @@ rgb_color colours2[ledCount2];
 //Colour alphabet
 //enum colours{off,red,green,blue,purple,yellow};
 uint8_t max_bright = 255;
-const uint8_t brightness = 15; // Set the brightness to use (the maximum is 31).
+const uint8_t brightness = 20; // Set the brightness to use (the maximum is 31).
 rgb_color rgb_off = {0, 0, 0};
 rgb_color rgb_white = {max_bright, max_bright, max_bright};
 rgb_color rgb_red = {max_bright, 0, 0};
@@ -52,7 +52,7 @@ rgb_color rgb_purple = {max_bright, 0, max_bright};
 rgb_color rgb_yellow = {max_bright, max_bright, 0};
 
 rgb_color parent_colour = rgb_blue;
-rgb_color kid_colour    = rgb_yellow;
+rgb_color kid_colour    = rgb_purple;
 
 
 void setup_LEDs(void){
@@ -169,17 +169,17 @@ void blink_LED(uint8_t LEDid, uint8_t colour){
 }
 
 void test_LEDs(){
-  set_LED(0, red);
-  delay(1000);
-  set_LED(0, green);
-  delay(1000);
-  set_LED(0, blue);
-  delay(1000);
-  set_LED(0, purple);
-  delay(1000);
-  set_LED(0, yellow);
-  delay(1000);
-  set_LED(0, off);  
+//  set_LED(0, red);
+//  delay(1000);
+//  set_LED(0, green);
+//  delay(1000);
+//  set_LED(0, blue);
+//  delay(1000);
+//  set_LED(0, purple);
+//  delay(1000);
+//  set_LED(0, yellow);
+//  delay(1000);
+//  set_LED(0, off);  
   
   for (uint8_t i = 0; i < ledCount; i++)
   {

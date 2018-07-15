@@ -12,7 +12,7 @@
 
 //bool game_session_on = 0;
 enum LED_mode { LED_off, on_kid, on_parent};
-uint8_t zone_status[9] = {0};
+uint8_t zone_status[5] = {0};//numzones +1
 uint8_t LEDid;
 int c = 0;
 
