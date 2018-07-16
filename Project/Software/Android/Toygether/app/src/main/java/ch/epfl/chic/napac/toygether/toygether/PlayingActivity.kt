@@ -2,7 +2,6 @@ package ch.epfl.chic.napac.toygether.toygether
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
@@ -10,7 +9,6 @@ import ch.epfl.chic.napac.toygether.toygether.connection.Client
 import ch.epfl.chic.napac.toygether.toygether.connection.Message
 import kotlinx.android.synthetic.main.activity_playing.*
 import java.util.*
-import android.support.constraint.ConstraintSet
 import android.widget.RelativeLayout
 
 

@@ -17,14 +17,10 @@ class SplashActivity : AppCompatActivity() {
         Client.getInstance().setupParameters("192.168.1.10", 6789)
         //Thread( Client.getInstance()).start()
 
-        startActivity( Intent(this, PlayingActivity::class.java))
-
-        /*
         if (DataSaver(this).isUserLogged) {
             startActivity( Intent(this, ToysEmptyActivity::class.java))
         } else {
             startActivity( Intent(this, IntroUserActivity::class.java))
         }
-        */
     }
 }
