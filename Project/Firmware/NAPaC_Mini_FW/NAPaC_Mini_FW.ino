@@ -33,10 +33,17 @@ void setup(){
 
 void loop()
 {    
-  test_LEDs();
+  //test_LEDs();
+  all_LED_on();
+  //delay(1000);
+  //all_LED_off();
+  //delay(1000);
+  
   //test_touch_values();
-  test_if_touched();
-  solo_game();
+  Serial.println("..........");
+  //test_if_touched();
+  //delay(1000);
+  //solo_game();
 
   
   message = read_message();
