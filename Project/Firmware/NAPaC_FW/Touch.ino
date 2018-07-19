@@ -63,7 +63,7 @@ int touch_read_value(uint8_t touch_id){
 }
 
 bool capa_touched(uint8_t touch_id){
-  if (touch_id==1 || touch_id==2 || touch_id==6){
+  if (touch_id==2){
     return 0;
   }
   

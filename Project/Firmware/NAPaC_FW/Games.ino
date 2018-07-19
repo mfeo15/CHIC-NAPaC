@@ -100,14 +100,14 @@ void solo_game(){
         
         if (zone_status[i] == LED_off){
           game_set_LED(i, on_kid);
-          play_tone((int)i);
+          //play_tone((int)i);
           display_zone_status();
           delay(500);
         }
         else{
           game_set_LED(i, off);
           
-          play_tone_short((int)i);
+          //play_tone_short((int)i);
           display_zone_status();
           delay(500);
 

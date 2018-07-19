@@ -20,7 +20,7 @@ void setup(){
     setup_sound();
 
     //sound_test();
-    mario();
+    //mario();
 
     //setup_wifi_smartconfig();
     //setup_wifi();
