@@ -16,8 +16,8 @@ const uint8_t dataPin1 = 22;
 const uint8_t clockPin1 = 23;
 APA102<dataPin1, clockPin1> ledStrip1; 
 
-const uint8_t dataPin2 = 26;
-const uint8_t clockPin2 = 25;
+const uint8_t dataPin2 = 25;
+const uint8_t clockPin2 = 26;
 APA102<dataPin2, clockPin2> ledStrip2;
 
 // Set the number of LEDs to control.
