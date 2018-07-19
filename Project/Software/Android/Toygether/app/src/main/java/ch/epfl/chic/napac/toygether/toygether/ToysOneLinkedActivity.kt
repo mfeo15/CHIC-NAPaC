@@ -38,7 +38,8 @@ class ToysOneLinkedActivity : AppCompatActivity() {
 
             val toyCode = DataSaver(this).toyCode
             if (toyCode != "") {
-                val nextActivityIntent = Intent(this, WaitingForToyActivity::class.java)
+                //val nextActivityIntent = Intent(this, WaitingForToyActivity::class.java)
+                val nextActivityIntent = Intent(this, PlayingActivity::class.java)
                 nextActivityIntent.putExtra("toy_code", toyCode)
                 startActivity(nextActivityIntent)
             }
@@ -54,10 +55,10 @@ class ToysOneLinkedActivity : AppCompatActivity() {
     }
 
     fun confirmationStateApperance() {
-        button_play_kid.background = ContextCompat.getDrawable(this, R.drawable.play)
-        button_play_kid.isClickable = false
         button_play_kid_yes.visibility = View.VISIBLE
         button_play_kid_no.visibility = View.VISIBLE
         textView_play_kid_info.visibility = View.INVISIBLE
+        button_play_kid.background = ContextCompat.getDrawable(this, R.drawable.play)
+        button_play_kid.isClickable = false
     }
 }

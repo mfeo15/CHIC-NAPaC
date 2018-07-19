@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ball_gold" />
+        app:srcCompat="@drawable/intro_ball" />
 
     <TextView
         android:id="@+id/textView14"
@@ -57,8 +57,8 @@
         android:id="@+id/button_old_user"
         android:layout_width="174dp"
         android:layout_height="175dp"
-        android:layout_marginEnd="212dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/ball_dark"
         android:text="Yes you do.\nLog me in!"
         android:textAllCaps="false"

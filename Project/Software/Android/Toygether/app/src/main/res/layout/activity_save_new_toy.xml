@@ -54,6 +54,8 @@
         android:hint="A new toy"
         android:inputType="textPersonName"
         android:textSize="@dimen/text_size_secondary"
+        android:background="@drawable/texteditbackground"
+        android:paddingStart="10dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
