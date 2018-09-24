@@ -59,7 +59,6 @@ class SignInActivity : AppCompatActivity() {
         if (rememberAccess)
             DataSaver(this).isUserLogged = true
 
-
         startActivity( Intent(this, ToysEmptyActivity::class.java))
     }
 }

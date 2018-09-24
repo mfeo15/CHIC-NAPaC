@@ -31,8 +31,6 @@ class QRCodeActivity : AppCompatActivity() {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     val barcode = data.getParcelableExtra<Barcode>(BarcodeCaptureActivity.BarcodeObject)
-                    val p = barcode.cornerPoints
-
                     passTheCodeToTheNextActivity(barcode.displayValue)
                 }
             } else

@@ -64,6 +64,8 @@
         android:singleLine="false"
         android:textColor="@color/toygether_azure"
         android:textSize="@dimen/text_size_secondary"
+        android:background="@drawable/texteditbackground"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/editText_signIn_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -81,6 +83,8 @@
         android:inputType="textPassword"
         android:textColor="@color/toygether_azure"
         android:textSize="@dimen/text_size_secondary"
+        android:background="@drawable/texteditbackground"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/button_password_forgotten"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -90,7 +94,8 @@
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginBottom="216dp"
+        android:layout_marginStart="4dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="@font/dosis_semibold"
         android:text="password forgotten?"

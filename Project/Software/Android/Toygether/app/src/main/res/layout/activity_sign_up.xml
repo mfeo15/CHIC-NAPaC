@@ -34,19 +34,21 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editText_signIn_password"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="236dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:textSize="@dimen/text_size_secondary"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    android:id="@+id/editText_signIn_password"
+    android:layout_width="275dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="208dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:background="@drawable/texteditbackground"
+    android:ems="10"
+    android:hint="password"
+    android:inputType="textPassword"
+    android:paddingStart="10dp"
+    android:textSize="@dimen/text_size_secondary"
+    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText_signIn_email"
@@ -59,6 +61,8 @@
         android:hint="email"
         android:inputType="textEmailAddress"
         android:textSize="@dimen/text_size_secondary"
+        android:background="@drawable/texteditbackground"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/editText_signIn_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
