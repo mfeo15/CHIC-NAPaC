@@ -20,13 +20,13 @@ void setup(){
     setup_sound();
 
     //sound_test();
-    //mario();
+    mario();
 
     //setup_wifi_smartconfig();
     //setup_wifi();
     //connect_to_server();
 
-    blink_LED(0,yellow);
+    //blink_LED(0,yellow);
     hello();
     //first_message();
 }

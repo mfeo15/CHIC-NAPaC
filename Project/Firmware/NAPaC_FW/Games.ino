@@ -84,7 +84,7 @@ void reset_zone_status(){
 }
 
 void solo_game(){
-  set_LED(0, kid);
+  //set_LED(0, kid);
   Serial.println("Solo Game session initiated");
   while(1){
     for (uint8_t i=1; i < nb_zones; i++){ //i < nb_zones
