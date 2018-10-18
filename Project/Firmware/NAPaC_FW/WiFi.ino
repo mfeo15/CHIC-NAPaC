@@ -65,7 +65,9 @@ void setup_wifi() {
   //Init WiFi as Station, start SmartConfig
   WiFi.mode(WIFI_AP_STA);
 
-  WiFiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
+  //WiFiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
+  WiFiMulti.addAP("x.factory", "make0134");
+  
   //From WiFiMulti example
   Serial.println("Connecting Wifi...");
   while(WiFiMulti.run() != WL_CONNECTED) {

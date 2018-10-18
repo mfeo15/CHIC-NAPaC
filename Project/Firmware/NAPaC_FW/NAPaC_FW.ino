@@ -16,36 +16,33 @@ void setup(){
     delay(1000); // give me time to bring up serial monitor
 
     setup_LEDs();
-    setup_capa();
+    setup_touch();
     setup_sound();
 
     //sound_test();
-    //mario();
+    mario();
 
     //setup_wifi_smartconfig();
     //setup_wifi();
     //connect_to_server();
 
-    blink_LED(0,yellow);
+    //blink_LED(0,yellow);
     hello();
     //first_message();
 }
 
 void loop()
 {    
-  test_LEDs();
+  //test_LEDs();
   //test_touch_values();
   //test_if_touched();
-  //solo_game();
+  solo_game();
 
   
   message = read_message();
   if (!message.equals("")){
     messageID = message.substring(16, 20).toInt();
   }
-
-  //accept_game_request();
-  //parent_game();
   
   switch(messageID){
     case 2001:

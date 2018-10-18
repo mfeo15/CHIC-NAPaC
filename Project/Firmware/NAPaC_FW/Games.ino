@@ -12,7 +12,8 @@
 
 //bool game_session_on = 0;
 enum LED_mode { LED_off, on_kid, on_parent};
-uint8_t zone_status[9] = {0};
+const uint8_t nb_zones = 7; // number of touch zones + 1
+uint8_t zone_status[nb_zones] = {0};
 uint8_t LEDid;
 int c = 0;
 
@@ -64,12 +65,12 @@ uint8_t read_LEDid(String message){
 }
 
 void display_zone_status(){
-  for (uint8_t i=1; i < nb_capa; i++){
+  for (uint8_t i=1; i < nb_zones; i++){
     Serial.print(i);
     Serial.print("\t");
   }
   Serial.print("\n");
-  for (uint8_t i=1; i < nb_capa; i++){
+  for (uint8_t i=1; i < nb_zones; i++){
     Serial.print(zone_status[i]);
     Serial.print("\t");
   }
@@ -77,30 +78,39 @@ void display_zone_status(){
 }
 
 void reset_zone_status(){
-  for (uint8_t i=1; i < nb_capa; i++){
+  for (uint8_t i=1; i < nb_zones; i++){
     zone_status[i] = 0;
   }
 }
 
 void solo_game(){
-  set_LED(0, kid);
+  //set_LED(0, kid);
   Serial.println("Solo Game session initiated");
   while(1){
-    for (uint8_t i=1; i < nb_capa; i++){ //i < nb_capa
+    for (uint8_t i=1; i < nb_zones; i++){ //i < nb_zones
       if (capa_touched(i)){ 
+        
+        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          i = 2;
+        }
+
+        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          i = 0;
+        }
+        
         if (zone_status[i] == LED_off){
           game_set_LED(i, on_kid);
-          //set_LED(i, kid);          
-          //zone_status[i] = on_kid;
-          play_tone((int)i);
+          //play_tone((int)i);
           display_zone_status();
+          delay(500);
         }
         else{
           game_set_LED(i, off);
-          //set_LED(i, off);
-          //zone_status[i] = off;
-          play_tone_short((int)i);
+          
+          //play_tone_short((int)i);
           display_zone_status();
+          delay(500);
+
         }
         delay(100);
       }
@@ -132,8 +142,22 @@ void parent_game(){
       case 2003:                                  
         //Serial.println("Message 2003 received from server");
         LEDid = read_LEDid(message);
+
         Serial.print("LED activated by parent! LEDid:");
         Serial.println(LEDid);
+        
+        if (LEDid == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          LEDid = 2;
+          Serial.print("LED transformed by China Magic LEDid:");
+          Serial.println(LEDid);
+        }
+
+        if (LEDid == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          LEDid = 0;
+          Serial.print("LED transformed by China Magic LEDid:");
+          Serial.println(LEDid);
+        }
+                
         game_set_LED(LEDid, on_parent);
         play_tone((int)LEDid);
         display_zone_status();
@@ -156,9 +180,19 @@ void parent_game(){
         return;  break;
     }
     
-    for (uint8_t i=1; i < nb_capa; i++){ //i < nb_capa
+    for (uint8_t i=1; i < nb_zones; i++){ //i < nb_zones
       LEDid=i;
+      
       if (capa_touched(i)){
+        
+        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          i = 2;
+        }
+
+        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+          i = 0;
+        }
+        
         display_zone_status();
         if (zone_status[i] == on_parent){
           Serial.print("LED deactivated by kid! LEDid:");
