@@ -40,7 +40,6 @@ rgb_color colours1[ledCount1];
 rgb_color colours2[ledCount2];
 
 //Colour alphabet
-//enum colours{off,red,green,blue,purple,yellow};
 uint8_t max_bright = 255;
 const uint8_t brightness = 31; // Set the brightness to use (the maximum is 31).
 rgb_color rgb_off = {0, 0, 0};

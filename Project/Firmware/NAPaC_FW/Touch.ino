@@ -1,6 +1,5 @@
 /*
- * CapaSens file containing functions for managing textile capacitive 
- * touch sensors in NAPaC project
+ * Touch file containing functions for managing touch sensors in NAPaC project
  */
 
  /*
@@ -11,10 +10,9 @@
   * test_touch_values(); prints the values of touch sensors in serial
   * test_if_touched(); prints touched sensors in serial
   */
-
-int CAP_PIN[] = {0,4, 2, 15, 14, 12, 13}; //IO4, IO2, IO15, IO14, IO12, IO13 -- T0,T2,T3,T6,T5,T4
-//const uint8_t nb_capa = 7; //nb capa +1
-//const uint8_t nb_zones = 7; // numbr of touch zones + 1 declared in Games
+  
+//IO4, IO2, IO15, IO14, IO12, IO13 -- T0,T2,T3,T6,T5,T4
+int CAP_PIN[] = {0,4, 2, 15, 14, 12, 13}; 
 
 bool touch_state[nb_zones];
 
@@ -29,7 +27,7 @@ const bool RELEASED = 1;
 #define TOUCH6 GPIO_NUM_13
 
 
-void setup_touch(){ // TOUCH 8 NOT WORKING
+void setup_touch(){
   
   for (uint8_t pin=1; pin<nb_zones; pin++){
     pinMode(CAP_PIN[pin], INPUT);

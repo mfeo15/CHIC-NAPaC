@@ -82,7 +82,7 @@ void hello(){
     Serial.println();
     Serial.println();
     
-    Serial.println("Toygether Welcomes You To MS5!");
+    Serial.println("Toygether Welcomes You To its Firmware warm insides!");
     Serial.println();
     Serial.println();
 }

@@ -24,6 +24,7 @@ bool accept_game_request(){
   Serial.println("Waiting for kid to accept game request");
 
   while (!game_session_on){
+    // blinks until the child accepts the game session
     if ( c++ == 10 ){
       set_LED(0,parent);
     }
@@ -100,14 +101,15 @@ void solo_game(){
         
         if (zone_status[i] == LED_off){
           game_set_LED(i, on_kid);
-          //play_tone((int)i);
+          if (sound_on){
+            play_tone((int)i);}
           display_zone_status();
           delay(500);
         }
         else{
           game_set_LED(i, off);
-          
-          //play_tone_short((int)i);
+          if (sound_on){
+            play_tone_short((int)i);}
           display_zone_status();
           delay(500);
 
@@ -159,7 +161,8 @@ void parent_game(){
         }
                 
         game_set_LED(LEDid, on_parent);
-        play_tone((int)LEDid);
+        if (sound_on){
+          play_tone((int)LEDid);}
         display_zone_status();
         break;
           
@@ -170,7 +173,8 @@ void parent_game(){
         Serial.print("LED deactivated by parent! LEDid:");
         Serial.println(LEDid);
         game_set_LED(LEDid, off);
-        play_tone_short((int)LEDid);
+        if (sound_on){
+          play_tone_short((int)LEDid);}
         display_zone_status();
         break;
           
@@ -198,15 +202,17 @@ void parent_game(){
           Serial.print("LED deactivated by kid! LEDid:");
           Serial.println(LEDid);
           game_set_LED(LEDid, off);
-          play_tone_short((int)LEDid);
+          if (sound_on){
+            play_tone_short((int)LEDid);}
           LED_off_message(LEDid);
           display_zone_status();
         }
         else{
           Serial.print("LED activated by kid! LEDid:");
           Serial.println(LEDid);
-          set_LED(i, kid);        
-          play_tone((int)LEDid);
+          set_LED(i, kid);     
+          if (sound_on){   
+            play_tone((int)LEDid);}
           LED_on_message(LEDid);
           display_zone_status();
         }

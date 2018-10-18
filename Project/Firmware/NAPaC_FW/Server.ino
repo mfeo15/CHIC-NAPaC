@@ -57,6 +57,7 @@ String read_message()
 }
 
 /*
+ * Old code snippet used in first demos, but still not implemented in plush toy.
  * Checks if the user tapped any command from keyboard on the serial monitor
  *  If True: turns the connection with the server off and the connection cannot
  *  be done anymore (dead end)
