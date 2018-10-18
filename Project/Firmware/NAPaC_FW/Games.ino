@@ -91,13 +91,13 @@ void solo_game(){
     for (uint8_t i=1; i < nb_zones; i++){ //i < nb_zones
       if (capa_touched(i)){ 
         
-        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          i = 2;
-        }
-
-        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          i = 0;
-        }
+//        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          i = 2;
+//        }
+//
+//        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          i = 0;
+//        }
         
         if (zone_status[i] == LED_off){
           game_set_LED(i, on_kid);
@@ -148,17 +148,17 @@ void parent_game(){
         Serial.print("LED activated by parent! LEDid:");
         Serial.println(LEDid);
         
-        if (LEDid == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          LEDid = 2;
-          Serial.print("LED transformed by China Magic LEDid:");
-          Serial.println(LEDid);
-        }
-
-        if (LEDid == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          LEDid = 0;
-          Serial.print("LED transformed by China Magic LEDid:");
-          Serial.println(LEDid);
-        }
+//        if (LEDid == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          LEDid = 2;
+//          Serial.print("LED transformed by China Magic LEDid:");
+//          Serial.println(LEDid);
+//        }
+//
+//        if (LEDid == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          LEDid = 0;
+//          Serial.print("LED transformed by China Magic LEDid:");
+//          Serial.println(LEDid);
+//        }
                 
         game_set_LED(LEDid, on_parent);
         if (sound_on){
@@ -189,13 +189,13 @@ void parent_game(){
       
       if (capa_touched(i)){
         
-        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          i = 2;
-        }
-
-        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
-          i = 0;
-        }
+//        if (i == 3){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          i = 2;
+//        }
+//
+//        if (i == 4){ //CODE ADAPTED FOR CHINA PROTO ZONES
+//          i = 0;
+//        }
         
         display_zone_status();
         if (zone_status[i] == on_parent){
