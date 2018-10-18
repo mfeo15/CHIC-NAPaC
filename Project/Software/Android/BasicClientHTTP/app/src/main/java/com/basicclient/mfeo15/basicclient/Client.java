@@ -1,6 +1,7 @@
 package com.basicclient.mfeo15.basicclient;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -57,21 +58,15 @@ public class Client {
     */
 
     public void pushMessage(JSONObject message) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, pushURL, message, new Response.Listener<JSONObject>() {
+        this.pushMessage(message, null, null);
+    }
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // TODO: Handle response
-                    }
-                }, new Response.ErrorListener() {
+    public void pushMessage(JSONObject message,
+                            Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-
-                    }
-                });
+        // Create the JSON Request
+        JsonObjectRequest jsonObjectRequest
+                = new JsonObjectRequest(Request.Method.POST, pushURL, message, listener, errorListener);
 
         // Access the RequestQueue through your singleton class.
         RequestHandler.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);

@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
         JSONmessage.put("led", led)
         JSONmessage.put("status", status)
 
-        Client.getInstance(this).pushMessage(JSONmessage)
+        Log.i("MESSAGE", "Sending")
+
+        Client.getInstance(this).pushMessage(JSONmessage,
+                { response -> Log.i("MAIN", "Message sent")}, { Log.i("MAIN", "Message error") })
     }
 }

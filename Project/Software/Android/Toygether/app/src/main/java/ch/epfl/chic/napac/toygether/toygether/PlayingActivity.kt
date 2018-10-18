@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
-import ch.epfl.chic.napac.toygether.toygether.connection.Client
+import ch.epfl.chic.napac.toygether.toygether.connection.ClientTCP
 import ch.epfl.chic.napac.toygether.toygether.connection.Message
 import kotlinx.android.synthetic.main.activity_playing.*
 import java.util.*
@@ -20,7 +20,7 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
 
     override fun update(o: Observable?, arg: Any?) {
         when (o) {
-            is Client -> {
+            is ClientTCP -> {
                 if (arg is Message) {
                     Log.d("PLAYING", arg.toString())
                     if (arg.messageID.equals("2003")) {
@@ -97,13 +97,13 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
     override fun onResume() {
         super.onResume()
 
-        Client.getInstance().addNewObserver(this)
+        ClientTCP.getInstance().addNewObserver(this)
     }
 
     override fun onPause() {
         super.onPause()
 
-        Client.getInstance().deleteAnObserver(this)
+        ClientTCP.getInstance().deleteAnObserver(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +125,7 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
                 button_playing_close.background = ContextCompat.getDrawable(this, R.drawable.continue_left_confirm)
             } else {
                 // Button pressed the second time, therefore the tag has been raised to 1 before
-                Client.getInstance().send(Message(toyCode, "U123", "2005").toString())
+                ClientTCP.getInstance().send(Message(toyCode, "U123", "2005").toString())
                 finish()
             }
         }
@@ -146,7 +146,7 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
     }
 
     private fun sendMessageForLED(messageID : String, led : String) {
-        Client.getInstance().send(Message(toyCode, "U123", messageID, arrayOf(led)).toString())
+        ClientTCP.getInstance().send(Message(toyCode, "U123", messageID, arrayOf(led)).toString())
     }
 
     private fun turnON(v: View?, led : Int, turnedONBy : Int, buttonNumber: Int) {

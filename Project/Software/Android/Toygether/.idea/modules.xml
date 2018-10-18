@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Toygether.iml" filepath="$PROJECT_DIR$/Toygether.iml" />
+      <module fileurl="file://C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\Toygether.iml" filepath="C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\Toygether.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\app\app.iml" filepath="C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/esptouch/esptouch.iml" filepath="$PROJECT_DIR$/esptouch/esptouch.iml" />
+      <module fileurl="file://C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\esptouch\esptouch.iml" filepath="C:\Users\mfeo\Desktop\CHIC-NAPaC\Project\Software\Android\Toygether\esptouch\esptouch.iml" />
     </modules>
   </component>
 </project>

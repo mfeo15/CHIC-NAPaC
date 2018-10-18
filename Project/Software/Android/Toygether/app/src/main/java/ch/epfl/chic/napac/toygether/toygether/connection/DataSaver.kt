@@ -15,6 +15,8 @@ class DataSaver (context: Context){
 
         const val SHARED_PREFERENCES_NAME = "toygether_prefs"
 
+        const val KEY_USER_CODE = "user_code"
+
         const val KEY_USER_LOGGED = "user_logged"
 
         const val KEY_TOYS_COUNT = "toys_count"
@@ -23,6 +25,10 @@ class DataSaver (context: Context){
 
         const val KEY_TOY_CODE = "toy_code"
     }
+
+    var userCode : String
+        get() = prefs.getString(DataSaver.KEY_USER_CODE, "")
+        set(value) = prefs.edit().putString(DataSaver.KEY_USER_CODE, value).apply()
 
     var isUserLogged : Boolean
         get() = prefs.getBoolean(DataSaver.KEY_USER_LOGGED, false)

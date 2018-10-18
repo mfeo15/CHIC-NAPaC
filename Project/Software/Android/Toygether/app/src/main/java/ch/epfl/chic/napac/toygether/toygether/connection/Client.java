@@ -1,137 +1,87 @@
 package ch.epfl.chic.napac.toygether.toygether.connection;
 
+import android.content.Context;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
-import java.util.Observable;
-import java.util.Observer;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
-import ch.epfl.chic.napac.toygether.toygether.WaitingForToyActivity;
+import org.json.JSONObject;
 
-public class Client extends Observable implements Runnable {
+public class Client {
 
     private static Client instance = null;
+    private static Context mCtx;
 
-	private Socket socket;
-	private int serverPort;
-	private String ServerIP;
+	private static final String pushURL = "http://toygether.altervista.org/receive_stream.php";
+    private static final String pullURL = "";
 
-    private BufferedReader in;
-    private PrintStream out;
 
-    public static Client getInstance() {
+    private Client(Context context) {
+        mCtx = context;
+    }
+
+    public static synchronized Client getInstance(Context context) {
         if (instance == null)
-            instance = new Client();
+            instance = new Client(context);
 
         return instance;
     }
 
-	public void setupParameters(String ServerIP, int serverPort) {
-        this.ServerIP = ServerIP;
-        this.serverPort = serverPort;
+    /*
+    fun send(led : Int, status : Int) {
+        // Instantiate the RequestQueue.
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://toygether.altervista.org/receive_stream.php"
+
+        val JSONmessage = JSONObject("{'id':1}")
+
+        JSONmessage.put("id", 1)
+        JSONmessage.put("source", "P314")
+        JSONmessage.put("destination", "T123")
+        JSONmessage.put("led", led)
+        JSONmessage.put("status", status)
+
+        // Request a string response from the provided URL.
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, JSONmessage,
+                Response.Listener { response ->
+            //Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show()
+
+        },
+        Response.ErrorListener { error -> Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show() })
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest)
+    }
+    */
+
+    public void pushMessage(JSONObject message) {
+        this.pushMessage(message, null, null);
     }
 
-    private void init() {
-        try {
-            socket = new Socket(ServerIP, serverPort);
-
-            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.out = new PrintStream(socket.getOutputStream());
-
-            this.send( new Message("S001", "U123", "0001").toString() );
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void run() {
-
-        // Run the initial configuration with the previoslty provided parameters
-        this.init();
-
-        while (true)
-            receive();
-    }
-
-    private void _send(String message) throws IOException {
-
-        if (socket == null)
-            return;
-
-        out.print(message);
-        out.flush();
-    }
-
-    public void send(final String message){
-        new Thread(new Runnable() {
+    public void pushMessage(JSONObject message, Response.Listener<JSONObject> listener) {
+        this.pushMessage(message, listener, new Response.ErrorListener() {
             @Override
-            public void run() {
-                try {
-                    _send(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onErrorResponse(VolleyError error) {
+                Log.e("CLIENT_PUSH_MESSAGE", error.toString());
             }
-        }).start();
+        });
     }
 
-    private void receive() {
+    public void pushMessage(JSONObject message,
+                            Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
 
-        try {
-            // Read and build the incoming string stream until EOT is found
-            String messageString = String.valueOf( (char) this.in.read() );
-            while (! messageString.endsWith(ASCII.EOT())) {
-                messageString += (char) this.in.read();
-            }
+        // Create the JSON Request
+        JsonObjectRequest jsonObjectRequest
+                = new JsonObjectRequest(Request.Method.POST, pushURL, message, listener, errorListener);
 
-            // Build a Message object from such stream
-            Message m = new Message(  messageString );
-
-            Log.d("Client IN", m.toString());
-
-            // If the Message obtained is legit (follow the protocol) then parse it
-            if (m.isLegit()) {
-                parse(m);
-            }
-
-
-        } catch (IOException e) {
-            Log.d("Client", "ERROR !!!!");
-            e.printStackTrace();
-        }
+        // Access the RequestQueue through your singleton class.
+        RequestHandler.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);
     }
 
-    private void parse(Message m) {
-        //Log.d("Client", m.toString());
+    public void pullMessage() {
 
-        notifyChangement(m);
-    }
-
-
-
-
-
-    public void notifyChangement(Object o) {
-
-        setChanged();
-        notifyObservers(o);
-    }
-
-    public void addNewObserver(Observer obs) {
-        addObserver(obs);
-    }
-
-    public void deleteAnObserver(Observer obs) {
-        deleteObserver(obs);
-    }
-
-    public void deleteAllObservers() {
-        deleteObservers();
     }
 }
