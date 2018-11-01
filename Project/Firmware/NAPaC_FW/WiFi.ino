@@ -41,7 +41,7 @@ void setup_wifi() {
   WiFi.mode(WIFI_AP_STA);
 
   //WiFiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
-  WiFiMulti.addAP("x.factory", "make0134");
+  WiFiMulti.addAP("NAPAC", "1234abcd");
   
   //From WiFiMulti example
   Serial.println("Connecting Wifi...");

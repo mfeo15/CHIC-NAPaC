@@ -15,7 +15,7 @@ enum LED_mode { LED_off, on_kid, on_parent};
 const uint8_t nb_zones = 7; // number of touch zones + 1
 uint8_t zone_status[nb_zones] = {0};
 uint8_t LEDid;
-int c = 0;
+//int c = 0;
 
 bool accept_game_request(){
   mario();
