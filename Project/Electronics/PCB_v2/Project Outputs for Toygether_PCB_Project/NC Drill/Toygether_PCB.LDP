@@ -1,0 +1,4 @@
+Layer Pairs Export File for PCB: D:\Users\Rene\Dropbox\Projet_CHIC_CHINA\PCB_v2.4\Toygether_PCB.PcbDoc
+LayersSetName=Top_Bot_Plated_Thru_Holes|DrillFile=toygether_pcb-roundholes-plated.txt|DrillLayers=gtl,g1,g2,gbl
+LayersSetName=Top_Bot_Plated_Slot_Holes|DrillFile=toygether_pcb-slotholes-plated.txt|DrillLayers=gtl,g1,g2,gbl
+LayersSetName=Top_Bot_Plated_Rect_Holes|DrillFile=toygether_pcb-rectholes-plated.txt|DrillLayers=gtl,g1,g2,gbl

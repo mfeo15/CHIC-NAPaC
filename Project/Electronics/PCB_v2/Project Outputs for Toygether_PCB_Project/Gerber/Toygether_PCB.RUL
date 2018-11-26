@@ -1,0 +1,6 @@
+DRC Rules Export File for PCB: D:\Users\Rene\Dropbox\Projet_CHIC_CHINA\PCB_v2.4\Toygether_PCB.PcbDoc
+RuleKind=Clearance|RuleName=Clearance_1|Scope=Board|Minimum=5.91
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=5.91
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=1.97
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=MinimumAnnularRing|RuleName=MinimumAnnularRing|Scope=Board|Minimum=5.91
