@@ -1,0 +1,4 @@
+#Mon Nov 05 17:48:09 CET 2018
+base.0=/Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/build/intermediates/transforms/dexMerger/debug/9
+path.0=classes.dex
+renamed.0=classes.dex

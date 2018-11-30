@@ -1,0 +1,158 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/306ff7e8d506fd3a14ba1ff8f8ad8639/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/6df4411cf92d0e03cd4df450c349cbce/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/258d58f825454e667ad60bddd642839c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/f72a0c3829600e395d63a232d704b27b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/4d2e7f1cb88f5bd0b674364b8f7e78cb/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/6921061bd922ac613060c67a6a2c40a6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/b28420f110ef752c2226e79c82373e9d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/0d627af03b9a707862c3ef64269ea6df/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/5829504154f49ed2b963ab6cfc0c43f2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/a5ce3a514ccce83b9d2cf537cba329a8/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/4c40cd761d2543c5d24981e8d3e84b55/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/fe94b10dbc51b35d01d4043a28c29127/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/b825bd8349e30ebb0db94288ff9b481b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/2ef5b86c38e88c3b8e6b80369b0f3ed5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/195a7139e9b15f9825a004c719cc3567/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/cd1aee7c035971fc5cf59d5087a3a600/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/9bef160f9d16cfc1ab15bb990afa4448/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/f543c07a31e22d067df3d67e7d5f92b1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/0d41fd9aade6c6086e36562af6d80e2f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/5c408f5f296809339161e649a491034d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/e3cc3bc28fbdc61acce2ecd73e3b2a7f/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/c841fd31a1b1638fe4cd8c68bd4d1b17/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/16e681630db6cb4725bb25b2b19fe2cf/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/e55bf11b6d1c5ad6af9fad04293d0671/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/eecb8dbb0b9fccb81b6c31c6ceb2b9c3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/8237883482bee4a1a759ff6ce7e6a86e/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+	package
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:3:5-58
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:1-22:12
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:5:5-20:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/6df4411cf92d0e03cd4df450c349cbce/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/6df4411cf92d0e03cd4df450c349cbce/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/cd1aee7c035971fc5cf59d5087a3a600/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/cd1aee7c035971fc5cf59d5087a3a600/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:11:9-40
+activity#ch.epfl.chic.napac.toygether.toygetherpitch.MainActivity
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:12:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:16:27-74
+activity#ch.epfl.chic.napac.toygether.toygetherpitch.GameActivity
+ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:19:9-59
+	android:name
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml:19:19-47
+uses-sdk
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/306ff7e8d506fd3a14ba1ff8f8ad8639/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/306ff7e8d506fd3a14ba1ff8f8ad8639/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/6df4411cf92d0e03cd4df450c349cbce/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/6df4411cf92d0e03cd4df450c349cbce/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/258d58f825454e667ad60bddd642839c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/258d58f825454e667ad60bddd642839c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/f72a0c3829600e395d63a232d704b27b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/f72a0c3829600e395d63a232d704b27b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/4d2e7f1cb88f5bd0b674364b8f7e78cb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/4d2e7f1cb88f5bd0b674364b8f7e78cb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/6921061bd922ac613060c67a6a2c40a6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/6921061bd922ac613060c67a6a2c40a6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/b28420f110ef752c2226e79c82373e9d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/b28420f110ef752c2226e79c82373e9d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/0d627af03b9a707862c3ef64269ea6df/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/0d627af03b9a707862c3ef64269ea6df/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/5829504154f49ed2b963ab6cfc0c43f2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/5829504154f49ed2b963ab6cfc0c43f2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/a5ce3a514ccce83b9d2cf537cba329a8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/a5ce3a514ccce83b9d2cf537cba329a8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/4c40cd761d2543c5d24981e8d3e84b55/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/4c40cd761d2543c5d24981e8d3e84b55/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/fe94b10dbc51b35d01d4043a28c29127/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/fe94b10dbc51b35d01d4043a28c29127/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/b825bd8349e30ebb0db94288ff9b481b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/b825bd8349e30ebb0db94288ff9b481b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/2ef5b86c38e88c3b8e6b80369b0f3ed5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/2ef5b86c38e88c3b8e6b80369b0f3ed5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/195a7139e9b15f9825a004c719cc3567/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/195a7139e9b15f9825a004c719cc3567/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e20ca7a0c88a2cf9ad4b755bdeffc7a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/cd1aee7c035971fc5cf59d5087a3a600/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/cd1aee7c035971fc5cf59d5087a3a600/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/9bef160f9d16cfc1ab15bb990afa4448/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/9bef160f9d16cfc1ab15bb990afa4448/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/f543c07a31e22d067df3d67e7d5f92b1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/f543c07a31e22d067df3d67e7d5f92b1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/0d41fd9aade6c6086e36562af6d80e2f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/0d41fd9aade6c6086e36562af6d80e2f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/5c408f5f296809339161e649a491034d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/5c408f5f296809339161e649a491034d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/e3cc3bc28fbdc61acce2ecd73e3b2a7f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/e3cc3bc28fbdc61acce2ecd73e3b2a7f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/c841fd31a1b1638fe4cd8c68bd4d1b17/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/c841fd31a1b1638fe4cd8c68bd4d1b17/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/16e681630db6cb4725bb25b2b19fe2cf/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/16e681630db6cb4725bb25b2b19fe2cf/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/e55bf11b6d1c5ad6af9fad04293d0671/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/e55bf11b6d1c5ad6af9fad04293d0671/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/eecb8dbb0b9fccb81b6c31c6ceb2b9c3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/eecb8dbb0b9fccb81b6c31c6ceb2b9c3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/8237883482bee4a1a759ff6ce7e6a86e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/mfeo15/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/8237883482bee4a1a759ff6ce7e6a86e/AndroidManifest.xml:20:5-44
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mfeo15/Documents/CHIC-NAPaC/Project/Software/Android/ToygetherPITCH/app/src/main/AndroidManifest.xml
