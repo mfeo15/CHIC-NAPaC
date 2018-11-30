@@ -1,26 +1,41 @@
 package ch.epfl.chic.napac.toygether.toygether.connection;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Client {
+
+    public static final long POOLING_DELAY_MS = 500;
 
     private static Client instance = null;
     private static Context mCtx;
 
 	private static final String pushURL = "http://toygether.altervista.org/receive_stream.php";
-    private static final String pullURL = "";
+    private static final String pullURL = "http://toygether.altervista.org/pooling_stream.php";
+
+    private ArrayList<JSONObject> q;
 
 
     private Client(Context context) {
         mCtx = context;
+        q = new ArrayList<>();
     }
 
     public static synchronized Client getInstance(Context context) {
@@ -74,14 +89,44 @@ public class Client {
                             Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
 
         // Create the JSON Request
-        JsonObjectRequest jsonObjectRequest
+        JsonObjectRequest jsonObjectPushRequest
                 = new JsonObjectRequest(Request.Method.POST, pushURL, message, listener, errorListener);
 
         // Access the RequestQueue through your singleton class.
-        RequestHandler.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);
+        RequestHandler.getInstance(mCtx.getApplicationContext()).addToRequestQueue(jsonObjectPushRequest);
     }
 
     public void pullMessage() {
+        this.pushMessage(null, null);
+    }
 
+    public void pullMessage(Response.Listener<JSONObject> listener) {
+        this.pullMessage(listener, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("CLIENT_PULL_MESSAGE", error.toString());
+            }
+        });
+    }
+
+    public void pullMessage(Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
+
+        // Get the personal ID to have a pull on your un-read messages
+        DataSaver d = new DataSaver(mCtx);
+
+        // Create the JSON message for the request
+        JSONObject messageRequest = new JSONObject();
+        try {
+            messageRequest.put("source", d.getUserCode());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Create the JSON Request
+        JsonObjectRequest jsonObjectPullRequest
+                = new JsonObjectRequest(Request.Method.POST, pullURL, messageRequest, listener, errorListener);
+
+        // Access the RequestQueue through your singleton class.
+        RequestHandler.getInstance(mCtx.getApplicationContext()).addToRequestQueue(jsonObjectPullRequest);
     }
 }

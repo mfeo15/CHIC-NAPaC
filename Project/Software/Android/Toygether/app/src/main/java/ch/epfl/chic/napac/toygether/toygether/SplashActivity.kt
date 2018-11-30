@@ -20,5 +20,6 @@ class SplashActivity : AppCompatActivity() {
         } else {
             startActivity( Intent(this, IntroUserActivity::class.java))
         }
+
     }
 }

@@ -2,50 +2,49 @@ package ch.epfl.chic.napac.toygether.toygether
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.View
-import ch.epfl.chic.napac.toygether.toygether.connection.ClientTCP
-import ch.epfl.chic.napac.toygether.toygether.connection.Message
 import kotlinx.android.synthetic.main.activity_playing.*
 import java.util.*
 import android.widget.RelativeLayout
 import android.media.MediaPlayer
+import android.support.constraint.ConstraintLayout
+import android.util.Log
+import android.widget.Button
+import ch.epfl.chic.napac.toygether.toygether.connection.Client
+import ch.epfl.chic.napac.toygether.toygether.connection.DataSaver
+import ch.epfl.chic.napac.toygether.toygether.connection.JSONMessage
 
-class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
+class PlayingActivity : AppCompatActivity(), View.OnClickListener {
+
+    enum class Actor { PARENT, TOY }
+
+    enum class ButtonMode(val cardinal : Int) { OFF(0), ON_PARENT(1), ON_TOY(2) }
+
+    enum class Status(val value : String) { ON("ON"), OFF("OFF") }
+
+    var context : Context? = null
 
     var toyCode = ""
 
-    override fun update(o: Observable?, arg: Any?) {
-        when (o) {
-            is ClientTCP -> {
-                if (arg is Message) {
-                    Log.d("PLAYING", arg.toString())
-                    if (arg.messageID.equals("2003")) {
+    var buttons = arrayOfNulls<Button>(6)
 
-                        when (arg.parameters[0].toInt()) {
-                            1 -> turnON(button_interactive_1, 1, 2, 1)
-                            2 -> turnON(button_interactive_2, 2, 2, 2)
-                            3 -> turnON(button_interactive_3, 3, 2,3)
-                            4 -> turnON(button_interactive_4, 4, 2, 4)
-                            5 -> turnON(button_interactive_5, 5, 2,5)
-                            6 -> turnON(button_interactive_6, 6, 2,6)
-                        }
-                        return
-                    }
+    var timer = Timer()
+    var myTask: TimerTask = object : TimerTask() {
+        override fun run() {
 
-                    if (arg.messageID.equals("2004")) {
+            Client.getInstance(context).pullMessage()
+            { response ->
+                //Log.i("AAA", response.toString())
 
-                        when (arg.parameters[0].toInt()) {
-                            1 -> turnOFF(button_interactive_1, 1, 2)
-                            2 -> turnOFF(button_interactive_2, 2, 2)
-                            3 -> turnOFF(button_interactive_3, 3, 2)
-                            4 -> turnOFF(button_interactive_4, 4, 2)
-                            5 -> turnOFF(button_interactive_5, 5, 2)
-                            6 -> turnOFF(button_interactive_6, 6, 2)
-                        }
+                if (response["id"] as String == "2003") {
+
+                    when (response["status"]) {
+                        Status.ON.value    ->  turnON(Actor.TOY, (response["zone"] as String).toInt() )
+                        Status.OFF.value   ->  turnOFF(Actor.TOY, (response["zone"] as String).toInt() )
                     }
                 }
             }
@@ -54,42 +53,20 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
 
     override fun onClick(v: View?) {
 
-        when (v?.id) {
-            R.id.button_interactive_1 -> playSound(1)
-            R.id.button_interactive_2 -> playSound(2)
-            R.id.button_interactive_3 -> playSound(3)
-            R.id.button_interactive_4 -> playSound(4)
-            R.id.button_interactive_5 -> playSound(5)
-            R.id.button_interactive_6 -> playSound(6)
-        }
+        playSound( getZoneOrdinal(v) )
 
-        if (v?.tag == 0 || v?.tag == 1 ) {
+        if (v?.tag == ButtonMode.OFF || v?.tag == ButtonMode.ON_PARENT ) {
 
-            if (v.tag == 0) animateButtonOnActivation(v)
-            if (v.tag == 1) animateButtonOnretouch(v)
+            //if (v?.tag == 0) animateButtonOnActivation(v)
+            //if (v?.tag == 1) animateButtonOnRetouch(v)
 
-            when (v.id) {
-                R.id.button_interactive_1 -> turnON(button_interactive_1, 1, 1, 1)
-                R.id.button_interactive_2 -> turnON(button_interactive_2, 2, 1, 2)
-                R.id.button_interactive_3 -> turnON(button_interactive_3, 3, 1, 3)
-                R.id.button_interactive_4 -> turnON(button_interactive_4, 4, 1, 4)
-                R.id.button_interactive_5 -> turnON(button_interactive_5, 5, 1, 5)
-                R.id.button_interactive_6 -> turnON(button_interactive_6, 6, 1, 6)
-            }
-
+            turnON(Actor.PARENT, getZoneOrdinal(v) )
             return
         }
 
-        if (v?.tag == 2) {
+        if (v?.tag == ButtonMode.ON_TOY) {
 
-            when (v.id) {
-                R.id.button_interactive_1 -> turnOFF(button_interactive_1, 1, 1)
-                R.id.button_interactive_2 -> turnOFF(button_interactive_2, 2, 1)
-                R.id.button_interactive_3 -> turnOFF(button_interactive_3, 3, 1)
-                R.id.button_interactive_4 -> turnOFF(button_interactive_4, 4, 1)
-                R.id.button_interactive_5 -> turnOFF(button_interactive_5, 5, 1)
-                R.id.button_interactive_6 -> turnOFF(button_interactive_6, 6, 1)
-            }
+            turnOFF(Actor.PARENT, getZoneOrdinal(v) )
             return
         }
     }
@@ -97,23 +74,28 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
     override fun onResume() {
         super.onResume()
 
-        ClientTCP.getInstance().addNewObserver(this)
+        // TODO: check un-pause the pooling
+        timer = Timer()
+        timer.schedule(myTask, 500, Client.POOLING_DELAY_MS)
     }
 
     override fun onPause() {
         super.onPause()
 
-        ClientTCP.getInstance().deleteAnObserver(this)
+        // TODO: check pause the pooling
+        timer.cancel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_playing)
 
+        context = this
+
         button_playing_close.tag = 0
 
         //toyCode = intent.extras.getString("toy_code")
-        toyCode = "P314"
+        toyCode = "T314"
 
         button_playing_close.setOnClickListener {
 
@@ -125,56 +107,69 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
                 button_playing_close.background = ContextCompat.getDrawable(this, R.drawable.continue_left_confirm)
             } else {
                 // Button pressed the second time, therefore the tag has been raised to 1 before
-                ClientTCP.getInstance().send(Message(toyCode, "U123", "2005").toString())
+                Client.getInstance(this).pushMessage(JSONMessage(this, "2005", toyCode).toJSON())
                 finish()
             }
         }
 
-        button_interactive_1.tag = 0
-        button_interactive_2.tag = 0
-        button_interactive_3.tag = 0
-        button_interactive_4.tag = 0
-        button_interactive_5.tag = 0
-        button_interactive_6.tag = 0
+        buttons[0] = button_interactive_1
+        buttons[1] = button_interactive_2
+        buttons[2] = button_interactive_3
+        buttons[3] = button_interactive_4
+        buttons[4] = button_interactive_5
+        buttons[5] = button_interactive_6
 
-        button_interactive_1.setOnClickListener(this)
-        button_interactive_2.setOnClickListener(this)
-        button_interactive_3.setOnClickListener(this)
-        button_interactive_4.setOnClickListener(this)
-        button_interactive_5.setOnClickListener(this)
-        button_interactive_6.setOnClickListener(this)
+        for (b in buttons) {
+            b?.tag = ButtonMode.OFF
+            b?.setOnClickListener(this)
+        }
+
+        DataSaver(this).userCode = "P123"
     }
 
-    private fun sendMessageForLED(messageID : String, led : String) {
-        ClientTCP.getInstance().send(Message(toyCode, "U123", messageID, arrayOf(led)).toString())
+    private fun sendMessageForLED(zone : String, status : String) {
+
+        val m = JSONMessage(this,"2003", toyCode, arrayOf("zone", "status"), arrayOf(zone, status))
+        Client.getInstance(this).pushMessage( m.toJSON() )
     }
 
-    private fun turnON(v: View?, led : Int, turnedONBy : Int, buttonNumber: Int) {
+    private fun turnON(turnedONBy : Actor, zoneNumber: Int) {
 
-        //animateButtonOnActivation(v as View)
-        v?.background = ContextCompat.getDrawable(this, getDrawableForButton(buttonNumber, turnedONBy))
+        if (buttons[zoneNumber - 1]?.tag == ButtonMode.OFF)
+            animateButtonOnActivation(buttons[zoneNumber - 1] as View)
+
+        if (buttons[zoneNumber - 1]?.tag == ButtonMode.ON_PARENT)
+            animateButtonOnRetouch(buttons[zoneNumber - 1] as View)
+
+
+        buttons[zoneNumber - 1]?.background = ContextCompat.getDrawable(this, getDrawableForButton(zoneNumber, turnedONBy))
 
         when (turnedONBy) {
-            1 -> { // Me
-                v?.tag = 1
-                sendMessageForLED("2003", led.toString())
+            Actor.PARENT -> { // Me
+                buttons[zoneNumber - 1]?.tag = ButtonMode.ON_PARENT
+                sendMessageForLED(zoneNumber.toString(), Status.ON.value)
             }
-            2 -> { // Toy
-                v?.tag = 2
+            Actor.TOY -> { // Toy
+                buttons[zoneNumber - 1]?.tag = ButtonMode.ON_TOY
             }
         }
     }
 
-    private fun turnOFF(v: View?, led : Int, turnedOFFBy : Int) {
+    private fun turnOFF(turnedOFFBy : Actor, zoneNumber : Int) {
 
-        if (turnedOFFBy == 1) // I am the one requesting the turn OFF. I need to say it to the toy
-            sendMessageForLED("2004", led.toString())
+        if (turnedOFFBy == Actor.PARENT) // I am the one requesting the turn OFF. I need to say it to the toy
+            sendMessageForLED(zoneNumber.toString(), Status.OFF.value)
 
-        //animateButtonOnDeactivation(v as View)
-        v?.background = ContextCompat.getDrawable(this, R.drawable.play_off)
-        v?.tag = 0
+        animateButtonOnDeactivation(buttons[zoneNumber - 1] as View)
+
+        //buttons[zoneNumber - 1]?.setLayoutParams(ConstraintLayout.LayoutParams(200, 200))
+        //buttons[zoneNumber - 1]?.background = ContextCompat.getDrawable(this, R.drawable.play_off)
+
+        buttons[zoneNumber - 1]?.background = ContextCompat.getDrawable(this, R.drawable.play_off)
+        buttons[zoneNumber - 1]?.tag = ButtonMode.OFF
     }
 
+    // TODO: check and fix
     private fun playSound(num : Int) {
 
         if (num == 1) {
@@ -220,30 +215,30 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
         }
     }
 
-    private fun getDrawableForButton(buttonNumber : Int, by : Int): Int {
+    private fun getDrawableForButton(buttonNumber : Int, by : Actor): Int {
 
         if (buttonNumber == 1)
-            return if (by == 1) R.drawable.play_blue_1_6 else R.drawable.play_yellow_1_6
+            return if (by == Actor.PARENT) R.drawable.play_blue_1_6 else R.drawable.play_yellow_1_6
 
         if (buttonNumber == 2)
-            return if (by == 1) R.drawable.play_blue_2_5 else R.drawable.play_yellow_2_5
+            return if (by == Actor.PARENT) R.drawable.play_blue_2_5 else R.drawable.play_yellow_2_5
 
         if (buttonNumber == 3)
-            return if (by == 1) R.drawable.play_blue_3 else R.drawable.play_yellow_3
+            return if (by == Actor.PARENT) R.drawable.play_blue_3 else R.drawable.play_yellow_3
 
         if (buttonNumber == 4)
-            return if (by == 1) R.drawable.play_blue_4 else R.drawable.play_yellow_4
+            return if (by == Actor.PARENT) R.drawable.play_blue_4 else R.drawable.play_yellow_4
 
         if (buttonNumber == 5)
-            return if (by == 1) R.drawable.play_blue_2_5 else R.drawable.play_yellow_2_5
+            return if (by == Actor.PARENT) R.drawable.play_blue_2_5 else R.drawable.play_yellow_2_5
 
         if (buttonNumber == 6)
-            return if (by == 1) R.drawable.play_blue_1_6 else R.drawable.play_yellow_1_6
+            return if (by == Actor.PARENT) R.drawable.play_blue_1_6 else R.drawable.play_yellow_1_6
 
         return 0
     }
 
-    private fun animateButtonOnretouch(v : View) {
+    private fun animateButtonOnRetouch(v : View) {
 
         val valueAnimatorAlphaDown = ValueAnimator.ofFloat(1.0f, 0.5f)
         valueAnimatorAlphaDown.addUpdateListener {
@@ -313,20 +308,48 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener, Observer {
     private fun animateButtonOnDeactivation(v : View) {
 
         //Animate the ScaleUp
-        val valueAnimatorDownSize = ValueAnimator.ofFloat(1.0f, 0.0f)
+        val valueAnimatorDownSize = ValueAnimator.ofFloat(1.0f, 0.2f)
         valueAnimatorDownSize.addUpdateListener {
             val value = it.animatedValue as Float
             v.scaleX = value
             v.scaleY = value
         }
 
-        valueAnimatorDownSize.duration = 100
-        valueAnimatorDownSize.start()
+        val valueAnimatorRegrow = ValueAnimator.ofFloat(0.2f, 1.0f)
+        valueAnimatorRegrow.addUpdateListener {
+            val value = it.animatedValue as Float
+            v.scaleX = value
+            v.scaleY = value
+        }
+
+        val animatorSet = AnimatorSet()
+        animatorSet.play(valueAnimatorRegrow).after(valueAnimatorDownSize)
+        animatorSet.duration = 150
+        animatorSet.start()
+
+        //valueAnimatorDownSize.duration = 100
+        //valueAnimatorDownSize.start()
 
         // Resize to a small button
-        v.scaleY = 1.0f
-        v.scaleX = 1.0f
+        //v.scaleY = 100.0f
+        //v.scaleX = 100.0f
+    }
 
-        v.background = ContextCompat.getDrawable(this, R.drawable.play_off)
+    private fun getLastChar(str : String) : String {
+        return str.substring(str.length - 1)
+    }
+
+    private fun getZoneOrdinal(b : View?) : Int {
+
+        when (b?.id) {
+            R.id.button_interactive_1 -> return 1
+            R.id.button_interactive_2 -> return 2
+            R.id.button_interactive_3 -> return 3
+            R.id.button_interactive_4 -> return 4
+            R.id.button_interactive_5 -> return 5
+            R.id.button_interactive_6 -> return 6
+        }
+
+        return -1
     }
 }

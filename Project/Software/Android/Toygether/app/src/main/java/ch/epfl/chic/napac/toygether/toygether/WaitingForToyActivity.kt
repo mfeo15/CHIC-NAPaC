@@ -11,15 +11,46 @@ import java.util.*
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
+import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.os.Handler
+import android.util.Log
 import android.widget.ImageView
 import ch.epfl.chic.napac.toygether.toygether.connection.Client
+import ch.epfl.chic.napac.toygether.toygether.connection.DataSaver
 import org.json.JSONObject
 
 
 class WaitingForToyActivity : AppCompatActivity() {
 
+    private var context: Context? = null
+
+    private var toyCode : String = ""
+
     // TODO : Implement pooling routine
+
+    fun poolingMessages() {
+        val handler = Handler()
+        val delay = 500 //milliseconds
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                //do something
+                Client.getInstance(context).pullMessage()
+                        { response ->
+                            if (response["id"] as String == "2002") {
+
+                                // Go to play
+                                val nextActivityIntent = Intent(context, PlayingActivity::class.java)
+                                nextActivityIntent.putExtra("toy_code", toyCode)
+                                startActivity(nextActivityIntent)
+                            }
+                        }
+
+                handler.postDelayed(this, delay.toLong())
+            }
+        }, delay.toLong())
+    }
 
     fun withDelay(delay : Long, block : () -> Unit) {
         Handler().postDelayed(Runnable(block), delay)
@@ -28,6 +59,8 @@ class WaitingForToyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_waiting_for_toy)
+
+        context = this
 
         val x = imageView_red.x
         animateDot(imageView_red, x)
@@ -38,14 +71,16 @@ class WaitingForToyActivity : AppCompatActivity() {
             finish()
         }
 
-        val toyCode = intent.extras.getString("toy_code")
+        toyCode = intent.extras.getString("toy_code")
 
         val m = JSONObject()
         m.put("id", "2001")
-        m.put("source", "P123")
+        m.put("source", DataSaver(this).userCode)
         m.put("destination", toyCode)
 
         Client.getInstance(this).pushMessage(m)
+
+        poolingMessages()
     }
 
     fun animateDot(v: ImageView?, x : Float) {

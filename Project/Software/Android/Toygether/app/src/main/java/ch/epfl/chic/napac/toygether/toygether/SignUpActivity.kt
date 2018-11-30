@@ -11,6 +11,7 @@ import org.json.JSONObject
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import android.provider.SyncStateContract.Helpers.update
+import android.util.Log
 import java.security.MessageDigest
 
 
@@ -29,7 +30,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun createButtonHasBeenPressed() {
+    private fun createButtonHasBeenPressed() {
         val email = editText_signUp_email.text.toString()
         val password = editText_signUp_password.text.toString()
 
@@ -53,18 +54,16 @@ class SignUpActivity : AppCompatActivity() {
         createAccount(email, password)
     }
 
-    fun isEmailValid(email: CharSequence): Boolean {
+    private fun isEmailValid(email: CharSequence): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun isPasswordValid(password : CharSequence) : Boolean {
+    private fun isPasswordValid(password : CharSequence) : Boolean {
 
-        val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{4,}$"
+        val pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{4,}$")
+        val matcher = pattern.matcher(password)
 
-        val pattern = Pattern.compile(PASSWORD_PATTERN)
-        val matcher = pattern.matcher(password);
-
-        return matcher.matches();
+        return matcher.matches()
     }
 
     private fun createAccount(email : String, password :String) {
@@ -76,12 +75,12 @@ class SignUpActivity : AppCompatActivity() {
         m.put("email", email)
         m.put("password", hash(password))
 
-        Client.getInstance(this).pushMessage(m,
-                {response ->
-                    val userCode = response["result"] as Int
-                    if (userCode != 0) {
+        Client.getInstance(this).pushMessage(m)
+                { response ->
+
+                    if (response["id"] as String == "1") {
                         DataSaver(this).isUserLogged = true
-                        DataSaver(this).userCode = userCode.toString()
+                        DataSaver(this).userCode = response["value"].toString()
                         startActivity( Intent(this, ToysEmptyActivity::class.java))
                     } else {
                         // Initialize a new instance of
@@ -102,13 +101,13 @@ class SignUpActivity : AppCompatActivity() {
                         // Display the alert dialog on app interface
                         dialog.show()
                     }
-                })
+                }
     }
 
-    fun hash(password : String): String {
+    private fun hash(password : String): String {
         val bytes = password.toByteArray()
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
-        return digest.fold("", { str, it -> str + "%02x".format(it) })
+        return digest.fold("") { str, it -> str + "%02x".format(it) }
     }
 }

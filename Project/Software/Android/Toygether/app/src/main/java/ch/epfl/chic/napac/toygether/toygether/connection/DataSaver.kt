@@ -48,8 +48,7 @@ class DataSaver (context: Context){
 
 
     fun storeNewToy(c : String) {
-
-        this.storeNewToy(c, "new_toy_"+(this.toyCode+1))
+        this.storeNewToy(c, "toy_"+(this.toyCode+1))
     }
 
     fun storeNewToy(c : String, n : String) {
