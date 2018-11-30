@@ -13,28 +13,27 @@ const char* pushURL = "http://toygether.altervista.org/receive_stream.php";
 const char* pullURL = "http://toygether.altervista.org/pooling_stream.php";
 
 void pushMessage(char* message) {
-  
+
+  String p = sendMessage(message, pushURL);
 }
 
 String pullMessage()
 {
   delay(POOLING_DELAY);
-  
-  char JSONMessage[] = " {\"source\": \"T123\"} ";
 
+  char JSONMessage[] = " {\"source\": \"T314\"} ";
+
+  return sendMessage(JSONMessage, pullURL);
+}
+
+String sendMessage(char* message, const char* url) {
   // Prepare HTTP environment
   HTTPClient http;
-  http.begin(pullURL);
+  http.begin(url);
   http.addHeader("Content-Type", "application/json");
 
-  int httpCode = http.POST(JSONMessage);   //Send the request
-  String payload = http.getString();             //Get the response payload
-
-  //Serial.println();
-  //Serial.print("Received response with code ");
-  //Serial.print(httpCode);   //Print HTTP return code
-  //Serial.print("\n");
-  //Serial.println(payload);    //Print request response payload
+  int httpCode = http.POST(message);   //Send the request
+  String payload = http.getString();       //Get the response payload
 
   http.end();  //Close connection
 
