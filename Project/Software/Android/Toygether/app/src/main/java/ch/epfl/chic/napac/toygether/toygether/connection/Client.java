@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Client {
 
-    public static final long POOLING_DELAY_MS = 500;
+    public static final long POOLING_DELAY_MS = 100;
 
     private static Client instance = null;
     private static Context mCtx;

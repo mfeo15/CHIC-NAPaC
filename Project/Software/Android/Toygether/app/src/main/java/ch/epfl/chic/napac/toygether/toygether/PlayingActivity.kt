@@ -38,7 +38,8 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
 
             Client.getInstance(context).pullMessage()
             { response ->
-                //Log.i("AAA", response.toString())
+
+                Log.i("IN", response.toString())
 
                 if (response["id"] as String == "2003") {
 
@@ -53,12 +54,9 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        playSound( getZoneOrdinal(v) )
+        //playSound( getZoneOrdinal(v) )
 
         if (v?.tag == ButtonMode.OFF || v?.tag == ButtonMode.ON_PARENT ) {
-
-            //if (v?.tag == 0) animateButtonOnActivation(v)
-            //if (v?.tag == 1) animateButtonOnRetouch(v)
 
             turnON(Actor.PARENT, getZoneOrdinal(v) )
             return
@@ -74,15 +72,13 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        // TODO: check un-pause the pooling
         timer = Timer()
-        timer.schedule(myTask, 500, Client.POOLING_DELAY_MS)
+        timer.schedule(myTask, 0, Client.POOLING_DELAY_MS)
     }
 
     override fun onPause() {
         super.onPause()
 
-        // TODO: check pause the pooling
         timer.cancel()
     }
 
@@ -157,13 +153,12 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun turnOFF(turnedOFFBy : Actor, zoneNumber : Int) {
 
+        Log.i("OFF", "Led $zoneNumber turned off")
+
         if (turnedOFFBy == Actor.PARENT) // I am the one requesting the turn OFF. I need to say it to the toy
             sendMessageForLED(zoneNumber.toString(), Status.OFF.value)
 
         animateButtonOnDeactivation(buttons[zoneNumber - 1] as View)
-
-        //buttons[zoneNumber - 1]?.setLayoutParams(ConstraintLayout.LayoutParams(200, 200))
-        //buttons[zoneNumber - 1]?.background = ContextCompat.getDrawable(this, R.drawable.play_off)
 
         buttons[zoneNumber - 1]?.background = ContextCompat.getDrawable(this, R.drawable.play_off)
         buttons[zoneNumber - 1]?.tag = ButtonMode.OFF
@@ -333,10 +328,6 @@ class PlayingActivity : AppCompatActivity(), View.OnClickListener {
         // Resize to a small button
         //v.scaleY = 100.0f
         //v.scaleX = 100.0f
-    }
-
-    private fun getLastChar(str : String) : String {
-        return str.substring(str.length - 1)
     }
 
     private fun getZoneOrdinal(b : View?) : Int {

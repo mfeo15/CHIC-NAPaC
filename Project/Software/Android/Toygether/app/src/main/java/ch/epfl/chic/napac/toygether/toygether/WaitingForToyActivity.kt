@@ -27,29 +27,21 @@ class WaitingForToyActivity : AppCompatActivity() {
 
     private var toyCode : String = ""
 
-    // TODO : Implement pooling routine
+    var timer = Timer()
+    var myTask: TimerTask = object : TimerTask() {
+        override fun run() {
 
-    fun poolingMessages() {
-        val handler = Handler()
-        val delay = 500 //milliseconds
+            Client.getInstance(context).pullMessage()
+            { response ->
+                if (response["id"] as String == "2002") {
 
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                //do something
-                Client.getInstance(context).pullMessage()
-                        { response ->
-                            if (response["id"] as String == "2002") {
-
-                                // Go to play
-                                val nextActivityIntent = Intent(context, PlayingActivity::class.java)
-                                nextActivityIntent.putExtra("toy_code", toyCode)
-                                startActivity(nextActivityIntent)
-                            }
-                        }
-
-                handler.postDelayed(this, delay.toLong())
+                    // Go to play
+                    val nextActivityIntent = Intent(context, PlayingActivity::class.java)
+                    nextActivityIntent.putExtra("toy_code", toyCode)
+                    startActivity(nextActivityIntent)
+                }
             }
-        }, delay.toLong())
+        }
     }
 
     fun withDelay(delay : Long, block : () -> Unit) {
@@ -79,8 +71,21 @@ class WaitingForToyActivity : AppCompatActivity() {
         m.put("destination", toyCode)
 
         Client.getInstance(this).pushMessage(m)
+    }
 
-        poolingMessages()
+    override fun onResume() {
+        super.onResume()
+
+        // TODO: check un-pause the pooling
+        timer = Timer()
+        timer.schedule(myTask, 0, Client.POOLING_DELAY_MS)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // TODO: check pause the pooling
+        timer.cancel()
     }
 
     fun animateDot(v: ImageView?, x : Float) {
