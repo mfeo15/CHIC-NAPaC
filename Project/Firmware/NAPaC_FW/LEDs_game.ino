@@ -4,7 +4,7 @@ const uint8_t LED_2 = 22;
 const uint8_t LED_3 = 19;
 const uint8_t LED_4 = 18;
 const uint8_t LED_5 = 5;
-const uint8_t LED_6 = 17;
+const uint8_t LED_6 = 0;
 
 void setup_game_LEDs() {
   // initialize digital pin as an output.
