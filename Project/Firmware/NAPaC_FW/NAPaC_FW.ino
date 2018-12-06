@@ -108,7 +108,7 @@ void loopOnCore0( void* parameter)
 }
 
 void loop()
-{
+{ 
   switch (currentState) {
     case boot:                    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: BOOTING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       hello();

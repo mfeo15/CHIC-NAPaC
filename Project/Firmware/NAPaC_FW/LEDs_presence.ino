@@ -20,7 +20,7 @@
 
 // Define which pins to use for presence LED strip and create LED strip object
 const uint8_t dataPin = 4;
-const uint8_t clockPin = 16;
+const uint8_t clockPin = 2;
 APA102<dataPin, clockPin> presenceLedStrip;
 
 // Define counter of presence LEDs on the plush toy (2, one for each side of the toy)
