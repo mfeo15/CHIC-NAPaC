@@ -19,7 +19,7 @@ void pushMessage(char* message) {
 
 String pullMessage()
 {
-  delay(POOLING_DELAY);
+  //delay(POOLING_DELAY);
 
   char JSONMessage[] = " {\"source\": \"T314\"} ";
 

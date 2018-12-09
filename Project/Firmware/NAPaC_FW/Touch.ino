@@ -11,20 +11,19 @@
    test_if_touched(); prints touched sensors in serial
 */
 
-//IO4, IO2, IO15, IO14, IO12, IO13 -- T0,T2,T3,T6,T5,T4
-int CAP_PIN[] = {4, 2, 15, 14, 12, 13};
+int CAP_PIN[] = {15, 13, 12, 14, 27, 33};
 
 bool touch_state[ZONES_NUMBER];
 
 const bool PRESSED = 0;
 const bool RELEASED = 1;
 
-#define TOUCH1 GPIO_NUM_4
-#define TOUCH2 GPIO_NUM_2
-#define TOUCH3 GPIO_NUM_15
+#define TOUCH1 GPIO_NUM_15
+#define TOUCH2 GPIO_NUM_13
+#define TOUCH3 GPIO_NUM_12
 #define TOUCH4 GPIO_NUM_14
-#define TOUCH5 GPIO_NUM_12
-#define TOUCH6 GPIO_NUM_13
+#define TOUCH5 GPIO_NUM_27
+#define TOUCH6 GPIO_NUM_33
 
 
 void setup_touch() {
@@ -43,58 +42,16 @@ void setup_touch() {
   Serial.println("Touch sensors all set up");
 }
 
-void print_state() {
-  for (uint8_t i = 0; i < ZONES_NUMBER; i++) {
-    Serial.print(touch_state[i]);
-    Serial.print("\t");
-  }
-  Serial.print("\n");
-}
+bool button_pressed(uint8_t btn_id) {
 
-
-// Reads&returns the capacitive value read on corresponding pin
-int touch_read_value(uint8_t touch_id) {
-  int read = digitalRead(CAP_PIN[touch_id]);
-  touch_state[touch_id] = read;
-
-  return read;
-}
-
-bool capa_touched(uint8_t touch_id) {
-  if (touch_id == 2) {
-    return 0;
-  }
-
-  if (touch_read_value(touch_id) == PRESSED) {
-    Serial.print("Touch sensor touched! On sensor:");
-    Serial.println(touch_id);
-    return 1;
-  } else {
-    return 0;
-  }
+  return digitalRead(CAP_PIN[btn_id]) == PRESSED ? 1 : 0;
 }
 
 bool presence() {
   for (uint8_t i = 0; i < ZONES_NUMBER; i++) {
-    if (capa_touched(i)) {
-      return 1;
-    }
+    if (button_pressed(i)) return 1;
   }
+  
   return 0;
-}
-
-void test_touch_values() {
-  for (uint8_t i = 0; i < ZONES_NUMBER; i++) {
-    touch_read_value(i);
-  }
-  print_state();
-  delay(500);
-}
-
-void test_if_touched() {
-  for (uint8_t i = 0; i < ZONES_NUMBER; i++) {
-    capa_touched(i);
-    delay(100);
-  }
 }
 

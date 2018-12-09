@@ -4,19 +4,17 @@
 
 #include <ArduinoJson.h>
 
-TaskHandle_t LoopTaskOnCore0;
+TaskHandle_t PollingHandle;
+TaskHandle_t UxHandle;
 SemaphoreHandle_t baton;
 
 enum colours {off, white, red, green, blue, purple, yellow, parent, kid};
 
-enum state {boot, offline, online, game_request_received, game_request_waiting, start_game, game, game_update, end_game};
+enum state {boot, offline, online, game_request_received, game_request_waiting, start_game, game, end_game};
 
 state currentState = boot;
 
 bool sound_on = 0;  // set to 1 to have sound, set to zero to keep silent
-bool test_mode_on = 0; // does test loops in main loop
-bool test_solo = 0; // set to 1 for offline tests (solo mode),
-// set to 0 for regular operation
 
 enum LEDmode { LED_off, LED_kid, LED_parent };
 
@@ -24,44 +22,49 @@ const uint8_t ZONES_NUMBER = 6;
 
 uint8_t zone_status[ZONES_NUMBER] = {LED_off, LED_off, LED_off, LED_off, LED_off, LED_off };
 
-//int zoneLEDS[] = {0, 0, 0, 0, 0, 0};
-
-int c = 0;
+//uint8_t zone_status[ZONES_NUMBER] = {LED_off};
 
 void setup() {
   Serial.begin(115200);
-  delay(1000); // give me time to bring up serial monitor
 
+  //Setup of the different components
   setup_game_LEDs();
   setup_presence_LEDs();
   setup_touch();
   setup_sound();
 
-  //sound_test();
-  if (sound_on) {
-    mario();
-  }
-
   baton = xSemaphoreCreateMutex();
-
-  xTaskCreatePinnedToCore(
-    loopOnCore0,
-    "loopTaskCore0",
-    10000,
-    NULL,
-    1,
-    &LoopTaskOnCore0,
-    0);
 }
 
+void update_game_status_by_parent(JsonObject& parsed) {
+  int modifiedZone = atoi(parsed["zone"]);
 
-void loopOnCore0( void* parameter)
+  //xSemaphoreTake( baton, portMAX_DELAY );
+
+  if (parsed["status"] == "ON") {
+    zone_status[modifiedZone - 1] = LED_parent;
+    if (sound_on) play_tone(modifiedZone);
+  } else {
+    zone_status[modifiedZone - 1] = LED_off;
+    if (sound_on) play_tone_short(modifiedZone);
+  }
+
+  //xSemaphoreGive(baton);
+}
+
+/**
+   Polling loop to handle the incoming messages from the parent in parallel to the other local tasks.
+
+*/
+void polling_loop( void* parameter)
 {
+  StaticJsonBuffer<300> JSONBuffer;
+
   while (1)
   {
     String m = pullMessage();
 
-    StaticJsonBuffer<300> JSONBuffer;                         //Memory pool
+    //StaticJsonBuffer<300> JSONBuffer;                         //Memory pool
     JsonObject& parsed = JSONBuffer.parseObject(m);           //Parse message
 
     if (! parsed.success()) {   //Check for errors in parsing
@@ -69,60 +72,73 @@ void loopOnCore0( void* parameter)
     }
 
     int id = atoi(parsed["id"]);
-    if (id == 0) {
-      continue;
+
+    switch (id) {
+      case 0 :
+        break;
+      case 2001:
+        Serial.println(m);
+        currentState = game_request_received;
+        break;
+      case 2003:
+        Serial.println(m);
+        update_game_status_by_parent(parsed);
+        break;
+      case 2005:
+        Serial.println(m);
+        currentState = end_game;
+        break;
     }
 
-    Serial.print("New message received: ");
-    Serial.println(id);
-
-    if (id == 2001) {
-      currentState = game_request_received;
-      continue;
-    }
-
-    if (id == 2003)
-    {
-      int modifiedZone = atoi(parsed["zone"]);
-
-      xSemaphoreTake( baton, portMAX_DELAY );
-
-      if (parsed["status"] == "ON") {
-        zone_status[modifiedZone - 1] = LED_parent;
-        if (sound_on) play_tone(modifiedZone);
-      } else {
-        zone_status[modifiedZone - 1] = LED_off;
-        if (sound_on) play_tone_short(modifiedZone);
-      }
-
-      xSemaphoreGive(baton);
-      continue;
-    }
-
-    if (id == 2005) {
-      currentState = end_game;
-      continue;
-    }
-
+    JSONBuffer.clear();
   }
 }
 
+/**
+   UX loop code for the task created during game mode in order to parallize the user inputs (main loop)
+   with any output to the kid (sounds and lights)
+
+*/
+void ux_loop( void* parameter) {
+  while (1) {
+
+    switch (currentState) {
+      case game_request_waiting:
+        blink_presence_LEDs(green);
+        break;
+
+      case start_game:
+        set_presence_LEDs(green);
+        sound_game_on();
+        break;
+
+      case game:
+        update_LEDs(zone_status);
+        break;
+    }
+  }
+}
+
+/**
+   Main loop of the firmware, taking care of handling the state-machine, the creation of supplementary tasks,
+   general operations (wifi connection, prints, sounds) and during game mode of the button input from the kid
+
+*/
 void loop()
-{ 
+{
   switch (currentState) {
     case boot:                    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: BOOTING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       hello();
+      if (sound_on) mario();
       currentState = offline;
       break;
 
     case offline:                 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: OFFLINE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      if ( !test_solo) {
-        //setup_wifi_smartconfig();
-        setup_wifi();
-        currentState = online;
-      }
-
+      //setup_wifi_smartconfig();
+      setup_wifi();
+      xTaskCreatePinnedToCore(polling_loop, "polling_loop", 10000, NULL, 1, &PollingHandle, 0);
+      currentState = online;
       break;
 
     case online:                  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: ONLINE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%;
@@ -131,71 +147,44 @@ void loop()
     case game_request_received:   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: GAME REQUEST RECEIVED %%%%%%%%%%%%%%%%%
 
       mario();
-      blink_presence_LEDs(green);
-      Serial.println("Parent requested game session");
-      Serial.println("Waiting for kid to accept game request");
-
+      xTaskCreatePinnedToCore(ux_loop, "ux_loop", 10000, NULL, 1, &UxHandle, 1);
       currentState = game_request_waiting;
-
       break;
 
     case game_request_waiting:    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: GAME REQUEST WAITING %%%%%%%%%%%%%%%%%%
-      // blinks until the child accepts the game session
-      blink_presence_LEDs(green);
 
-      /*
-        if (presence()) {
-        //accept_game_message();
-        set_LED(0, parent);
-        //parent_game();
-        currentState = game;
-        }
-      */
-
-      if (Serial.available() > 0) {
-
-        accept_game_message();
-        set_presence_LEDs(green);
-        currentState = game;
-      }
-
+      if (presence()) currentState = start_game;
       break;
 
     case start_game:            // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: START GAME %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      Serial.println("Parent game session on");
-      sound_game_on();
+      accept_game_message();
 
-      display_zone_status();
+      delay(1000);
+      currentState = game;
       break;
 
     case game:                   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: GAME %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      xSemaphoreTake( baton, portMAX_DELAY );
+      //xSemaphoreTake( baton, portMAX_DELAY );
       update_game_status();
-      xSemaphoreGive(baton);
-      delay(50);
+      //xSemaphoreGive(baton);
+      //delay(50);
 
-      display_zone_status();
-      update_LEDs(zone_status);
-      break;
-
-    case game_update:
       break;
 
     case end_game:               // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE: END GAME %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      end_game_session();
+
+      blink_presence_LEDs(green);
+      blink_presence_LEDs(green);
+      blink_presence_LEDs(green);
+      sound_game_off();
+      turn_all_game_LEDs_off();
+
+      reset_zone_status();
+
+      vTaskDelete(UxHandle);
       currentState = online;
       break;
   }
 }
-
-void test_loop(void) {
-
-  // LED test: turns on heart LED in all colours one after another then blinks all LEDs
-  test_presence_LEDs();
-
-  // Touch test: prints touched sensors in serial
-  test_if_touched();
-}
-
 

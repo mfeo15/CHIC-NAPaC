@@ -58,7 +58,6 @@ void update_LEDs(uint8_t leds[]) {
           break;
 
         case LED_parent:
-          //blink_game_LED(led);
           if ( (j % 2) == 0)  {
             digitalWrite( get_pin_GPIO(led), HIGH );
           } else {

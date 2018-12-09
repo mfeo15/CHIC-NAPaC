@@ -62,34 +62,6 @@ void turnOffPresenceLEDs() {
   presenceLedStrip.write(colours, presenceLedCount, brightness);
 }
 
-/*
-void game_set_LED(uint8_t LEDid, uint8_t LED_mode) {
-  switch (LED_mode) {
-
-    case LED_off:
-      set_LED(LEDid, off);
-      zone_status[LEDid] = LED_off;
-      break;
-
-    case on_parent:
-      if (zone_status[LEDid] == on_parent) {
-        blink_LED(LEDid, white);
-      }
-      set_LED(LEDid, parent);
-      zone_status[LEDid] = on_parent;
-      break;
-
-    case on_kid:
-      if (zone_status[LEDid] == on_kid) {
-        blink_LED(LEDid, white);
-      }
-      set_LED(LEDid, kid);
-      zone_status[LEDid] = on_kid;
-      break;
-  }
-}
-*/
-
 void set_presence_LEDs(uint8_t colour) {
 
   switch (colour) {
@@ -131,9 +103,6 @@ void blink_presence_LEDs(uint8_t colour) {
   delay(250);
   set_presence_LEDs(off);
   delay(250);
-  set_presence_LEDs(colour);
-  delay(250);
-  set_presence_LEDs(off);
 }
 
 void test_presence_LEDs() {

@@ -34,30 +34,54 @@ void accept_game_message() {
 
 //Message to tell parent a kid turned on a LED - no error checking
 void LED_on_message(uint8_t LEDid) {
-  /*
-  char message1[31] = {0};
-  char led_id = (char)LEDid + offset;
-  //header+2003+RS+PC+US+(n)+EOT
-  sprintf(message1, "%c0020%cU123%cP314%c2003%c1%c%c%c", STX[0], RS[0], RS[0], RS[0], RS[0], US[0], led_id, EOT[0]);
-  send_message(message1);
-  Serial.print("Message sent: Child turned on LED");
-  Serial.println(LEDid);
-  */
-  
+
+  StaticJsonBuffer<300> JSONbuffer;
+  JsonObject& encoder = JSONbuffer.createObject();
+
+  char led_str[3];
+  get_led_string(led_str, LEDid);
+
+  encoder["id"] = "2003";
+  encoder["source"] = "T314";
+  encoder["destination"] = "P123";
+  encoder["zone"] = led_str;
+  encoder["status"] = "ON";
+
+  char JSONmessage[300];
+  encoder.prettyPrintTo(JSONmessage, sizeof(JSONmessage));
+
+  pushMessage(JSONmessage);
+
+  Serial.println(JSONmessage);
 }
 
 //Message to tell parent a kid turned off a LED - no error checking
 void LED_off_message(uint8_t LEDid) {
-  /*
-  char message1[31] = {0};
-  char led_id = (char)LEDid + offset;
-  //header+2004+RS+PC+US+(n)+EOT
-  sprintf(message1, "%c0020%cU123%cP314%c2004%c1%c%c%c", STX[0], RS[0], RS[0], RS[0], RS[0], US[0], led_id, EOT[0]);
-  send_message(message1);
-  Serial.print("Message sent: Child turned off LED");
-  Serial.println(LEDid);
-  */
-  
+
+  StaticJsonBuffer<300> JSONbuffer;
+  JsonObject& encoder = JSONbuffer.createObject();
+
+  char led_str[3];
+  get_led_string(led_str, LEDid);
+
+  encoder["id"] = "2003";
+  encoder["source"] = "T314";
+  encoder["destination"] = "P123";
+  encoder["zone"] = led_str;
+  encoder["status"] = "OFF";
+
+  char JSONmessage[300];
+  encoder.prettyPrintTo(JSONmessage, sizeof(JSONmessage));
+
+  pushMessage(JSONmessage);
+
+  Serial.println(JSONmessage);
+}
+
+void get_led_string(char* buffer_str, uint8_t LEDid) {
+
+  char led_str = (char)LEDid + 49;
+  sprintf(buffer_str, "%c", led_str);
 }
 
 
