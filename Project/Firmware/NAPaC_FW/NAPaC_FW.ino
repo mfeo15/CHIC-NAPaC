@@ -104,10 +104,12 @@ void ux_loop( void* parameter) {
 
     switch (currentState) {
       case game_request_waiting:
+        blink_all_game_LEDs();
         blink_presence_LEDs(green);
         break;
 
       case start_game:
+        turn_all_game_LEDs_off();
         set_presence_LEDs(green);
         sound_game_on();
         break;
@@ -137,6 +139,7 @@ void loop()
 
       //setup_wifi_smartconfig();
       setup_wifi();
+      blink_game_LED(4);
       xTaskCreatePinnedToCore(polling_loop, "polling_loop", 10000, NULL, 1, &PollingHandle, 0);
       currentState = online;
       break;

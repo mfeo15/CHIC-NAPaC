@@ -85,6 +85,16 @@ void blink_game_LED(uint8_t led) {
   digitalWrite( get_pin_GPIO(led), LOW);
 }
 
+void blink_all_game_LEDs() {
+  for (int led=1; led <= ZONES_NUMBER; led++) digitalWrite( get_pin_GPIO(led), HIGH);
+  delay(250);
+  for (int led=1; led <= ZONES_NUMBER; led++) digitalWrite( get_pin_GPIO(led), LOW);
+  delay(250);
+  for (int led=1; led <= ZONES_NUMBER; led++) digitalWrite( get_pin_GPIO(led), HIGH);
+  delay(250);
+  for (int led=1; led <= ZONES_NUMBER; led++) digitalWrite( get_pin_GPIO(led), LOW);
+}
+
 
 
 void turn_all_game_LEDs_off() {
