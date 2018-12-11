@@ -1,12 +1,12 @@
 /*
- * WiFi file containing functions for managing WiFi in NAPaC project
- * SmartConfig setup from Wifi SmartConfig example
- * 
- */
+   WiFi file containing functions for managing WiFi in NAPaC project
+   SmartConfig setup from Wifi SmartConfig example
+
+*/
 
 #include "WiFi.h"
 
-void setup_wifi_smartconfig(){
+void setup_wifi_smartconfig() {
   WiFi.mode(WIFI_AP_STA);
   WiFi.beginSmartConfig();
 
@@ -14,7 +14,7 @@ void setup_wifi_smartconfig(){
   Serial.println("Waiting for SmartConfig.");
   while (!WiFi.smartConfigDone()) {
     //delay(500);
-    blink_LED(0,green);
+    blink_presence_LEDs(green);
     Serial.print(".");
   }
 
@@ -27,36 +27,35 @@ void setup_wifi_smartconfig(){
     delay(500);
     Serial.print(".");
   }
-    Serial.println("WiFi Connected.");
-    //* server_host = WiFi.localIP(); // constant defined by Yann
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP());
-    set_LED(0,green);
-    delay(1000);
-    set_LED(0,off);
-}
- 
-void setup_wifi() {
-  //Init WiFi as Station, start SmartConfig
-  WiFi.mode(WIFI_AP_STA);
 
-  //WiFiMulti.addAP("NAPaC_WiFi", "NAPaC2018");
-  WiFiMulti.addAP("x.factory", "make0134");
-  
-  //From WiFiMulti example
-  Serial.println("Connecting Wifi...");
-  while(WiFiMulti.run() != WL_CONNECTED) {
-        Serial.print(".");
-        delay(500);
-    }
-  Serial.println("");
-  Serial.println("WiFi connected from WiFiMulti");
-  Serial.println("IP address: ");
+  Serial.println("WiFi Connected.");
+  //* server_host = WiFi.localIP(); // constant defined by Yann
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+  set_presence_LEDs(green);
+  delay(1000);
+  set_presence_LEDs(off);
+}
+
+void setup_wifi() {
+  WiFi.begin("NAPAC", "1234abcd");   //WiFi connection
+
+  Serial.print("Connecting Wifi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    blink_presence_LEDs(green);
+  }
+
+  Serial.println("\n");
+  Serial.println("WiFi connected");
+  Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  delay(500);
+  set_presence_LEDs(green);
+  delay(1000);
+  set_presence_LEDs(off);
 }
 
 
 
- 
