@@ -1,0 +1,4 @@
+#Thu May 31 12:05:18 CEST 2018
+base.0=C\:\\Users\\mfeo\\Desktop\\CHIC-NAPaC\\Software\\Android\\Toygether\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\8
+path.0=classes.dex
+renamed.0=classes.dex

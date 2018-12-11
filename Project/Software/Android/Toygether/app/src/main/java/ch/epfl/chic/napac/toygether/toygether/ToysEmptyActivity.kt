@@ -3,8 +3,11 @@ package ch.epfl.chic.napac.toygether.toygether
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import ch.epfl.chic.napac.toygether.toygether.connection.Client
 import ch.epfl.chic.napac.toygether.toygether.connection.DataSaver
 import kotlinx.android.synthetic.main.activity_toys_empty.*
+import org.json.JSONObject
 
 class ToysEmptyActivity : AppCompatActivity() {
 

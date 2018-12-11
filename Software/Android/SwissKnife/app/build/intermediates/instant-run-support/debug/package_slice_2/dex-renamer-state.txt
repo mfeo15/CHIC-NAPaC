@@ -1,0 +1,4 @@
+#Thu Apr 12 16:20:34 CEST 2018
+base.0=C\:\\Users\\mfeo\\Desktop\\CHIC-NAPaC\\Software\\Android\\SwissKnife\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\2
+path.0=classes.dex
+renamed.0=classes.dex
